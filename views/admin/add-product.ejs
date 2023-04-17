@@ -1,0 +1,95 @@
+<section class="">
+  <div class="container d-flex justify-content-center">
+    <div class="row w-75 mt-5">
+      <div class="col-md-12">
+        <h2 class="text-center">Add Product</h2>
+        <form
+          action="/admin/add_product"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <label for="">Prodcut Name</label>
+          <input type="text" name="name" class="form-control" />
+
+          <label for="">ProductDescription</label>
+          <input type="text" name="description" class="form-control" />
+
+          <label for="">Quantity</label>
+          <input type="text" name="quantity" class="form-control" />
+
+          <label for="">Price</label>
+          <input type="text" name="price" class="form-control" />
+
+          <!-- <label for="">Category</label>
+          <input type="text" name="category" class="form-control" /> -->
+
+          <select class="form-select" name="category" id="cars">
+            <% response.forEach(function(procategory) { %>
+            <option value="<%=procategory.CategoryName%>"><%=procategory.CategoryName %></option>
+            <% } )%>
+          </select>
+ 
+          
+
+          <!-- <label for="">Category</label>
+          <select class="form-select" name="category" id="cars"> 
+            <option value="volvo">Volvo</option>
+          </select> -->
+          <!-- <label for="">Brand</label>
+          <select class="form-select" name="category" id="cars">
+            <option value="volvo">Volvo</option>
+          </select> -->
+
+          <label for="">Image 1</label>
+          <div>
+            <img src="" alt="image1" width="90px" height="90px" id="displayImg1">
+          </div>
+          <input type="file" name="Image" class="form-control" onchange="display1(event)"/>
+
+
+          <label for="">Image 2</label>
+          <div>
+            <img src="" alt="image2" width="90px" height="90px" id="displayImg2">
+          </div>
+          <input type="file" name="Image" class="form-control" onchange="display2(event)"/>
+
+
+          <label for="">Image 3</label>
+          <div>
+            <img src="" alt="image3" width="90px" height="90px" id="displayImg3">
+          </div>
+          <input type="file" name="Image" class="form-control" onchange="display3(event)"/>
+
+
+          <label for="">Image 4</label>
+          <div>
+            <img src="" alt="image4" width="90px" height="90px" id="displayImg4">
+          </div>
+          <input type="file" name="Image" class="form-control" onchange="display4(event)"/>
+
+
+          <button type="submit" class="btn btn-success mt-4">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  function display1(event){
+    document.getElementById('displayImg1').src= URL.createObjectURL(event.target.files[0])
+    
+  }
+  function display2(event){
+    document.getElementById('displayImg2').src= URL.createObjectURL(event.target.files[0])
+    
+  }
+  function display3(event){
+    document.getElementById('displayImg3').src= URL.createObjectURL(event.target.files[0])
+    
+  }
+  function display4(event){
+    document.getElementById('displayImg4').src= URL.createObjectURL(event.target.files[0])
+    
+  }
+  
+</script>
