@@ -16,7 +16,7 @@ module.exports = {
     try {
       let users = req.session.user;
       userSession = req.session.loggedIn;
-      cartcount==null;
+      // cartcount==null;
       if(userSession){
       const count = await user.cart.findOne({ user: req.session.user._id });
       

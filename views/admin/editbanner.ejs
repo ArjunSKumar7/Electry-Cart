@@ -1,46 +1,39 @@
 <section class="">
-    <div class="container d-flex justify-content-center">
-      <div class="row w-75 mt-5">
-        <div class="col-md-12">
-          <h2 class="text-center">Edit Product</h2>
-          <form action="/admin/edit_product/<%=editproduct._id %>" method="POST" enctype="multipart/form-data">
-            <label for="">Prodcut Name</label>
-            <input type="text" name="name" class="form-control" value="<%=editproduct.Productname%>" />
-            <label for="">Description</label>
-            <input type="text" name="description" class="form-control" value="<%=editproduct.ProductDescription%>" />
-  
-            <label for="">Price</label>
-            <input type="text" name="price" class="form-control" value="<%=editproduct.Price%>" />
-  
-            
-            <label for="cars">Category</label>
-           
-            <select class="form-select" name="category" id="cars">
-              <% procategory.forEach(function(procategory) { %>
-              <option value="<%=procategory.CategoryName %>"><%=procategory.CategoryName %></option>
-              <% } )%>
-            </select>
-          
-            <label for="">Quantity</label>
-            <input type="text" name="quantity" class="form-control" value="<%=editproduct.Quantity%>" />
-  
-            <label for="">Image</label>
-            <img src="/uploads/<%=editproduct.Image[0]%>" alt=""  id="image1"  style="width:100px;height:auto" id="imgview">
-            <input type="file" name="image1" class="form-control"  onchange="display1(event)"/>
+  <div class="container d-flex justify-content-center">
+    <div class="row w-75 mt-5">
+      <div class="col-md-12">
+        <h2 class="text-center">Banner Management</h2>
+        <form
+          action="/admin/editbanner/<%=editbanner._id %>"
+          method="post"
+          enctype="multipart/form-data"
+        
+        >
+          <label for="">Title</label>
+          <input type="text" name="bannertitle" class="form-control" value="<%=editbanner.title%>"/>
 
-         
-  
-            <button type="submit" class="btn btn-success mt-4">Submit</button>
-          </form>
-        </div>
+          <label for="">Description</label>
+          <input type="text" name="bannerdescription" class="form-control" value="<%=editbanner.description%>"/>
+
+          <label for=""> Link</label>
+          <input type="text" name="bannerlink" class="form-control" value="<%=editbanner.link %>" />
+
+      
+
+          <label for="">Image</label>
+          <img src="/uploads/<%=editbanner.Image%>" alt=""  id="image"  style="width:100px;height:auto" id="imgview">
+          <input type="file" name="image" class="form-control"  onchange="display1(event)"/>
+
+          
+          <button type="submit" class="btn btn-success mt-4">Submit</button>
+        </form>
       </div>
     </div>
-  </section>
-
-  <script>
-    function display1(event){
-      document.getElementById('image1').src= URL.createObjectURL(event.target.files[0])
+  </div>
+</section>
+<script>
+     function display1(event){
+      document.getElementById('image').src= URL.createObjectURL(event.target.files[0])
       
     }
-    
-  </script>
+</script>

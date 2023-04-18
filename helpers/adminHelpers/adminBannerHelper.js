@@ -8,7 +8,7 @@ module.exports={
     getbanner:()=>{
         return new Promise(async(resolve,reject)=>{
             await bannerdb.find().exec().then((response)=>{
-                console.log("getbannerhelper "+response)
+                console.log("getbannerhelper",response)
                 resolve(response)
             })
         })
@@ -40,14 +40,54 @@ module.exports={
     //     })
     // },
 
-    // editbanner:(bannerId)=>{
-    //     return new Promise(async(resolve,reject)=>{
-    //         await bannerdb.findOne({id:bannerId}).exec().then((response)=>{
-    //             resolve(response)
-    //             console.log("editbannerresponsehelper",response)
-    //         })
+    editbanner:(bannerId)=>{
+        return new Promise(async(resolve,reject)=>{
+            await bannerdb.findOne({_id:bannerId}).exec().then((response)=>{
+                resolve(response)
+                console.log("editbannerresponsehelper",response)
+            })
+        })
+    },
+
+    // postEditProduct:(productId,editedData,filename)=>{
+    //     return new Promise(async(resolve, reject) => {
+    //        await user.product.updateOne({_id:productId},{$set:{
+    //         Productname:editedData.name,
+    //         ProductDescription:editedData.description,
+    //         Quantity:editedData.quantity,
+    //         Price:editedData.price,
+    //         category:editedData.category,
+    //         Image:filename
+    //        }}) .then((response)=>{
+    //     console.log(response);
+    //         resolve(response)
+    //        }) 
     //     })
     // },
+
+
+
+posteditbanner:(bannerId,editdata,filename)=>{
+
+    // console.log("Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",editdata)
+    return new Promise(async(resolve,reject)=>{
+        await bannerdb.updateOne({_id:bannerId},{$set:{
+            title:editdata.title,
+            description:editdata.description,
+            link:editdata.link,
+            image:filename
+        }}).then((response)=>{
+            console.log(response);
+            resolve(response)
+        })
+    })
+
+}
+
+
+
+
+
 
 
     // blockbanner:(productId)=>{

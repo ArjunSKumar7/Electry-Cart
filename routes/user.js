@@ -44,7 +44,7 @@ router.get("/add-to-cart/:id",auths.userauth,userCartController.addtocart)
 
 router.get("/viewcart",auths.userauth,userCartController.getViewCart)
 
-// router.put("/change_product_quantity", auths.userauth,userCartController.postchangeProductQuantity);
+router.put("/change-product-quantity", auths.userauth,userCartController.postchangeProductQuantity)
 
 
 

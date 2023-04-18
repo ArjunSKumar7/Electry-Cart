@@ -73,7 +73,9 @@ router.get("/banner",auths.auth,upload.addBannerupload,adminbanner.getbanner)
 
 router.post("/banner",upload.addBannerupload,adminbanner.postbanner)
 
-// router.get("/editbanner/:id",adminbanner.geteditbanner)
+router.get("/editbanner/:id",adminbanner.geteditbanner)
+
+router.post("/editbanner/:id",adminbanner.posteditbanner)
 
 // router.get("/block_banner/:id",adminbanner.blockbanner)
 

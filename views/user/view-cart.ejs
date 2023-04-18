@@ -43,18 +43,23 @@
                                             
 
                                             <button class="cart-item-count "
-                                            onclick="changeQuantity('<%= cartItems._id%>','<%= cartItems.item%>',-1)">-</button>
+                                            onclick="changeQuantity('<%= item._id%>','<%= item.item%>','<%= userId %>',-1)">-</button>
 
-                                            <span id="<%= cartItems.item %>">
+                                            <span id='<%= item.item%>'>
                                                 <%=item.quantity%>
                                             </span>
 
-                                            <button class="cart-item-count"
-                                            onclick="changeQuantity('<%= cartItems._id%>','<%= cartItems.item%>',1)">+</button>
-
+                                            <% if(item.cartItems.Quantity> item.quantity){%>
+                                                    
+                                                <button class="cart-item-count"
+                                            onclick="changeQuantity('<%= item._id%>','<%= item.item%>','<%= userId %>',1)">+</button>
+                                                <%}%>
 
 
                                         </td>
+                                        <h2 style="display: none;" id="Quantity">
+                                            <%=item.cartItems.Quantity%>
+                                        </h2>
                                         <td class="text-right" data-title="Cart">
                                             <span>$65.00 </span>
                                         </td>
@@ -256,7 +261,50 @@
       <% } %>
 
       <script>
-        function changeQuantity(cartId,prodId,count){
-
+        function changeQuantity(cartId,prodId,userId,count){
+            let quantity = parseInt(document.getElementById(prodId).textContent)
+            let Quantity = document.getElementById('Quantity').textContent
+            if (count === 1) {
+            if (quantity + 1 === parseInt(Quantity)) {
+                location.reload();
+            }
         }
+        if (count === -1) {
+            if (quantity  === parseInt(Quantity)) {
+                location.reload();
+            }
+        }
+        count=parseInt(count)
+
+            $.ajax({
+                url:'/change-product-quantity',
+                method:'PUT',
+                data:{
+                    user:userId,
+                    cart:cartId,
+                    product:prodId,
+                    count:count,
+                    quantity:quantity,
+                    Quantity:Quantity
+                },
+                success:(response)=>{
+                    alert(response)
+                    console.log(response);
+       
+       if(response.removeProduct){
+           alert("Removed Product From Cart")
+           
+           location.reload()
+       }
+       else{
+           console.log("hgfcvbnb"+prodId);
+           let cartQuantity= quantity+count
+           console.log(cartQuantity);
+           document.getElementById(prodId).innerHTML=cartQuantity
+        
+       }
+      
+    }
+   })
+}
       </script>

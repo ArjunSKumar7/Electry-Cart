@@ -35,5 +35,15 @@ console.log("aaaaaaa",cartItems);
     });
   },
 
-  // postchangeProductQuantity
+  postchangeProductQuantity: async (req, res) => {
+    try {
+      await userCartHelpers.changeProductQuantity(req.body).then(async (response) => {
+        // response.total = await cartHelper.totalCheckOutAmount(req.body.user);
+
+        res.json(response);
+      });
+    } catch (error) {
+      res.status(500)
+    }
+  },
 };
