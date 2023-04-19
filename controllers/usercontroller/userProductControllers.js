@@ -1,15 +1,28 @@
 const userproductHelpers = require("../../helpers/UserHelpers/userProductHelpers");
-let cartcount
+const { viewAddCategory } = require("../../helpers/adminHelpers/adminProductHelpers");
+let cartcount,viewCategory,shopproducts
 module.exports = {
   //shop
 
-  shopProduct: (req, res) => {
+  shopProduct: async(req, res) => {
     cartcount=req.session.count
     req.session.loggedIn=true
     let userSession= req.session.loggedIn
-    userproductHelpers.shopListProduct().then((response) => {
-      res.render("user/shop", { response,userSession,cartcount });
-    });
+    let catFilter =req.query.catName
+    console.log("catName    : ",catFilter, typeof(req.query.catName));
+    if(req.query.catName === undefined){
+      viewCategory=await userproductHelpers.viewAddCategory()
+      console.log("viewaddcategory console",viewCategory);
+      userproductHelpers.shopListProduct().then((response) => {
+        console.log("response : ",response,viewCategory);
+        res.render("user/shop", { response,userSession,cartcount,viewCategory});
+      });
+    }else{
+      shopproducts=await userproductHelpers.shopListProduct(catFilter)
+      console.log("bbbbbbbbbbbbb",shopproducts);
+      res.json(shopproducts)
+      
+    }
   },
 
   viewProductDetails: (req, res) => {

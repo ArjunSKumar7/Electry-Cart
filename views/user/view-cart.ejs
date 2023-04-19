@@ -288,11 +288,17 @@
                     Quantity:Quantity
                 },
                 success:(response)=>{
-                    alert(response)
-                    console.log(response);
+                    
+                    
        
        if(response.removeProduct){
-           alert("Removed Product From Cart")
+        Swal.fire({
+                                          position: 'center',
+                                          icon: 'success',
+                                          title: 'Removed Successfully From The Cart',
+                                          showConfirmButton: false,
+                                          timer: 2000
+                                        })
            
            location.reload()
        }

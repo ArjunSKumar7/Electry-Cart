@@ -58,7 +58,7 @@ module.exports = {
         
         return new Promise(async(resolve, reject) => {
            await user.product.find().exec().then((response)=>{
-            console.log(response);
+            console.log(response)
             resolve(response) 
        
            })
