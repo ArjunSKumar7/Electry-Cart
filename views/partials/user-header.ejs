@@ -50,9 +50,9 @@
                   <!-- <a class="dropdown-item" href="/profile/<%=locals.profileId%>"
                     >Edit Profile</a
                   > -->
-                  <a class="dropdown-item" href="/logout" style="color: red"
-                    >Log out</a
-                  >
+                  <a class="dropdown-item" href="/logout" style="color: red">Log out</a>
+                  <!-- <a class="dropdown-item" href="/profile/<%= locals.profileId%>" style="color: green">profile</a> -->
+                  <a class="dropdown-item" href="/profile" style="color: green">profile</a>
                   <%} %>
                 </div>
               </li>
@@ -219,17 +219,17 @@
       <div class="mobile-header-info-wrap mobile-header-border">
         <div class="single-mobile-header-info mt-30">
           <% if(!locals.userSession){%>
-
-          <a href="/login" style="color: black">Log In</a>
-
-          <%} else{%>
-
-          <a href="/profile/<%=locals.profileId%>" style="color: black"
-            >Profile</a
-          >
-          <a href="/logout" style="color: black">Logout</a>
-
-          <%} %>
+            <a class="dropdown-item" href="/login" style="color: black"
+              >Log In</a
+            >
+            <%} else{%>
+            <!-- <a class="dropdown-item" href="/profile/<%=locals.profileId%>"
+              >Edit Profile</a
+            > -->
+            <a class="dropdown-item" href="/logout" style="color: red">Log out</a>
+            <!-- <a class="dropdown-item" href="/profile/<%= locals.profileId%>" style="color: green">profile</a> -->
+            <a class="dropdown-item" href="/profile" style="color: green">profile</a>
+            <%} %>
         </div>
       </div>
       <div class="mobile-social-icon">

@@ -75,7 +75,17 @@ module.exports = {
     } catch (err) {
         console.log(err);
     }
-}
+},
+
+findUser: (userId) => {
+  return new Promise(async (resolve, reject) => {
+    await user.user.findById({ _id: userId }).then((user) => {
+
+      resolve(user)
+    })
+
+  })
+},
 
 
  

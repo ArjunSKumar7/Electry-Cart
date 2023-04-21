@@ -1,0 +1,477 @@
+<section class="pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 m-auto">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="dashboard-menu">
+                            <ul class="nav flex-column" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><i class="fi-rs-settings-sliders mr-10"></i>Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i class="fi-rs-shopping-bag mr-10"></i>Orders</a>
+                                </li>
+                               
+                                <li class="nav-item">
+                                    <a class="nav-link" id="address-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i class="fi-rs-marker mr-10"></i>My Address</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="add-address-tab" data-bs-toggle="tab" href="#add-address" role="tab" aria-controls="address" aria-selected="true"><i class="fi-rs-marker mr-10"></i>Add Address</a>
+                                </li>
+                                <!-- <li class="nav-item">
+                                    <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>Account details</a>
+                                </li> -->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/logout"><i class="fi-rs-sign-out mr-10"></i>Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content dashboard-content">
+                            <div class="tab-pane fade active show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">Hello Rosie! </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>From your account dashboard. you can easily check &amp; view your <a href="#">recent orders</a>, manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit your password and account details.</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">Your Orders</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Order</th>
+                                                        <th>Date</th>
+                                                        <th>Status</th>
+                                                        <th>Total</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>#1357</td>
+                                                        <td>March 45, 2020</td>
+                                                        <td>Processing</td>
+                                                        <td>$125.00 for 2 item</td>
+                                                        <td><a href="#" class="btn-small d-block">View</a></td>
+                                                    </tr>
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="card mb-3 mb-lg-0">
+                                            <div class="card-header">
+                                                <h5 class="mb-0">Billing Address</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <address>3522 Interstate<br> 75 Business Spur,<br> Sault Ste. <br>Marie, MI 49783</address>
+                                                <p>New York</p>
+                                                <a href="#" class="btn-small">Edit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="add-address" role="tabpanel" aria-labelledby="account-detail-tab">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Add Address</h5>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <form action="/add_address" method="post" id="form">
+                                            <div class="form-group">
+                                              <input
+                                                type="text"
+                                                required=""
+                                                name="fname"
+                                                id="fname"
+                                                onkeyup="validateFirstName()"
+                                                placeholder="First name *"
+                                              />
+                                              <span id="fname-error" class="validation-label"></span>
+                                            </div>
+                                            <div class="form-group">
+                                              <input
+                                                type="text"
+                                                required=""
+                                                name="lname"
+                                                id="lname"
+                                                onkeyup="validateLastName()"
+                                                placeholder="Last name *"
+                                              />
+                                              <span id="lname-error" class="validation-label"></span>
+                                            </div>
+                                            <div class="form-group">
+                                              <input
+                                                required=""
+                                                type="text"
+                                                name="street"
+                                                id="street"
+                                                onkeyup="validateStreet()"
+                                                placeholder="Street Name"
+                                              />
+                                              <span id="street-error" class="validation-label"></span>
+                                            </div>
+                                  
+                                            <div class="form-group">
+                                              <input
+                                                type="text"
+                                                name="apartment"
+                                                required=""
+                                                id="apartment"
+                                                onkeyup="validateApartment()"
+                                                placeholder="Apartment *"
+                                              />
+                                              <span id="apartment-error" class="validation-label"></span>
+                                            </div>
+                                            <div class="form-group">
+                                              <input
+                                                type="text"
+                                                name="city"
+                                                required=""
+                                                placeholder="City"
+                                                id="city"
+                                                onkeyup="validateCity()"
+                                              />
+                                              <span id="city-error" class="validation-label"></span>
+                                            </div>
+                                            <div class="form-group">
+                                              <input
+                                                required=""
+                                                type="text"
+                                                name="state"
+                                                placeholder="State"
+                                                id="state"
+                                                onkeyup="validateState()"
+                                              />
+                                              <span id="state-error" class="validation-label"></span>
+                                            </div>
+                                            <div class="form-group">
+                                              <input
+                                                required=""
+                                                type="text"
+                                                name="pincode"
+                                                placeholder="Pincode"
+                                                id="pin"
+                                                onkeyup="validatePin()"
+                                              />
+                                              <span id="pin-error" class="validation-label"></span>
+                                            </div>
+                                            <div class="form-group">
+                                              <input
+                                                required=""
+                                                type="text"
+                                                name="mobile"
+                                                placeholder="Mobile"
+                                                id="phone"
+                                                onkeyup="validatePhone()"
+                                              />
+                                              <span id="phone-error" class="validation-label"></span>
+                                            </div>
+                                            <div class="form-group">
+                                              <input
+                                                required=""
+                                                type="text"
+                                                name="email"
+                                                placeholder="email"
+                                                id="email"
+                                                onkeyup="validateEmail()"
+                                              />
+                                              <span id="email-error" class="validation-label"></span>
+                                            </div>
+                                            <button type="submit" class="btn btn-dark">Continue</button>
+                                          </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Account Details</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>Already have an account? <a href="page-login-register.html">Log in instead!</a></p>
+                                        <form method="post" name="enq">
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label>First Name <span class="required">*</span></label>
+                                                    <input required="" class="form-control square" name="name" type="text">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label>Last Name <span class="required">*</span></label>
+                                                    <input required="" class="form-control square" name="phone">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label>Display Name <span class="required">*</span></label>
+                                                    <input required="" class="form-control square" name="dname" type="text">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label>Email Address <span class="required">*</span></label>
+                                                    <input required="" class="form-control square" name="email" type="email">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label>Current Password <span class="required">*</span></label>
+                                                    <input required="" class="form-control square" name="password" type="password">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label>New Password <span class="required">*</span></label>
+                                                    <input required="" class="form-control square" name="npassword" type="password">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label>Confirm Password <span class="required">*</span></label>
+                                                    <input required="" class="form-control square" name="cpassword" type="password">
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <button type="submit" class="btn btn-fill-out submit" name="submit" value="Submit">Save</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const fnameError = document.getElementById('fname-error');
+    const lnameError = document.getElementById('lname-error');
+    const emailError = document.getElementById('email-error');
+    const phoneError = document.getElementById('phone-error');
+    const streetError = document.getElementById('street-error');
+    const pinError = document.getElementById('pin-error');
+    const cityError = document.getElementById('city-error');
+    const apartmentError = document.getElementById('apartment-error');
+    const stateError = document.getElementById('state-error');
+    const formError = document.getElementById('form-error');
+    const form = document.getElementById('form');
+    function validateFirstName() {
+      const fname = document.getElementById('fname').value;
+      const fnameInput = document.getElementById('fname');
+      if (fname.length == 0) {
+        fnameError.innerHTML = 'Name is required';
+        fnameError.style.color = 'red';
+        fnameInput.style.border = 'solid 2px red';
+        return false;
+      }
+      if (!fname.match(/^[A-Za-z]{3,}$/)) {
+        fnameError.innerHTML = 'Write valid name';
+        fnameError.style.color = 'red';
+        fnameInput.style.border = 'solid 2px red';
+        return false;
+      }
+      fnameError.innerHTML = '';
+      // fnameError.innerHTML = "Valid Name";
+      fnameError.style.color = 'green';
+      fnameInput.style.border = 'solid 2px green';
+      return true;
+    }
+    function validateLastName() {
+      const lname = document.getElementById('lname').value;
+      const lnameInput = document.getElementById('lname');
+      if (lname.length == 0) {
+        lnameError.innerHTML = 'Name is required';
+        lnameError.style.color = 'red';
+        lnameInput.style.border = 'solid 2px red';
+        return false;
+      }
+      if (!lname.match(/^[A-Za-z]{3,}$/)) {
+        lnameError.innerHTML = 'Write valid name';
+        lnameError.style.color = 'red';
+        lnameInput.style.border = 'solid 2px red';
+        return false;
+      }
+      lnameError.innerHTML = '';
+      // fnameError.innerHTML = "Valid Name";
+      lnameError.style.color = 'green';
+      lnameInput.style.border = 'solid 2px green';
+      return true;
+    }
+    function validateStreet() {
+      const street = document.getElementById('street').value;
+      const streetInput = document.getElementById('street');
+      if (street.length == 0) {
+        streetError.innerHTML = 'Street name is required';
+        streetError.style.color = 'red';
+        streetInput.style.border = 'solid 2px red';
+        return false;
+      }
+      if (!street.match(/^[A-Za-z]{3,}$/)) {
+        streetError.innerHTML = 'Write valid Street name';
+        streetError.style.color = 'red';
+        streetInput.style.border = 'solid 2px red';
+        return false;
+      }
+      streetError.innerHTML = '';
+      // fnameError.innerHTML = "Valid Name";
+      streetError.style.color = 'green';
+      streetInput.style.border = 'solid 2px green';
+      return true;
+    }
+    function validateApartment() {
+      const apartment = document.getElementById('apartment').value;
+      const apartmentInput = document.getElementById('apartment');
+      if (apartment.length == 0) {
+        apartmentError.innerHTML = 'Apartment name is required';
+        apartmentError.style.color = 'red';
+        apartmentInput.style.border = 'solid 2px red';
+        return false;
+      }
+      if (!apartment.match(/^[A-Z a-z]{3,}$/)) {
+        apartmentError.innerHTML = 'Write valid apartment name';
+        apartmentError.style.color = 'red';
+        apartmentInput.style.border = 'solid 2px red';
+        return false;
+      }
+      apartmentError.innerHTML = '';
+      // fnameError.innerHTML = "Valid Name";
+      apartmentError.style.color = 'green';
+      apartmentInput.style.border = 'solid 2px green';
+      return true;
+    }
+    function validateCity() {
+      const city = document.getElementById('city').value;
+      const cityInput = document.getElementById('city');
+      if (city.length == 0) {
+        cityError.innerHTML = 'city name is required';
+        cityError.style.color = 'red';
+        cityInput.style.border = 'solid 2px red';
+        return false;
+      }
+      if (!city.match(/^[A-Za-z]{3,}$/)) {
+        cityError.innerHTML = 'Write valid city name';
+        cityError.style.color = 'red';
+        cityInput.style.border = 'solid 2px red';
+        return false;
+      }
+      cityError.innerHTML = '';
+      // fnameError.innerHTML = "Valid Name";
+      cityError.style.color = 'green';
+      cityInput.style.border = 'solid 2px green';
+      return true;
+    }
+    function validateState() {
+      const state = document.getElementById('state').value;
+      const stateInput = document.getElementById('state');
+      if (state.length == 0) {
+        stateError.innerHTML = 'state name is required';
+        stateError.style.color = 'red';
+        stateInput.style.border = 'solid 2px red';
+        return false;
+      }
+      if (!state.match(/^[A-Za-z]{3,}$/)) {
+        stateError.innerHTML = 'Write valid state name';
+        stateError.style.color = 'red';
+        stateInput.style.border = 'solid 2px red';
+        return false;
+      }
+      stateError.innerHTML = '';
+      // fnameError.innerHTML = "Valid Name";
+      stateError.style.color = 'green';
+      stateInput.style.border = 'solid 2px green';
+      return true;
+    }
+    function validateEmail() {
+      const email = document.getElementById('email').value;
+      const emailInput = document.getElementById('email');
+      if (email.length == 0) {
+        emailError.innerHTML = 'Email is required';
+        emailError.style.color = 'red';
+        emailInput.style.border = 'solid 2px red';
+        return false;
+      }
+      if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+        emailError.innerHTML = 'Email invalid';
+        emailError.style.color = 'red';
+        emailInput.style.border = 'solid 2px red';
+        return false;
+      }
+      emailError.innerHTML = '';
+      emailError.style.color = 'green';
+      emailInput.style.border = 'solid 2px green';
+      return true;
+    }
+    function validatePin() {
+      const pin = document.getElementById('pin').value;
+      const pinInput = document.getElementById('pin');
+      if (pin.length == 0) {
+        pinError.innerHTML = 'pin number is required';
+        pinError.style.color = 'red';
+        pinInput.style.border = 'solid 2px red';
+        return false;
+      }
+      if (!pin.match(/^\d{6}$/)) {
+        pinError.innerHTML = 'Enter valid number';
+        pinError.style.color = 'red';
+        pinInput.style.border = 'solid 2px red';
+        return false;
+      }
+      pinError.innerHTML = '';
+      pinError.style.color = 'green';
+      pinInput.style.border = 'solid 2px green';
+      return true;
+    }
+    function validatePhone() {
+      const phone = document.getElementById('phone').value;
+      const phoneInput = document.getElementById('phone');
+      if (phone.length == 0) {
+        phoneError.innerHTML = 'phone number is required';
+        phoneError.style.color = 'red';
+        phoneInput.style.border = 'solid 2px red';
+        return false;
+      }
+      if (!phone.match(/^\d{10}$/)) {
+        phoneError.innerHTML = 'Enter valid number';
+        phoneError.style.color = 'red';
+        phoneInput.style.border = 'solid 2px red';
+        return false;
+      }
+      phoneError.innerHTML = '';
+      phoneError.style.color = 'green';
+      phoneInput.style.border = 'solid 2px green';
+      return true;
+    }
+  
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (
+        !validateFirstName() ||
+        !validateLastName() ||
+        !validateEmail() ||
+        !validatePhone()
+      ) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Enter details correctly!!',
+        });
+        return false;
+      } else {
+        form.submit();
+      }
+    });
+  </script>

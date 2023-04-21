@@ -16,6 +16,7 @@ const user = require("../../models/connection");
         };
         return new Promise(async (resolve, reject) => {
             let carts = await user.cart.findOne({ user: userId });
+            // console.log("carts",carts);
             if (carts) {
                 let productExist = carts.cartItems.findIndex(
                     (cartItems) => cartItems.productId == proId
@@ -43,7 +44,7 @@ const user = require("../../models/connection");
                         )
                         .then((response) => {
                             response.new = true
-                            console.log("sdfasda",response);
+                            // console.log("sdfasda",response);
                             resolve(response);
                         });
                 }
@@ -55,7 +56,7 @@ const user = require("../../models/connection");
                 });
                 await cartItems.save().then((data) => {
                     data.new = true
-                    console.log("sdfasdasdasdasdasdasdasdadsd",data);
+                    // console.log("sdfasdasdasdasdasdasdasdadsd",data);
                     resolve(data);
 
                 });
@@ -64,7 +65,7 @@ const user = require("../../models/connection");
     },
 
     viewCart:(userId)=>{
-        console.log('hare',userId);
+        // console.log('hare',userId);
         return new Promise(async(resolve,reject)=>{
            let result =  await user.cart
              .aggregate([
@@ -121,6 +122,54 @@ const user = require("../../models/connection");
         });
     },
 
+    totalCheckOutAmount: (userId) => {
+        return new Promise(async (resolve, reject) => {
+            const id = await user.cart
+                .aggregate([
+                    {
+                        $match: {
+                            user: ObjectId(userId),
+                        },
+                    },
+                    {
+                        $unwind: "$cartItems",
+                    },
+
+                    {
+                        $project: {
+                            item: "$cartItems.productId",
+                            quantity: "$cartItems.Quantity",
+                        },
+                    },
+
+                    {
+                        $lookup: {
+                            from: "products",
+                            localField: "item",
+                            foreignField: "_id",
+                            as: "carted",
+                        },
+                    },
+                    {
+                        $project: {
+                            item: 1,
+                            quantity: 1,
+                            product: { $arrayElemAt: ["$carted", 0] },
+                        },
+                    },
+                    {
+                        $group: {
+                            _id: null,
+                            total: { $sum: { $multiply: ["$quantity", "$product.Price"] } },
+                        },
+                    },
+                ])
+                .then((total) => {
+                    resolve(total[0]?.total);
+                });
+        });
+    },
+
     changeProductQuantity: (data) => {
         count = parseInt(data.count);
         quantity = parseInt(data.quantity);
@@ -151,7 +200,20 @@ const user = require("../../models/connection");
         });
     },
 
-
+            deleteCart: (data) => {
+        return new Promise((resolve, reject) => {
+            user.cart
+                .updateOne(
+                    { _id: data.cartId },
+                    {
+                        $pull: { cartItems: { productId: data.product } },
+                    }
+                )
+                .then(() => {
+                    resolve({ removeProduct: true });
+                });
+        });
+    },
 
 
 

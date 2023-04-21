@@ -1,0 +1,181 @@
+<section class="mt-50 mb-50">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-25">
+            <h4>Select Your Address</h4>
+          </div>
+  
+          <br />
+  
+          
+            <form action="/check_out" method="POST" id="checkout-form">
+              
+            <div>
+              <div class="payment_option">
+                <div
+                  class="list-group-item"
+                  style="
+                    border-radius: 1rem;
+                    padding: 1.5rem;
+                    margin-bottom: 2rem;
+                  "
+                >
+                  <div class="list-group-item-heading">
+                    <div class="row radio">
+                      <div class="col-xs-3">
+                        <label>
+                          <input
+                            type="radio"
+                            name="address"
+                            id="address1"
+                            value=""
+                            style="height: 1.2rem; width: 1.2rem"
+                            checked
+                          />
+                         
+                        </label>
+                      </div>
+                      <div class="col-xs-5">
+                        <dl class="dl-small">
+                          <dt></dt>
+                          <dd></dd>
+                          <dd></dd>
+                          <dd></dd>
+                          <dd></dd>
+                          <dd></dd>
+                          <dd></dd>
+                        </dl>
+                        <!-- <button class="btn btn-sm">Edit</button>
+                          <button class="btn btn-sm btn-link">
+                            Delete this address
+                          </button> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <div class="payment_method">
+              <p>Payment Method</p>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="payment-method"
+                  value="COD"
+                  checked
+                />
+                <label class="form-check-label" for="flexRadioDefault1">
+                  COD
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="payment-method"
+                  value="online"
+                />
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Razorpay
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="payment-method"
+                  value="paypal"
+                />
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Paypal
+                </label>
+                <div id="paypal"></div>
+              </div>
+              <div class="form-group">
+                <input name="user" value="" type="hidden" />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-fill-out btn-block mt-30">
+              Proceed to payment
+            </button>
+          </form>
+  
+  
+            <h2>No Address Added</h2>
+  
+          
+  
+          <br />
+          <div
+            style="
+              width: 35rem;
+              height: 3rem;
+              background-color: whitesmoke;
+              padding: 20px;
+            "
+          >
+            <a href="/add_address"> <h5>+ Add an address</h5></a>
+          </div>
+        </div>
+          
+  
+        <div class="col-md-6">
+          <div class="order_review">
+            <div class="mb-20">
+              <h4>Your Orders</h4>
+            </div>
+            <div class="table-responsive order_table text-center">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th colspan="2">Product</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+               
+                  <tr>
+                    <td class="image product-thumbnail">
+                      <img src="" />
+                    </td>
+                    <td>
+                      <h5>
+                        <a href="shop-product-full.html"
+                          ></a
+                        >
+                      </h5>
+                      <span class="product-qty"></span>
+                    </td>
+                    <td></td>
+                  </tr>
+                 
+  
+                  <!-- <tr>
+                <th>SubTotal</th>
+                <td class="product-subtotal" colspan="2">$280.00</td>
+            </tr> -->
+                  <tr>
+                    <th>Shipping</th>
+                    <td colspan="2"><em>Free Shipping</em></td>
+                  </tr>
+                  <tr>
+                    <th>Total</th>
+                    <td colspan="2" class="product-subtotal">
+                      <span class="font-xl text-brand fw-900"></span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+             
+          </div>
+        </div>
+        <br>
+        <br>
+        
+        
+      </div>
+    </div>
+  </section>

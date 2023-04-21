@@ -103,9 +103,36 @@ const CartSchema = new mongoose.Schema({
 });
 
 
+
+const addressSchema = new mongoose.Schema({
+
+
+  userid: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user'
+  },
+  Address: [
+    {
+      fname: { type: String },
+      lname: { type: String },
+      street: { type: String },
+      apartment: { type: String },
+      city: { type: String },
+      state: { type: String },
+      pincode: { type: Number },
+      mobile: { type: Number },
+      email: { type: String }
+    }
+  ]
+
+
+})
+
+
 module.exports={
  user :mongoose.model('user',userschema),
 category:mongoose.model('Category',categorySchema),
 product:mongoose.model('product',productSchema),
-cart:mongoose.model('cart',CartSchema)
+cart:mongoose.model('cart',CartSchema),
+address: mongoose.model('address', addressSchema),
 };

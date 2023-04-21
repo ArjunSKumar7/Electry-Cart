@@ -8,7 +8,7 @@ const client = require("twilio")(accountSid, authToken);
 
 const bannerdb = require("../../models/banner");
 
-let loggedinstatus, userSession, cartcount;
+let loggedinstatus, userSession, cartcount,userId;
 
 module.exports = {
   // user home
@@ -16,12 +16,20 @@ module.exports = {
     try {
       let users = req.session.user;
       userSession = req.session.loggedIn;
-      // cartcount==null;
+      console.log("usersession",userSession)
       if(userSession){
+       userId=req.session.user._id
       const count = await user.cart.findOne({ user: req.session.user._id });
-      
-      req.session.count = count.cartItems.length;
+      if(count==null){
+        req.session.count = 0;
       cartcount = req.session.count;
+      }else{
+        req.session.count = count.cartItems.length;
+        cartcount = req.session.count;
+       
+      }
+     
+      
       }
 
       const bannerresponse = await bannerdb.find();
@@ -30,6 +38,7 @@ module.exports = {
         userSession,
         bannerresponse,
         cartcount,
+        userId
       });
     } catch (err) {
       res.status(500);
@@ -44,7 +53,8 @@ module.exports = {
     } else {
       req.session.loggedIn = false;
       userSession = req.session.loggedIn;
-      res.render("user/login", { userSession });
+      userId=req.session.user._id
+      res.render("user/login", { userSession,userId });
       loggedinstatus = true;
     }
   },
@@ -58,7 +68,7 @@ module.exports = {
       if (loggedinstatus == true) {
         // let login=true
         req.session.user = response.response.user;
-
+        userId=req.session.user._id
         req.session.loggedIn = true;
 
         userSession = req.session.loggedIn;
@@ -172,6 +182,23 @@ module.exports = {
   getPasswordReset: (req, res) => {
     res.render("user/reset-password", { userSession, profileId });
   },
+
+  getProfile: async (req, res) => {
+    try {
+      req.session.loggedIn = true;
+        userSession = req.session.loggedIn;
+       userId=req.session.user._id
+      console.log("getprofilecontrollid",userId)
+      let data = await userhelpers.findUser(userId);
+      console.log("getprofilecontrolluserdata",data)
+      cartcount = req.session.count;
+      res.render("user/profile", { userSession,cartcount, userId,data });
+    } catch (error) {
+      res.status(500)
+    }
+
+  },
+
 
   logOut: (req, res) => {
     req.session.user = null;
