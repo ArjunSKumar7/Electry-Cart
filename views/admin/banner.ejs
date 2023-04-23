@@ -24,7 +24,7 @@
           <div>
             <img src="" alt="image1" width="90px" height="90px" id="bannerimg">
           </div>
-          <input type="file" name="bannerimage" class="form-control" onchange="display(event)"/>
+          <input type="file" accept=".jpg,jpeg,webp" name="bannerimage" class="form-control" onchange="display(event)"/>
 
             
             <button type="submit" class="btn btn-success mt-4">Submit</button>
@@ -55,8 +55,19 @@
                     
     
                     <td>
-                      <a href ="/admin/editbanner/<%=getbanner._id %>"  class="btn btn-success">Edit</a>
-                      <a href="" class="btn btn-xs btn-danger btn-danger"> Delete</a>
+                      <!-- <a href ="/admin/editbanner/<%=getbanner._id %>"  class="btn btn-success">Edit</a> -->
+                      <%if(getbanner.bannerblocked){%>
+                 
+                        <a href ="/admin/unblock_banner/<%=getbanner._id %>"class="btn btn-succ  ess">Unblock</a>
+                        <%}
+                        else{%>
+                          
+                          <a href = "/admin/block_banner/<%=getbanner._id %>"  class="btn btn-danger">block</a>
+                          <%}
+                          %>
+                        </td> 
+                     
+
                     </td>
                   </tr>
                   <% }) %>

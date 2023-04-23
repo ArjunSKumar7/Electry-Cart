@@ -469,11 +469,11 @@
                   <div class="container">
                     <div class="slider-1-height-3 slider-animated-1">
                       <div class="hero-slider-content-2">
-                        <h4 class="animated">"<%=bannerresponse.title%>" </h4>
-                        <h2 class="animated fw-900"><%=bannerresponse.description%></h2>
-                        <h1 class="animated fw-900 text-brand">
+                        <h4 class="animated" style="color: wheat;"><%=bannerresponse.title%></h4>
+                        <h5 class="animated fw-900"><%=bannerresponse.description%></h5>
+                        <h3 class="animated fw-900 text-brand">
                           Great Sale
-                        </h1>
+                        </h3>
                         <p class="animated">
                           
                         </p>
@@ -500,37 +500,37 @@
             </div>
           </div>
           <div class="col-lg-3 d-md-none d-lg-block">
-            <% bannerresponse.forEach(function(bannerresponse) { %>
-            <div class="banner-img banner-1 wow fadeIn animated home-3">
-              <img
-                class="border-radius-10"
-                src="/uploads/<%=bannerresponse.image%>"
-                alt=""
-              />
-             
-              <div class="banner-text">
-                <span><%=bannerresponse.title%></span>
-                <h4><%=bannerresponse.description%> </h4>
-                <a href="/shop"
-                  >Shop Now <i class="fi-rs-arrow-right"></i
-                ></a>
-              </div>
-              <% }); %>
+           
+              <% if (bannerresponse.length > 0) { 
+                var lastIndex = bannerresponse.length - 1;
+                var lastBanner = bannerresponse[lastIndex]; %>
+                
+                <div class="banner-img banner-1 wow fadeIn animated home-3">
+                  <img class="border-radius-10" src="/uploads/<%=lastBanner.image%>" alt="" />
+                  <div class="banner-text">
+                    <span style="color: rgb(154, 243, 87);"><%=lastBanner.title%></span>
+                    <h4  style="color: rgb(3, 3, 3);" ><%=lastBanner.description%> </h4>
+                    <a href="/shop">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                  </div>
+                </div>
+                
+            <% } %>
+            
             </div>
-            <div class="banner-img banner-2 wow fadeIn animated mb-0">
+            <!-- <div class="banner-img banner-2 wow fadeIn animated mb-0">
               <img
                 class="border-radius-10"
                 src="assets/imgs/banner/banner-7.jpg"
                 alt=""
               />
-              <!-- <div class="banner-text">
+              <div class="banner-text">
                 <span>Smart Offer</span>
                 <h4>Save 20% on <br />Eardrop</h4>
                 <a href="shop-grid-right.html"
                   >Shop Now <i class="fi-rs-arrow-right"></i
                 ></a>
-              </div>                                 -->
-            </div>
+              </div>                                
+            </div> -->
           </div>
         </div>
       </div>

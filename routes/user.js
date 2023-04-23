@@ -68,6 +68,13 @@ router.post('/add_address',auths.userauth,userCheckoutController.postAddresspage
 
 
 
+
+
+
+
+
+
+
 module.exports = router; 
 
 

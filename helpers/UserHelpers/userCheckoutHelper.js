@@ -1,6 +1,48 @@
 const user = require("../../models/connection");
-
+const ObjectId = require("mongodb").ObjectId;
 module.exports={
+
+
+
+    checkOutpage: (userId) => {
+        return new Promise(async (resolve, reject) => {
+
+            await user.address.aggregate([
+                {
+                    $match: {
+                        userid: ObjectId(userId)
+                    }
+                },
+                {
+                    $unwind: '$Address'
+                },
+
+                {
+                    $project: {
+                        item: '$Address'
+
+                    }
+                },
+
+                {
+                    $project: {
+                        item: 1,
+                        Address: { $arrayElemAt: ['$Address', 0] }
+                    }
+                }
+
+            ]).then((address) => {
+
+                console.log(address);
+
+                resolve(address)
+            })
+
+
+        })
+    },
+
+
     postAddress: (userId, data) => {
         return new Promise(async (resolve, reject) => {
 

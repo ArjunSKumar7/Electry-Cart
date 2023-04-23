@@ -6,6 +6,7 @@ const adminCartegoryHelpers = require("../helpers/adminHelpers/adminCartegoryHel
 const admincategory = require("../controllers/admincontroller/Category");
 const adminproduct = require("../controllers/admincontroller/product")
 const adminbanner= require("../controllers/admincontroller/bannercontroll")
+const admincopuon= require("../controllers/admincontroller/CouponController")
 var router = express.Router();
 const multer= require('multer');
 const upload=require('../multer/multer')
@@ -75,12 +76,21 @@ router.post("/banner",upload.addBannerupload,adminbanner.postbanner)
 
 router.get("/editbanner/:id",adminbanner.geteditbanner)
 
-router.post("/editbanner/:id",adminbanner.posteditbanner)
+router.get("/block_banner/:id",adminbanner.blockbanner)
 
-// router.get("/block_banner/:id",adminbanner.blockbanner)
+router.get("/unblock_banner/:id",adminbanner.unblockbanner)
 
-// router.get("/unblock_banner/:id",adminbanner.unblockbanner)
- 
+
+/********************admin coupons routes********************/
+router.get("/add_coupons", auths.auth,admincopuon.addCoupons);
+
+router.post("/add_coupons",admincopuon.addNewCoupon);
+
+router.get("/generate_coupon",auths.auth,admincopuon.generateCoupon);
+
+router.get("/coupons", auths.auth,admincopuon.newCoupons);
+
+router.delete("/coupon_delete/:id",auths.auth,admincopuon.deleteCoupon);
 
 
 

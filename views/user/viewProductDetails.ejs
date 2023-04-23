@@ -99,15 +99,30 @@
                                         </div> -->
                                         <div class="bt-1 border-color-1 mt-30 mb-30"></div>
                                         <div class="detail-extralink">
-                                            <div class="detail-qty border radius">
+                                            <!-- <div class="detail-qty border radius">
                                                 <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
                                                 <span class="qty-val">1</span>
                                                 <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
-                                            </div>
+                                            </div> -->
                                             <div class="product-extra-link2">
-                                                <button type="submit" class="button button-add-to-cart">Add to cart</button>
-                                                <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                                <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
+                                               
+                                                <button
+                                                type="submit"
+                                               
+                                                class="button button-add-to-cart"
+                                                onclick="addtocart('<%-response._id%>'),
+                                               Swal.fire({
+                                                position: 'center',
+                                                icon: 'success',
+                                                title: 'Item Added Successfully To Cart',
+                                                showConfirmButton: false,
+                                                timer: 2000
+                                              })"
+                                              >
+                                              Add to cart
+                                              </button>
+                                                <!-- <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a> -->
+                                                <!-- <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a> -->
                                             </div>
                                         </div>
                                         <!-- <ul class="product-meta font-xs color-grey mt-50">
@@ -564,6 +579,23 @@
         </div>
     </div>
     <!-- Vendor JS-->
+    <script>
+          function addtocart(proId) {
+        $.ajax({
+            url: '/add-to-cart/' + proId,
+            method: 'get',
+            success: (response) => {
+                if (response.new) {
+                    let count = $('#cart-count').html();
+                    count = parseInt(count) + 1;
+                    $('#cart-count').html(count);
+
+                }
+
+            },
+        });
+    }
+    </script>
     <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
     <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
     <script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>

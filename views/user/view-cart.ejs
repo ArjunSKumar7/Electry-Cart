@@ -83,8 +83,40 @@
                    
 
                     <div class="divider center_icon mt-50 mb-50"><i class="fi-rs-fingerprint"></i></div>
-                <!---coup-->
-                    <div class="col-lg-6 " style="float:right;">
+                    <div class="col-lg-12 col-md-12 d-flex justify-content-center">
+                               
+                               
+                                
+                        <div class="mb-30 mt-50">
+                            <div class="heading_s1 mb-3">
+                                <h4>Apply Coupon</h4>
+                            </div>
+                            <div class="total-amount">
+                                <div class="left">
+                                    <div class="coupon">
+                                        <form action="" >
+                                            <div class="form-row row justify-content-center">
+                                                <div class="form-group col-lg-9">
+                                                    <input id="code" class="font-medium" name="Coupon" placeholder="Enter Your Coupon">
+                                                </div>
+                                                <div class="form-group col-lg-3">
+                                                  <button type="button" class="btn  btn-sm"
+                                                  onclick="validatecoupon()"><i
+                                                      class="fi-rs-label mr-10"></i>Apply</button>
+                      
+                      
+                                                </div>
+                                                <h6 id="successMesage"></h6>
+                                                <h6 id="couponUsedErr" class="message" style="color: red;"></h6>
+                                            </div>
+                                        </form>
+                                        <span class="couponErr"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                         <div class="border p-md-4 p-30 border-radius cart-totals">
                             <div class="heading_s1 mb-3">
                                 <h4>Cart Totals</h4>
@@ -237,4 +269,33 @@
 })
    
 }
+
+
+function validatecoupon() {
+                couponname = document.getElementById('code').value
+                $.ajax({
+                    url: '/validate_coupon?couponName=' + couponname,
+                    method: "POST",
+                    success: (response) => {
+                      console.log(response);
+                        if (response.discountAmount && response.couponTotal) {
+                            document.getElementById('discountAmount').innerHTML = "-" + (response?.discountAmount)
+                            document.getElementById('total').innerHTML = response?.couponTotal
+                            document.getElementById('successMesage').innerHTML = response?.success
+                        }
+                        const checkTotalInput = document.getElementById('checkTotal');
+                        const couponNameInput = document.getElementById('couponName');
+                        const couponDiscountInput = document.getElementById('couponDiscountAmount')
+                        checkTotalInput.value = response?.couponTotal
+                        couponNameInput.value = couponname;
+                        couponDiscountInput.value = response?.discountAmount;
+                        console.log(couponDiscountInput);
+                        if (response.err) {
+                            document.getElementById('couponUsedErr').innerHTML = response.err
+                        }
+                    
+                            
+                    }
+                })
+            }
             </script>

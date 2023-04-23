@@ -1,7 +1,3 @@
 node_modules
 
-git add .
-
-git commit -m 'message'
-
-git push
+.env

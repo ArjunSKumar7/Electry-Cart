@@ -32,7 +32,7 @@ module.exports = {
       
       }
 
-      const bannerresponse = await bannerdb.find();
+      const bannerresponse = await bannerdb.find({bannerblocked:false});
       res.render("user/user", {
         users,
         userSession,
@@ -126,6 +126,7 @@ module.exports = {
         res.redirect("/login");
       } else {
         req.session.number = req.body.number;
+      
         await client.verify.v2
           .services(serviceSid)
           .verifications.create({ to: `+91${number}`, channel: "sms" })
@@ -149,7 +150,9 @@ module.exports = {
 
       const otpNumber = req.body.otp;
 
+
       const serviceSid = process.env.TWILIO_SERVICE_SID;
+     
       const verification_check = await client.verify.v2
         .services(serviceSid)
         .verificationChecks.create({ to: `+91${number}`, code: otpNumber });
@@ -198,6 +201,10 @@ module.exports = {
     }
 
   },
+
+
+
+
 
 
   logOut: (req, res) => {

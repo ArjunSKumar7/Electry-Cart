@@ -19,12 +19,12 @@ module.exports={
         if(req.session.adminloggedIn)
          {
             
-            console.log("ifgetlog")
+           
             login=true
-            res.render("admin/admin-dashboard",{layout:"adminLayout",adminlogin:true})
+            res.render("admin/admin-dashboard", )
         }
         else{
-            console.log("elsegetlog")
+           
             res.render("admin/login",{layout:"adminLayout",adminlogin:false}) 
         }
          },

@@ -26,7 +26,8 @@ module.exports = {
   getViewCart: async (req, res) => {
     let total = await userCartHelpers.totalCheckOutAmount(req.session.user._id);
     let cartItems = await userCartHelpers.viewCart(req.session.user._id);
-console.log("total",total);
+console.log("cart items",cartItems  );
+
     req.session.count = cartItems.length;
 
     cartcount = req.session.count;
@@ -71,9 +72,11 @@ console.log("total",total);
     }
   },
 
+  
+
   postCart:(req,res)=>{
    
-      res.render("user/checkout")
+      res.redirect("/checkout")
   
   },
 

@@ -114,7 +114,7 @@ const user = require("../../models/connection");
     getCartItemsCount: (userId) => {
         return new Promise(async (resolve, reject) => {
             let count = 0;
-            let cart = await db.cart.findOne({ user: userId });
+            let cart = await user.cart.findOne({ user: userId });
             if (cart) {
                 count = cart.cartItems.length;
             }

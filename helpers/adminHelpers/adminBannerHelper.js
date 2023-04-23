@@ -8,7 +8,7 @@ module.exports={
     getbanner:()=>{
         return new Promise(async(resolve,reject)=>{
             await bannerdb.find().exec().then((response)=>{
-                console.log("getbannerhelper",response)
+                // console.log("getbannerhelper",response)
                 resolve(response)
             })
         })
@@ -82,7 +82,7 @@ posteditbanner:(bannerId,editdata,filename)=>{
         })
     })
 
-}
+},
 
 
 
@@ -90,20 +90,22 @@ posteditbanner:(bannerId,editdata,filename)=>{
 
 
 
-    // blockbanner:(productId)=>{
+    blockbanner:(bannerId)=>{
+console.log("blockbannercont",bannerId)
+        return new Promise(async(resolve,reject)=>{
+            await bannerdb.updateOne({_id:bannerId},{$set:{bannerblocked:true}})
 
-    //     return new Promise(async(resolve,reject)=>{
-    //         await bannerdb.updateOne({_id:productId},{$set:{blocked:true}})
-    //         resolve()
-    //     })
-    // },
+            resolve()
+        })
+    },
 
-    // unblockbanner:(productId)=>{
-    //     return new Promise(async(resolve,reject)=>{
-    //         await bannerdb.updateOne({_id:productId},{$set:{blocked:false}})
-    //         resolve()
-    //     })
-    // },
+    unblockbanner:(bannerId)=>{
+        console.log("blockbannercont",bannerId)
+        return new Promise(async(resolve,reject)=>{
+          const updateunblock=  await bannerdb.updateOne({_id:bannerId},{$set:{bannerblocked:false}})
+            resolve(updateunblock)
+        })
+    },
 
 
 }

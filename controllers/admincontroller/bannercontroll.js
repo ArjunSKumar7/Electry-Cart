@@ -9,7 +9,7 @@ module.exports={
     getbanner:(req,res)=>{
 
         adminBannerHelpers.getbanner().then((response)=>{
-            // console.log("getbannerhelperresponse"+response)
+            console.log("getbannerhelperresponse",response)
             const getbanner=response
 
             res.render("admin/banner",{layout:"adminLayout",getbanner,adminlogin:true})
@@ -74,14 +74,18 @@ module.exports={
 
 
     blockbanner:(req,res)=>{
-        adminBannerHelpers.blockbannner(req.params.id).then((response)=>{
-          res.redirect("/admin/view_product")
+      console.log("idbanner",req.params.id)
+        adminBannerHelpers.blockbanner(req.params.id).then((response)=>{
+          console.log("blockbanner",response)
+          res.redirect("/admin/banner")
         })
       },
 
       unblockbanner:(req,res)=>{
+        console.log("unidbanner",req.params.id)
         adminBannerHelpers.unblockbanner(req.params.id).then((response)=>{
-          res.redirect('/admin/view_product')
+          console.log("unblockbanner",response)
+          res.redirect('/admin/banner')
 
         })
       },
