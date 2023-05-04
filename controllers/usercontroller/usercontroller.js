@@ -1,4 +1,5 @@
 const userhelpers = require("../../helpers/UserHelpers/UserHelpers");
+const userWhishlistHelpers = require("../../helpers/UserHelpers/userWhishlistHelpers");
 const user = require("../../models/connection");
 
 const accountSid = process.env.TWILIO_ACC_SID;
@@ -8,15 +9,15 @@ const client = require("twilio")(accountSid, authToken);
 
 const bannerdb = require("../../models/banner");
 
-let loggedinstatus, userSession, cartcount,userId;
+let loggedinstatus, userSession, cartcount,userId,wishcount;
 
 module.exports = {
   // user home
   getHome: async (req, res) => {
     try {
       let users = req.session.user;
+      wishcount = await userWhishlistHelpers.getWishCount(req.session.user._id)
       userSession = req.session.loggedIn;
-      console.log("usersession",userSession)
       if(userSession){
        userId=req.session.user._id
       const count = await user.cart.findOne({ user: req.session.user._id });
@@ -38,6 +39,7 @@ module.exports = {
         userSession,
         bannerresponse,
         cartcount,
+        wishcount,
         userId
       });
     } catch (err) {
@@ -47,7 +49,7 @@ module.exports = {
   
   // get user login
   getUserLogin: (req, res) => {
-    arjun = false;
+ 
     if (req.session.loggedIn) {
       res.redirect("/");
     } else {
@@ -97,7 +99,7 @@ module.exports = {
     userhelpers.doSignUp(req.body).then((response) => {
       req.session.userloggedIn = true;
 
-      var emailStatus = response.status;
+     emailStatus = response.status;
       if (emailStatus == true) {
         res.redirect("/login");
       } else {
@@ -191,9 +193,7 @@ module.exports = {
       req.session.loggedIn = true;
         userSession = req.session.loggedIn;
        userId=req.session.user._id
-      console.log("getprofilecontrollid",userId)
       let data = await userhelpers.findUser(userId);
-      console.log("getprofilecontrolluserdata",data)
       cartcount = req.session.count;
       res.render("user/profile", { userSession,cartcount, userId,data });
     } catch (error) {

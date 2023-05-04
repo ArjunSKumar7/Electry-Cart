@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="card-body">
+      <div class="table-responsive">
+        <div class="table-responsive">
+          <table class="table align-middle table-nowrap mb-0">
+            <thead class="table-light">
+              <tr>
+                 
+                <th class="align-middle" scope="col">Order ID</th>
+                <th class="align-middle" scope="col">Date</th>
+                <th class="align-middle" scope="col">OrderStatus</th>
+                <th class="align-middle" scope="col">Option</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% response?.forEach(function(response) { %>
+              <tr>
+                
+                <td><a href="#" class="fw-bold"> <%=response.orders._id%></a></td>
+          
+                <td><%=getDate(response.orders.createdAt)%></td>
+                <td>
+                  <%=response.orders.orderStatus%>
+                </td>
+                <td>
+                 
+                    <!-- <button onclick="cancelorder('<%=response.orders._id%>')" class="btn btn-xs">Cancel</button> -->
+                    <a href="/order_details?order=<%=response.orders._id%>" class="btn btn-primary"> Order Details  </a>
+                
+                </td>
+               
+              </tr>
+              <% }) %> 
+             
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    </div>
+    <script>
+      function cancelorder(orderid){
+        console.log(orderid);
+     $.ajax({  
+       url:'/cancel_order?orderid='+orderid,
+       method:'put',
+       success:(response)=>{
+        if(response.status){
+          location.reload()
+        }
+       }
+     })
+      }
+    </script>

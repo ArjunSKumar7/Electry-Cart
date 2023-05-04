@@ -1,0 +1,197 @@
+<section class="h-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-10 col-xl-8">
+        <div class="card" style="border-radius: 10px;">
+          <div class="card-header px-4 py-5">
+
+
+            <h5 class="text-muted mb-0">Thanks for your Order, <span style="color: black;">
+                <%= address[0].fname%>
+              </span>!</h5>
+            <p style="display: none" ; id="Arjun">
+              <%= JSON.stringify(locals.data) %>
+            </p>
+            <%if(orderDetails.orderStatus=='Delivered' ){%>
+
+              <button class=" mt-5 btn btn-suucess" onclick="invoiceCreator()">Download invoice</button>
+              <%}%>
+          </div>
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <p class="lead fw-normal mb-0" style="color: black;">Order Details </p>
+              <p class="small text-muted mb-0">Order Id : <%=orderDetails._id%>
+              </p>
+              <p class="small text-muted mb-0">Ordered Date:<%= getDate(orderDetails.createdAt)%>
+              </p>
+            </div>
+            <div class="card shadow-0 border mb-4">
+              <% products?.forEach(function(response) { %>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <img src="/uploads/<%=response.image[0] %>" class="img-fluid" alt="Phone">
+                    </div>
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0">
+                        <%=response.productsName%>
+                      </p>
+                    </div>
+
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0 small">
+                        <%=response.category%>
+                      </p>
+                    </div>
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0 small">
+                        <%=response.quantity%>
+                      </p>
+                    </div>
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                      <p class="text-muted mb-0 small">₹<%=response.productsPrice%>
+                      </p>
+                    </div>
+                  </div>
+                  <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
+
+                </div>
+                <% }) %>
+            </div>
+            <div class="d-flex justify-content-between pt-2">
+              <p class="fw-bold mb-0">Address Details</p>
+              <p class="text-muted mb-0"><span class="fw-bold me-4"></span></p>
+            </div>
+
+
+
+
+
+            <div class="d-flex justify-content-between pt-2">
+              <p class="fw-bold mb-0">
+                <%= address[0].fname%>
+              </p>
+              <%if(orderDetails. orderStatus=='Success' ){ %>
+                <p class="text-muted mb-0"><span class="fw-bold me-4"><span>Order Status</span>: <span
+                      style="color:green;">
+                      <%=orderDetails. orderStatus%>
+                    </span> </p>
+                <%} else if(orderDetails. orderStatus=='Delivered' ) {%>
+                  <p class="text-muted mb-0"><span class="fw-bold me-4"><span>Order Status</span>: <span
+                        style="color: orange;">
+                        <%=orderDetails. orderStatus%>
+                      </span> </p>
+
+                  <%} else {%>
+
+                    <p class="text-muted mb-0"><span class="fw-bold me-4"><span>Order Status</span>: <span
+                          style="color: red;">
+                          <%=orderDetails. orderStatus%>
+                        </span> </p>
+
+                    <%} %>
+                      <%if(orderDetails. orderStatus=='Success' ){ %>
+                        <buttton class="btn btn-primary text-center" height:3rem"
+                          onclick="cancelorder('<%=orderDetails._id%>')">Cancel Order</buttton>
+                        <%} %>
+                          <%if(orderDetails. orderStatus=='Delivered' ){ %>
+                            <buttton class="btn btn-primary text-center" style="background: slateblue; height:2rem"
+                              onclick="returnorder('<%=orderDetails._id%>')">Return</buttton>
+                            <%} %>
+            </div>
+            <div class="d-flex justify-content-between pt-2">
+              <p class="fw-bold mb-0">
+                <%= address[0].apartment%>
+              </p>
+              <p class="text-muted mb-0"><span class="fw-bold me-4"></span></p>
+            </div>
+            <div class="d-flex justify-content-between pt-2">
+              <p class="fw-bold mb-0">
+                <%= address[0].street%>
+              </p>
+              <p class="text-muted mb-0"><span class="fw-bold me-4">Total</span> ₹<%=orderDetails.totalPrice%>
+              </p>
+            </div>
+            <div class="d-flex justify-content-between pt-2">
+              <p class="fw-bold mb-0">
+                <%= address[0].city%>
+              </p>
+              <p class="text-muted mb-0"><span class="fw-bold me-4"></span></p>
+            </div>
+            <div class="d-flex justify-content-between pt-2">
+              <p class="fw-bold mb-0">
+                <%= address[0].pincode%>
+              </p>
+              <p class="text-muted mb-0"><span class="fw-bold me-4">Delivery Charges</span>Free</p>
+            </div>
+
+
+
+
+
+
+
+
+
+          </div>
+          <div class="card-footer border-0 px-4 py-5"
+            style="background-color: whitesmoke; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+            <h5 class="d-flex align-items-center justify-content-end text-black text-uppercase mb-0">Total
+              paid: ₹<%=orderDetails.totalPrice%><span class="h2 mb-0 ms-2"></span></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row d-flex align-items-center">
+
+    <div class="col-md-10">
+
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<script>
+  function cancelorder(orderid) {
+
+    $.ajax({
+      url: '/cancel_order?orderid=' + orderid,
+      method: 'put',
+      success: (response) => {
+        if (response) {
+          location.reload()
+        }
+      }
+    })
+  }
+  function returnorder(orderid) {
+
+    $.ajax({
+      url: '/return_order?orderid=' + orderid,
+      method: 'put',
+      success: (response) => {
+        if (response) {
+          location.reload()
+        }
+      }
+    })
+  }
+
+
+  function invoiceCreator() {
+    //Import the library into your project
+    let data = JSON.parse(document.getElementById('Arjun').innerHTML);
+    console.log(data);
+
+    //Create your invoice! Easy!
+    easyinvoice.createInvoice(data, function (result) {
+      //The response will contain a base64 encoded PDF file
+      console.log("PDF base64 string: ", result.pdf);
+      easyinvoice.download("invoice.pdf");
+    });
+  }
+</script>

@@ -128,11 +128,26 @@ const addressSchema = new mongoose.Schema({
 
 })
 
+const wishSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+  },
+  wishitems: [{
+    productId: { type: mongoose.Schema.Types.ObjectId },
+  }],
+  addedAt: {
+    type: Date,
+    default: Date.now
+  }
+});
+
+
 
 module.exports={
  user :mongoose.model('user',userschema),
 category:mongoose.model('Category',categorySchema),
 product:mongoose.model('product',productSchema),
 cart:mongoose.model('cart',CartSchema),
+wishlist: mongoose.model("wishlist", wishSchema),
 address: mongoose.model('address', addressSchema),
 };

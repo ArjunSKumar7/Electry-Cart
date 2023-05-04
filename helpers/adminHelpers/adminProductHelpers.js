@@ -22,13 +22,6 @@ module.exports = {
         })
     },
 
-    // getAddProduct:()=>{
-    //     return new Promise(async(resolve, reject) => {
-    //        let response =[]
-    //         response.push (await user.category.find({}))
-    //        resolve(response)
-    //     })
-    // },
 
     //post add product
 
@@ -58,7 +51,6 @@ module.exports = {
         
         return new Promise(async(resolve, reject) => {
            await user.product.find().exec().then((response)=>{
-            console.log(response)
             resolve(response) 
        
            })
@@ -85,20 +77,13 @@ module.exports = {
 
    
 
-    // deleteViewProduct:(productId)=>{
-    //     return new Promise(async(resolve, reject) => {
-    //         await user.product.deleteOne({_id:productId}).then((response)=>{
-    //             resolve(response)
-    //         })
-    //     })
-    // },
+
 
 
     editProduct:(productId)=>{
         return new Promise(async(resolve, reject) => {
              await user.product.findOne({_id:productId}).exec().then((response)=>{
                 resolve(response)
-                console.log(response);
              })
         })
     },
@@ -114,7 +99,6 @@ module.exports = {
             category:editedData.category,
             Image:filename
            }}) .then((response)=>{
-        console.log(response);
             resolve(response)
            }) 
         })

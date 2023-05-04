@@ -1,40 +1,48 @@
 const userproductHelpers = require("../../helpers/UserHelpers/userProductHelpers");
 const { viewAddCategory } = require("../../helpers/adminHelpers/adminProductHelpers");
-let cartcount,viewCategory,shopproducts
+const userWhishlistHelpers = require("../../helpers/UserHelpers/userWhishlistHelpers");
+const user = require("../../models/connection");
+let cartcount,viewCategory,shopproducts,wishcount
 module.exports = {
-  //shop
+
+
 
   shopProduct: async(req, res) => {
     cartcount=req.session.count
     req.session.loggedIn=true
     let userSession= req.session.loggedIn
     let catFilter =req.query.catName
-    // console.log("catName    : ",catFilter, typeof(req.query.catName));
+    const page=req.query.page||1;
+    const perpage =5;
+    const count = await user.product.countDocuments({})
+      const prodlistcount=count;
+
+    wishcount = await userWhishlistHelpers.getWishCount(req.session.user._id)
+    
     if(req.query.catName === undefined){
       viewCategory=await userproductHelpers.viewAddCategory()
-      // console.log("viewaddcategory console",viewCategory);
-      userproductHelpers.shopListProduct().then((response) => {
-        // console.log("response : ",response,viewCategory);
-        res.render("user/shop", { response,userSession,cartcount,viewCategory});
+    
+      userproductHelpers.shopListProduct(catFilter,page,perpage).then((response) => {
+        
+        res.render("user/shop", { response,userSession,wishcount,cartcount,viewCategory,pages:Math.ceil(prodlistcount/perpage)});
       });
     }else{
       shopproducts=await userproductHelpers.shopListProduct(catFilter)
-      // console.log("bbbbbbbbbbbbb",shopproducts);
+     
       res.json(shopproducts)
       
     }
   },
 
-  viewProductDetails: (req, res) => {
+  viewProductDetails: async(req, res) => {
     req.session.loggedIn=true
     cartcount=req.session.count
     let userSession= req.session.loggedIn
+    wishcount = await userWhishlistHelpers.getWishCount(req.session.user._id)
     userproductHelpers.viewProductDetails(req.params.id).then((response) => {
-      // console.log("Response of viewproducts:"+response);
 
-      // console.log("usersession req.session.users._id:"+res.session.user._id);
       
-      res.render("user/viewProductDetails", {response,userSession,cartcount});
+      res.render("user/viewProductDetails", {response,wishcount,userSession,cartcount});
     });
   },
 

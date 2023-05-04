@@ -1,0 +1,60 @@
+<main class="main-wrap">
+    <section class="content-main">
+      <div class="content-header">
+        <div>
+            <h2 class="content-title card-title">Order List</h2>
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <% if(response.length==0){%>
+                <div class="d-flex justify-content-center">
+                  <img src="/assets/imgs/banners/empty-cart-1546860808" alt="" />
+                </div>
+                <%} else{%>
+                <thead>
+                  <tr>
+                    <th># Order ID</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Order Date</th>
+                    <th scope="col">Order Status</th>
+                    <th scope="col">Payment status</th>
+                    <th scope="col" class="text-end">Option</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% response.forEach(function(response) { %>
+                  <tr>
+                    <td><%=response.orders._id%></td>
+                    <td><b><%=response.orders.shippingAddress[0].fname%></b></td>
+    
+                    <td><%=getDate(response.orders.createdAt)%></td>
+    
+                    <td>
+                      <span class="badge rounded-pill alert-warning"
+                        ><%=response.orders.orderStatus%>
+                      </span>
+                    </td>
+                    <td><%=response.orders.paymentStatus%></td>
+                    <td class="text-end">
+                      <a
+                        href="/admin/order_details?orderid=<%=response.orders._id%>"
+                        class="btn btn-md rounded font-sm"
+                        >Detail</a
+                      >
+                    </td>
+                  </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+              <%}%>
+            </div>
+            <!-- table-responsive //end -->
+          </div>
+    </div>
+       
+  </main>
+
+

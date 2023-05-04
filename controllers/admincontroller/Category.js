@@ -61,16 +61,16 @@ adminCategoryHelper.listCategory(req.params.id).then((response)=>{
      adminCategoryHelper.editCatogory(req.params.id).then((response)=>{
       
       
-      console.log("sdsddfsdfsdfsdfsdfsdfsfds"+response)
+     
       
       res.render('admin/edit-category',{layout:"adminLayout",response,adminlogin:true})
      })
   },   
 
   postEditCategory:(req,res)=>{
-    console.log(req.params.id);
+   
      adminCategoryHelper.postEditCategory(req.params.id,req.body.editCategoryname).then((response)=>{
-      console.log(response);
+    
       res.redirect('/admin/add_category')
      })
     

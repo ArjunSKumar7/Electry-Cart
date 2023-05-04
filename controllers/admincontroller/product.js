@@ -10,7 +10,7 @@ module.exports={
     getAddProduct:(req,res)=>{
 
     adminProductHelpers.getAddProduct().then((response)=>{
-        console.log("krjhriuhirhrifhrifvhriufvhrifvhrihvrifuhruihbrighbrighbtigbh ",response)
+       
         res.render("admin/add-product", { layout: "adminLayout",response,adminlogin:true});
     })
     },
@@ -20,7 +20,7 @@ module.exports={
     postAddProduct: (req, res) =>{
       
       let image= req.files.map(files=>(files.filename))
-      console.log(image)
+      
 
       adminProductHelpers.postAddProduct(req.body,image).then((response)=>{
         res.redirect('/admin/view_product')
@@ -82,7 +82,7 @@ module.exports={
   postAddEditProduct:(req,res) =>{
     
     adminProductHelpers.postEditProduct(req.params.id,req.body,req?.file?.filename).then((response)=>{
-      console.log(response);
+    
       res.redirect('/admin/view_product')
     })
   

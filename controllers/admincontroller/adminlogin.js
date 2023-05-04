@@ -31,7 +31,7 @@ module.exports={
          
 
      postAdminLogin:(req,res)=>{
-        console.log(req.body);
+    
         
         if(req.body.email==adminCredential.email && req.body.password==adminCredential.password)
         {
@@ -48,10 +48,10 @@ module.exports={
      getDashboard:(req,res)=>{
         if(req.session.adminloggedIn==true)
         {
-console.log("ifdash")
+
             res.render("admin/admin-dashboard", { layout: "adminLayout",adminlogin:true})
         }else{
-            console.log("elsedash")
+       
             res.render("admin/login",{layout:"adminLayout",adminlogin:false}) 
         }
        

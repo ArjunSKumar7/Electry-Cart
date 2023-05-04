@@ -13,7 +13,7 @@ module.exports={
       //***********Block user**********//
 
       getBlockUser:(req,res)=>{
-            console.log(req.params);
+       
             adminuserhelpers.blockUser(req.params.id).then((response)=>{
                   res.redirect('back')
             })

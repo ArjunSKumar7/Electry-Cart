@@ -7,7 +7,7 @@
        
 
 
-        <fo   rm
+        <form
           action="/admin/add_category"
           method="post"
         
@@ -101,6 +101,12 @@
       nameInput.style.border = 'solid 2px red';
       return false;
     }
+    if (name.length > 10) {
+    nameError.innerHTML = 'Category should not be more than 10 characters';
+    nameError.style.color = 'red';
+    nameInput.style.border = 'solid 2px red';
+    return false;
+  }
     nameError.innerHTML = '';
     nameError.style.color = 'green';
     nameInput.style.border = 'solid 2px green';

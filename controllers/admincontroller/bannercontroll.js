@@ -9,7 +9,7 @@ module.exports={
     getbanner:(req,res)=>{
 
         adminBannerHelpers.getbanner().then((response)=>{
-            console.log("getbannerhelperresponse",response)
+           
             const getbanner=response
 
             res.render("admin/banner",{layout:"adminLayout",getbanner,adminlogin:true})
@@ -48,7 +48,7 @@ module.exports={
 
     geteditbanner:(req,res)=>{
         adminBannerHelpers.editbanner(req.params.id).then((response)=>{
-            // console.log("geteditbannerrespanse",response)
+         
             let editbanner=response
 
             res.render("admin/editbanner",{layout:"adminLayout",editbanner,adminlogin:true})
@@ -59,7 +59,7 @@ module.exports={
     posteditbanner:(req,res) =>{
     
       adminBannerHelpers.posteditbanner(req.params.id,req.body,req?.file?.filename).then((response)=>{
-        // console.log(response);
+      
         res.redirect('/admin/editbanner')
       })
     
@@ -74,17 +74,17 @@ module.exports={
 
 
     blockbanner:(req,res)=>{
-      console.log("idbanner",req.params.id)
+     
         adminBannerHelpers.blockbanner(req.params.id).then((response)=>{
-          console.log("blockbanner",response)
+       
           res.redirect("/admin/banner")
         })
       },
 
       unblockbanner:(req,res)=>{
-        console.log("unidbanner",req.params.id)
+       
         adminBannerHelpers.unblockbanner(req.params.id).then((response)=>{
-          console.log("unblockbanner",response)
+         
           res.redirect('/admin/banner')
 
         })

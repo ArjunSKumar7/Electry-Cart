@@ -5,6 +5,10 @@ const controllers=require('../controllers/usercontroller/usercontroller')
 const userProductController=require('../controllers/usercontroller/userProductControllers')
 // const userBannerContoller=require('../controllers/usercontroller/userBannerController')
 const userCheckoutController=require('../controllers/usercontroller/userCheckoutController')
+const userCouponController=require('../controllers/usercontroller/userCouponController')
+const userOrderController=require('../controllers/usercontroller/userOrderController')
+const userWhislistController=require('../controllers/usercontroller/userWhishlistController')
+const userPaymentController=require('../controllers/usercontroller/userPaymentController')
 const auths=require('../middlewares/middleware')
 
 /* login */
@@ -45,6 +49,23 @@ router.get("/viewProductDetails/:id",auths.userauth,userProductController.viewPr
 
 
 
+
+
+/*whishlist routes */
+
+router.get("/add_to_wishlist", auths.userauth,userWhislistController.getWishlist);
+
+router.get('/view_wishlist',auths.userauth,userWhislistController.listWishList);
+
+router.delete('/delete_wishlist',auths.userauth,userWhislistController.deleteWishList)
+
+
+
+/*whishlist routes ends */
+
+
+
+
 /*cart routes */
 
 router.get("/add-to-cart/:id",auths.userauth,userCartController.addtocart)
@@ -61,19 +82,41 @@ router.delete("/delete_cart_item", auths.userauth,userCartController.getDeleteCa
 
 /*cart routes ends*/
 
-/*checkout routes ends*/
+
+
+
+router.post('/validate_coupon', auths.userauth,userCouponController.validateCoupon)
+
+/*checkout routes*/
 router.get("/checkout", auths.userauth,userCheckoutController.getCheckOut)
 
 router.post('/add_address',auths.userauth,userCheckoutController.postAddresspage)
 
+router.post('/checkout',auths.userauth,userCheckoutController.postcheckout)
+
+/*checkout routes ends*/
+
+/*order routes*/
+
+router.get('/orders',auths.userauth,userOrderController.getOrderPage)
+
+
+router.get('/order_details', auths.userauth,userOrderController.orderDetails)
+
+router.put('/cancel_order',auths.userauth,userOrderController.getCancelOrder)
+
+router.put('/return_order', auths.userauth,userOrderController.getReturnOrder)
+
+
+/*order routes end*/
+
+
+router.post('/verify_payment', auths.userauth,userPaymentController.postVerifyPayment)
 
 
 
 
-
-
-
-
+router.get('/order_success', auths.userauth,userOrderController.getSuccessPage)
 
 module.exports = router; 
 

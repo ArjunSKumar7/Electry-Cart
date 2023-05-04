@@ -7,52 +7,31 @@
             <div class="container">
                 <div class="row flex-row-reverse">
                     <div class="col-lg-9">
-                        
-                        <!-- <div class="shop-product-fillter">
-                          <div class="totall-product">
+
+                        <div class="shop-product-fillter">
+                            <!-- <div class="totall-product">
                               <p> We found <strong class="text-brand">688</strong> items for you!</p>
-                          </div>
-                          <div class="sort-by-product-area">
-                              <div class="sort-by-cover mr-10">
-                                  <div class="sort-by-product-wrap">
-                                      <div class="sort-by">
-                                          <span><i class="fi-rs-apps"></i>Show:</span>
-                                      </div>
-                                      <div class="sort-by-dropdown-wrap">
-                                          <span> 50 <i class="fi-rs-angle-small-down"></i></span>
-                                      </div>
-                                  </div>
-                                  <div class="sort-by-dropdown">
-                                      <ul>
-                                          <li><a class="active" href="#">50</a></li>
-                                          <li><a href="#">100</a></li>
-                                          <li><a href="#">150</a></li>
-                                          <li><a href="#">200</a></li>
-                                          <li><a href="#">All</a></li>
-                                      </ul>
-                                  </div>
-                              </div>
-                              <div class="sort-by-cover">
-                                  <div class="sort-by-product-wrap">
-                                      <div class="sort-by">
-                                          <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
-                                      </div>
-                                      <div class="sort-by-dropdown-wrap">
-                                          <span> Featured <i class="fi-rs-angle-small-down"></i></span>
-                                      </div>
-                                  </div>
-                                  <div class="sort-by-dropdown">
-                                      <ul>
-                                          <li><a class="active" href="#">Featured</a></li>
-                                          <li><a href="#">Price: Low to High</a></li>
-                                          <li><a href="#">Price: High to Low</a></li>
-                                          <li><a href="#">Release Date</a></li>
-                                          <li><a href="#">Avg. Rating</a></li>
-                                      </ul>
-                                  </div>
-                              </div>
-                          </div>
-                      </div> -->
+                          </div> -->
+                            <div class="sort-by-product-area">
+                                <div class="sort-by-cover mr-10">
+                                    <form id="sort-form">
+                                        <div class="sort-container">
+                                            <label for="sort-select">Sort by:</label>
+                                            <select id="sort-select" name="selectedValue" onchange="this.form.submit()">
+                                                <option value=""><a href="#">Price</a></option>
+                                                <option value="price-low-to-high">
+                                                    <a href="#">Price: Low to High</a>
+                                                </option>
+                                                <option value="price-high-to-low">
+                                                    <a href="#">Price: High to Low</a>
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
 
 
                         <div class="row product-grid-3" id="catfilter">
@@ -71,15 +50,20 @@
                                                         <!-- <img class="hover-img" src="assets/imgs/shop/product-7-1.jpg" alt=""> -->
                                                     </a>
                                             </div>
-                                            <!-- <div class="product-action-1">
-                                                <a aria-label="Quick view" class="action-btn hover-up"
-                                                    data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                                                    <i class="fi-rs-search"></i></a>
-                                                <a aria-label="Add To Wishlist" class="action-btn hover-up"
-                                                    href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                                <a aria-label="Compare" class="action-btn hover-up"
-                                                    href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                            </div> -->
+                                            <div class="product-action-1">
+                                                <button type="button" aria-label="Add To Wishlist"
+                                                    class="action-btn hover-up" onclick="addToWishlist('<%-response[i]._id%>')
+                    Swal.fire({
+                      position: 'center',
+                      icon: 'success',
+                      title: 'Product is successfully added to wishlist',
+                      showConfirmButton: false,
+                      timer: 1500
+                    })">
+                                                    <i class="fi-rs-heart"></i>
+                                                </button>
+                                               
+                                            </div>
                                             <div class="product-badges product-badges-position product-badges-mrg">
 
                                             </div>
@@ -106,21 +90,17 @@
                                             </div>
                                             <div class="product-action-1 show">
                                                 <!-- <a aria-label="Add To Cart" class="action-btn hover-up" href="/add-to-cart/<%=response._id%>" onclick="addToCart()"><i class="fi-rs-shopping-bag-add"></i></a> -->
-                                                <button
-                                                type="button"
-                                                aria-label="Add To Cart"
-                                                class="action-btn hover-up"
-                                                onclick="addtocart('<%-response[i]._id%>'),
+                                                <button type="button" aria-label="Add To Cart"
+                                                    class="action-btn hover-up" onclick="addtocart('<%-response[i]._id%>'),
                                                Swal.fire({
                                                 position: 'center',
                                                 icon: 'success',
                                                 title: 'Item Added Successfully To Cart',
                                                 showConfirmButton: false,
                                                 timer: 2000
-                                              })"
-                                              >
-                                                <i class="fi-rs-shopping-bag-add"></i>
-                                              </button>
+                                              })">
+                                                    <i class="fi-rs-shopping-bag-add"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -128,16 +108,17 @@
                                 <% } %>
                         </div>
                         <!--pagination-->
-                        <div class="pagination-area mt-15 mb-sm-5 mb-lg-0">
+                        <div class="pagination-area mt-15 mb-50">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-start">
-                                    <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">02</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                    <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">16</a></li>
-                                    <li class="page-item"><a class="page-link" href="#"><i
-                                                class="fi-rs-angle-double-small-right"></i></a></li>
+
+                                    <% for(let i=1; i <=pages ; i++) { %>
+                                        <li class="page-item"><a class="page-link" href="?page=<%= i %>"
+                                                id="pagination">
+                                                <%= i %>
+                                            </a></li>
+
+                                        <% } %>
                                 </ul>
                             </nav>
                         </div>
@@ -157,6 +138,7 @@
                             </div>
                         </div>
                     </div>
+
 
 
 
@@ -186,7 +168,28 @@
     }
 
 
-    function categoryFilter(catName=null) {
+
+    function addToWishlist(prodId) {
+    console.log(prodId);
+    $.ajax({
+      url: '/add_to_wishlist?wishid=' + prodId,
+      method: 'get',
+      success: (response) => {
+        if (response.status) {
+          let wishcount = $('#wishcount').html();
+          wishcount = parseInt(wishcount) + 1;
+          $('#wishcount').html(wishcount);
+
+          $('#wishlist-icon').addClass('active');
+
+        }
+      },
+    });
+  }
+
+
+    function categoryFilter(catName) {
+
         $.ajax({
             url: '/shop',
             method: 'get',
@@ -196,7 +199,7 @@
             success: (response) => {
                 console.log("dddddddddd", response);
                 let catfilter = ''
-                console.log("ggggggggggg", response.length)
+
                 for (let i = 0; i < response.length; i++) {
                     console.log("filtered item", response[i])
                     catfilter += `
@@ -209,9 +212,24 @@
              <a href="/viewProductDetails"> 
               <a href ="/viewProductDetails/${response[i]._id}"> 
                 <img class="default-img" src="/uploads/${response[i].Image[0]}" alt="">
-                <!-- <img class="hover-img" src="assets/imgs/shop/product-7-1.jpg" alt=""> -->
+               
             </a>
         </div>
+
+        <div class="product-action-1">
+                  <button type="button" aria-label="Add To Wishlist"
+                    class="action-btn hover-up" onclick="addToWishlist('${response[i]._id}'); 
+                    Swal.fire({
+                      position: 'center',
+                      icon: 'success',
+                      title: 'Product is successfully added to wishlist',
+                      showConfirmButton: false,
+                      timer: 1500
+                    })">
+                    <i class="fi-rs-heart"></i>
+                  </button>
+                </div>
+        
        
         <div class="product-badges product-badges-position product-badges-mrg">
             
@@ -232,7 +250,7 @@
         
         </div>
         <div class="product-action-1 show">
-            <!-- <a aria-label="Add To Cart" class="action-btn hover-up" href="/add-to-cart/${response[i]._id}" onclick="addToCart()"><i class="fi-rs-shopping-bag-add"></i></a> -->
+           
             <button
             type="button"
             aria-label="Add To Cart"
@@ -254,6 +272,7 @@
 </div>`
 
                 }
+
                 console.log('3ftgtgrgrgtg', catfilter)
                 document.getElementById('catfilter').innerHTML = catfilter
 

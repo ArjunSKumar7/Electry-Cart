@@ -1,55 +1,83 @@
 const userCheckoutHelper = require("../../helpers/UserHelpers/userCheckoutHelper");
 const userCartHelpers = require("../../helpers/UserHelpers/UserCartHelper");
-let cartcount,userSession;
-module.exports = 
-{
-  
-  getCheckOut: async (req, res) => {
+const userOrderHelpers = require("../../helpers/UserHelpers/userOrderHelper");
+const userCouponHelpers = require("../../helpers/UserHelpers/userCouponHelper");
+const userWhishlistHelpers = require("../../helpers/UserHelpers/userWhishlistHelpers");
+const userPaymemtHelpers = require("../../helpers/UserHelpers/userPaymemtHelper");
 
+let cartcount, userSession,wishcount;
+module.exports = {
+  getCheckOut: async (req, res) => {
     try {
       // let users = req.session.user.id
-  
+
       req.session.loggedIn = true;
       userSession = req.session.loggedIn;
-      let userId=req.session.user._id
-      console.log("userId",userId)
-      if (req.session.user.finalTotal) {
-        total = req.session.user.finalTotal
-      }
-      else {
+      let userId = req.session.user._id;
 
-        total = await userCartHelpers.totalCheckOutAmount(req.session.user.id)
-      }
+      let total = await userCartHelpers.totalCheckOutAmount(
+        req.session.user._id
+      );
 
       // let count = await userCartHelpers.getCartItemsCount(req.session.user.id);
-      
+
       cartcount = req.session.count;
-       // console.log("pagecount",count);
-      let cartItems = await userCartHelpers.viewCart(req.session.user.id)
-      userCheckoutHelper.checkOutpage(req.session.user.id).then((response) => {
 
+      let cartItems = await userCartHelpers.viewCart(req.session.user._id);
+      wishcount = await userWhishlistHelpers.getWishCount(
+        req.session.user._id
+      );
+      userCheckoutHelper.checkOutpage(req.session.user._id).then((response) => {
+        res.render("user/checkout", {
+          userSession,
+          userId,
+          cartItems,
+          wishcount,
 
-        res.render('user/checkout', { userSession, userId, cartItems, total, response,  cartcount })
-      })
+          total,
+          response,
+          cartcount,
+        });
+      });
     } catch (error) {
-      res.status(500)
+      res.status(500);
     }
-
-
   },
 
+  postAddresspage: async (req, res) => {
+    try {
+      await userCheckoutHelper
+        .postAddress(req.session.user._id, req.body)
+        .then(() => {
+          res.redirect("/checkout");
+        });
+    } catch (error) {
+      res.status(500);
+    }
+  },
 
+  postcheckout: async (req, res) => {
+    const postchecksubtotal = parseInt(req.body.postchecksubtotal);
+    const postchecktotal = parseInt(req.body.postchecktotal);
+    const couponCode = req.body.couponCode;
+    let userId = req.session.user._id;
 
+    // if (req.body.couponCode) {
 
-      postAddresspage: async (req, res) => {
+    //  await userCouponHelpers.addCouponIntUseroDb(couponData, userId)
+    // }
 
-        try {
-          await userCheckoutHelper.postAddress(req.session.user.id, req.body).then(() => {
-            res.redirect("/checkout")
+    let order = await userOrderHelpers
+      .placeOrder(req.body, postchecksubtotal, postchecktotal, userId)
+      .then(async (response) => {
+        if (req.body["payment-method"] == "COD") {
+          res.json({ codstatus: true });
+        }else if(req.body["payment-method"]=="online"){
+          userPaymemtHelpers.generateRazorpay(req.session.user._id, postchecktotal).then((order) => {
+            res.json(order)
+
           })
-        } catch (error) {
-          res.status(500)
         }
-    
-      },
-}
+      });
+  },
+};

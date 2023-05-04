@@ -1,5 +1,5 @@
 
-const ObjectId = require("mongodb").ObjectId;
+    const ObjectId = require("mongodb").ObjectId;
 
 const user = require("../../models/connection");
 
@@ -16,7 +16,6 @@ const user = require("../../models/connection");
         };
         return new Promise(async (resolve, reject) => {
             let carts = await user.cart.findOne({ user: userId });
-            // console.log("carts",carts);
             if (carts) {
                 let productExist = carts.cartItems.findIndex(
                     (cartItems) => cartItems.productId == proId
@@ -44,7 +43,6 @@ const user = require("../../models/connection");
                         )
                         .then((response) => {
                             response.new = true
-                            // console.log("sdfasda",response);
                             resolve(response);
                         });
                 }
@@ -56,7 +54,6 @@ const user = require("../../models/connection");
                 });
                 await cartItems.save().then((data) => {
                     data.new = true
-                    // console.log("sdfasdasdasdasdasdasdasdadsd",data);
                     resolve(data);
 
                 });
@@ -65,7 +62,6 @@ const user = require("../../models/connection");
     },
 
     viewCart:(userId)=>{
-        // console.log('hare',userId);
         return new Promise(async(resolve,reject)=>{
            let result =  await user.cart
              .aggregate([
@@ -85,7 +81,6 @@ const user = require("../../models/connection");
                         quantity:"$cartItems.Quantity"
                     },
                 },
-                // console.log("cartItems before lookup",cartItems),
                 {
                     $lookup:{
                         from:"products",
@@ -95,7 +90,6 @@ const user = require("../../models/connection");
 
                     },
                 },
-                // console.log("cartItems after lookup",cartItems),
                 {
                     $project:{
                         item:1,
@@ -105,7 +99,6 @@ const user = require("../../models/connection");
                 },
              ])
              .then((cartItems)=>{
-                // console.log("sdsdsdasdasda",cartItems);
                 resolve(cartItems);
              })
         })

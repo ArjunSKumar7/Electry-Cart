@@ -1,0 +1,147 @@
+<main class="main-wrap">
+    <section class="content-main">
+      <div class="content-header">
+        <div>
+            <h2 class="content-title card-title">Order detail</h2>
+            <p>Details for Order ID: <%=order.orders[0]._id%></p>
+          </div>
+        </div>
+        <div class="card">
+          <header class="card-header">
+            <div class="row align-items-center">
+              <div class="col-lg-6 col-md-6 mb-lg-0 mb-15">
+                <span>
+                  <i class="material-icons md-calendar_today"></i>
+                  <b><%=getDate(order.orders[0].createdAt)%></b>
+                </span>
+                <br />
+                <small class="text-muted">Order ID: <%=order.orders[0]._id%></small>
+              </div>
+              <div class="col-lg-6 col-md-6 ms-auto text-md-end">
+                <form
+                  action="/admin/order_details?orderId=<%=order.orders[0]._id%>"
+                  method="POST"
+                >
+                  <select
+                    class="form-select d-inline-block mb-lg-0 mb-15 mw-200"
+                    name="status"
+                  >
+                    <option>Success</option>
+                    <option>Shipped</option>
+                    <option>Delivered</option>
+                  </select>
+      
+                  <button type="submit" class="btn btn-primary">UPDATE</button>
+                </form>
+              </div>
+            </div>
+          </header>
+          <!-- card-header end// -->
+          <div class="card-body">
+            <div class="row mb-50 mt-20 order-info-wrap">
+              <div class="col-md-4">
+                <article class="icontext align-items-start">
+                  <span class="icon icon-sm rounded-circle bg-primary-light">
+                    <i class="text-primary material-icons md-person"></i>
+                  </span>
+                  <div class="text">
+                    <h6 class="mb-1">Customer</h6>
+                    <p class="mb-1">
+                      <%=order.orders[0].shippingAddress[0].fname%> <br />
+                      <%=order.orders[0].shippingAddress[0].email%> <br />
+                      <%=order.orders[0].shippingAddress[0].mobile%>
+                    </p>
+                    <a href="#"></a>
+                  </div>
+                </article>
+              </div>
+              <!-- col// -->
+              <div class="col-md-4">
+                <article class="icontext align-items-start">
+                  <span class="icon icon-sm rounded-circle bg-primary-light">
+                    <i class="text-primary material-icons md-local_shipping"></i>
+                  </span>
+                  <div class="text">
+                    <h6 class="mb-1">Order info</h6>
+                    <p class="mb-1">
+                      Shipping From: Electrify Cart<br />
+                      Pay method: <%=order.orders[0].paymentmode%><br />
+                      Payment Status: <%=order.orders[0].paymentStatus%>
+                    </p>
+                    <a href="#"></a>
+                  </div>
+                </article>
+              </div>
+              <!-- col// -->
+              <div class="col-md-4">
+                <article class="icontext align-items-start">
+                  <span class="icon icon-sm rounded-circle bg-primary-light">
+                    <i class="text-primary material-icons md-place"></i>
+                  </span>
+                  <div class="text">
+                    <h6 class="mb-1">Deliver to</h6>
+                    <p class="mb-1">
+                      <br /><%=order.orders[0].shippingAddress[0].apartment%>,
+                      <%=order.orders[0].shippingAddress[0].street%>
+                      <%=order.orders[0].shippingAddress[0].city%><br />
+                      <%=order.orders[0].shippingAddress[0].pincode%><br />
+                      <%=order.orders[0].shippingAddress[0].state%>
+                    </p>
+                    <a href="#"></a>
+                  </div>
+                </article>
+              </div>
+              <!-- col// -->
+            </div>
+            <!-- row // -->
+            <div class="row">
+              <div class="col-lg-7">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th width="40%">Product</th>
+                        <th width="20%">Price</th>
+                        <th width="20%">Quantity</th>
+                        <!-- <th width="20%" class="text-end">Total</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% products?.forEach(function(order) { %>
+                      <tr>
+                        <td>
+                          <a class="itemside" href="#">
+                            <div class="left">
+                              <img
+                                src="/uploads/<%=order.image[0]%>"
+                                width="40"
+                                height="40"
+                                class="img-xs"
+                                alt="Item"
+                              />
+                            </div>
+                            <div class="info"><%=order. productsName%></div>
+                          </a>
+                        </td>
+                        <td><%=order.productsPrice%></td>
+                        <td><%=order.quantity%></td>
+                      </tr>
+                      <% }) %>
+                    </tbody>
+                  </table>
+                  <% total?.forEach(function(total) { %>
+                  <h6>AMOUNT : ₹ <%=total.totalPrice%></h6>
+                  <% }) %>
+                </div>
+                <!-- table-responsive// -->
+              </div>
+              <!-- col// -->
+              <div class="col-lg-1"></div>
+              <!-- col// -->
+            </div>
+          </div>
+    </div>
+       
+  </main>
+
+

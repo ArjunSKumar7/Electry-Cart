@@ -4,43 +4,63 @@ module.exports={
 
 
 
+    // checkOutpage: (userId) => {
+    //     return new Promise(async (resolve, reject) => {
+
+    //         await user.address.aggregate([
+    //             {
+    //                 $match: {
+    //                     userid: ObjectId(userId)
+    //                 }
+    //             },
+    //             {
+    //                 $unwind: '$Address'
+    //             },
+
+    //             {
+    //                 $project: {
+    //                     item: '$Address'
+
+    //                 }
+    //             },
+
+    //             {
+    //                 $project: {
+    //                     item: 1,
+    //                     Address: { $arrayElemAt: ['$Address', 0] }
+    //                 }
+    //             }
+
+    //         ]).then((address) => {
+
+    //             resolve(address)
+    //         })
+
+
+    //     })
+    // },
     checkOutpage: (userId) => {
         return new Promise(async (resolve, reject) => {
-
-            await user.address.aggregate([
-                {
-                    $match: {
-                        userid: ObjectId(userId)
-                    }
-                },
-                {
-                    $unwind: '$Address'
-                },
-
-                {
-                    $project: {
-                        item: '$Address'
-
-                    }
-                },
-
-                {
-                    $project: {
-                        item: 1,
-                        Address: { $arrayElemAt: ['$Address', 0] }
-                    }
-                }
-
-            ]).then((address) => {
-
-                console.log(address);
-
-                resolve(address)
-            })
-
-
-        })
-    },
+          await user.address.aggregate([
+            {
+              $match: {
+                userid: ObjectId(userId)
+              }
+            },
+            {
+              $unwind: '$Address'
+            },
+            {
+              $project: {
+                item: '$Address'
+              }
+            }
+          ]).then((address) => {
+            resolve(address);
+          });
+        });
+      },
+      
 
 
     postAddress: (userId, data) => {

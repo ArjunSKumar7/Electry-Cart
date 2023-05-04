@@ -7,6 +7,7 @@ const admincategory = require("../controllers/admincontroller/Category");
 const adminproduct = require("../controllers/admincontroller/product")
 const adminbanner= require("../controllers/admincontroller/bannercontroll")
 const admincopuon= require("../controllers/admincontroller/CouponController")
+const adminOrderController= require("../controllers/admincontroller/orderController")
 var router = express.Router();
 const multer= require('multer');
 const upload=require('../multer/multer')
@@ -91,6 +92,19 @@ router.get("/generate_coupon",auths.auth,admincopuon.generateCoupon);
 router.get("/coupons", auths.auth,admincopuon.newCoupons);
 
 router.delete("/coupon_delete/:id",auths.auth,admincopuon.deleteCoupon);
+
+
+
+
+
+
+router.get("/orders_list",auths.auth,adminOrderController.getOrderList)
+
+router.get("/order_details", auths.auth,adminOrderController.getOrderDetails)
+
+router.post("/order_details", auths.auth,adminOrderController.postOrderDetails)
+
+
 
 
 
