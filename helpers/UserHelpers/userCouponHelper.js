@@ -13,18 +13,10 @@ module.exports = {
 
         if (coupon) {
           if (coupon.expiry >= new Date()) {
-            if (coupon && total >= coupon.minPurchase) {
-
+            if (total >= coupon?.minPurchase) {
               discountAmount = (total * coupon.discountPercentage) / 100;
-<<<<<<< HEAD
-             if (coupon && discountAmount > coupon.maxDiscountValue) {
-
-              discountAmount = coupon.maxDiscountValue;
-=======
-          if (coupon && discountAmount > coupon.maxDiscountValue) {
-
-                       discountAmount = coupon.maxDiscountValue;
->>>>>>> 01ec196f4067198363149a936210ae554e40b64a
+              if (discountAmount > coupon?.maxDiscountValue) {
+                discountAmount = coupon?.maxDiscountValue;
                 couponTotal = total - discountAmount;
               }
               resolve({
