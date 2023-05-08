@@ -1,1363 +1,355 @@
-<% response.forEach(function(response,index) { %>
-
-    <div class="col-lg-4 col-md-4 col-12 col-sm-6">
 
 
-        <div class="product-cart-wrap mb-30">
-            <div class="product-img-action-wrap">
-                <div class="product-img product-img-zoom">
-                     <a href="/viewProductDetails"> 
-                      <a href ="/viewProductDetails/<%=response._id %> "> 
-                        <img class="default-img" src="/uploads/<%= response.Image[0]%>" alt="">
-                        <!-- <img class="hover-img" src="assets/imgs/shop/product-7-1.jpg" alt=""> -->
-                    </a>
-                </div>
-                <div class="product-action-1">
-                    <a aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-<i class="fi-rs-search"></i></a>
-                    <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                    <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                </div>
-                <div class="product-badges product-badges-position product-badges-mrg">
-                    
-                </div>
-            </div>
-            <div class="product-content-wrap">
-                <div class="product-category">
-                    <a href="shop-grid-right.html"><%=response[i].category%></a>
-                </div>
-                <h2><a href="shop-product-right.html"><%=response.Productname%></a></h2>
-                <div class="rating-result" title="90%">
-                    <span>
-                        <span>95%</span>
-                    </span>
-                </div>
-                <div class="product-price">
-                    <span><%=response.Price%></span>
-                
-                </div>
-                <div class="product-action-1 show">
-                    <!-- <a aria-label="Add To Cart" class="action-btn hover-up" href="/add-to-cart/<%=response._id%>" onclick="addToCart()"><i class="fi-rs-shopping-bag-add"></i></a> -->
-                    <button
-                    type="button"
-                    aria-label="Add To Cart"
-                    class="action-btn hover-up"
-                    onclick="addtocart('<%-response._id%>'),
-                   Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Item Added Successfully To Cart',
-                    showConfirmButton: false,
-                    timer: 2000
-                  })"
-                  >
-                    <i class="fi-rs-shopping-bag-add"></i>
-                  </button>
-                </div>
-            </div>
-        </div>
-    </div>
-     <% }) %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-shop.ejs
-
-
-
-
-
-
-     <body>
-        <!-- Quick view -->
+08-05-2023  02:33 PM    <DIR>          .
+    10-01-2023  03:46 PM             5,322 -original-imaghxemnnnkd8bg.webp
+    09-01-2023  02:34 PM     8,181,652,270 02 [HowToFree.Org] Udemy - Node.js, Express, MongoDB & More The Complete Bootcamp 2020.zip
+    05-12-2022  07:23 PM           388,413 0912-learning-mongodb.pdf
+    11-11-2022  08:06 PM            11,347 1 - Course Structure and Projects English.srt
+    10-04-2022  05:19 PM           730,596 10TH.pdf
+    06-01-2023  01:00 PM             4,039 2.jfif
+    23-01-2022  02:02 PM           280,518 2019 May EC409-B - ktu qbank.pdf
+    09-01-2023  02:35 PM     9,915,125,912 2020 p1.zip
+    23-01-2022  01:06 PM           531,665 2020-09-18SupplementaryEC409EC409-E - ktu qbank.pdf
+    22-08-2022  04:41 PM           256,662 2312204271266701000.pdf
+    18-05-2022  06:40 PM            10,246 29-ARJUN_S_KUMAR_SIGNATURE.jpg
+    31-03-2023  11:09 AM         5,507,062 580-2023-KTUractifiedoforder7.pdf
+    17-05-2021  09:06 AM         2,758,386 5f50e50ae8271836f5017ae9_all_UPSTOX3235c29bc7354674ae03f6f84e3da353_SIGNED.pdf
+    01-06-2022  04:27 PM           509,440 5_2019_01_19!11_45_30_PM.ppt
+    22-06-2020  05:05 PM            60,464 881054111144675_encrypt_signedFinal.pdf
+    18-03-2023  07:08 PM         7,032,832 9fed6464-b33d-4bb7-a771-3b6389b6441c
+    13-03-2022  10:28 PM            99,916 @2022.jpg
+    22-03-2023  10:45 PM           808,570 aa1e9578c5-p-02.pdf
+    03-09-2022  09:21 PM           578,060 AAI recruitment 2022.pdf
+    22-04-2023  06:26 AM           689,914 ab-fhmRqhD_dYg-unsplash.jpg
+    07-11-2022  08:28 PM             6,631 AFFIRMATION.docx
+    31-12-2020  07:24 PM           141,153 ansa aadhaar.pdf
+    09-12-2022  11:23 PM            16,396 Arj Audio (1).ogg
+    09-12-2022  11:22 PM            16,396 Arj Audio.ogg
+    19-05-2022  11:42 AM           414,488 ARJUN PAN CARD.pdf
+    19-05-2022  11:48 AM           123,904 ARJUN PAN CARD_.pdf
+    19-12-2021  07:48 AM            55,413 ARJUN S KUMAR (1).jpeg
+    01-01-2022  08:47 PM            36,842 ARJUN S KUMAR (1).jpg
+    14-11-2022  09:55 AM           241,193 ARJUN S KUMAR (2).jpeg
+    13-09-2021  07:04 PM            76,112 ARJUN S KUMAR DL.pdf
+    26-01-2023  11:48 AM           337,123 Arjun S Kumar RESUME (1).pdf
+    30-07-2022  11:44 AM           336,192 Arjun S Kumar Resume ..pdf
+    28-09-2022  06:31 PM           337,123 Arjun S Kumar Resume....pdf
+    09-10-2022  02:46 PM           337,123 Arjun S Kumar RESUME.pdf
+    18-05-2022  05:43 PM             7,914 ARJUN S KUMAR SIGNATURE.jpg
+    26-11-2021  11:14 AM            55,413 ARJUN S KUMAR.jpeg
+    18-06-2022  11:36 AM             5,100 ARJUN S KUMAR.jpg
+    27-06-2020  07:42 PM           107,538 ARJUN S KUMAR_MTA Introduction to Programming Using Python (98-381) .pdf
+    16-01-2023  12:18 AM             2,413 arjunskumar2000@gmail.com.pdf
+    17-09-2022  05:14 PM            21,784 array (1).txt
+    17-09-2022  05:14 PM            20,579 Array pdf patterns.txt
+    17-09-2022  05:14 PM            14,025 array-1.txt
+    17-09-2022  05:14 PM           132,269 Array.pdf
+    17-09-2022  05:14 PM            21,322 array.txt
+    25-10-2022  08:43 PM            22,056 arrays.rar
+    28-04-2021  09:57 AM           183,374 asdsdsdsdsdsdsd.JPG
+    21-11-2022  08:52 PM        84,311,371 Asynchronous JavaScript & EVENT LOOP from scratch 🔥 _ Namaste JavaScript Ep.15.mp4
+    13-01-2023  02:07 AM        10,840,133 Atomic habit audio report (mp3cut.net).m4a
+    13-01-2023  02:06 AM        10,843,105 Atomic habit audio report.m4a
+    12-01-2023  08:46 PM         6,150,949 Atomic Habits by James Clear (PDF) PDFDrive ( PDFDrive ).pdf
+    12-09-2022  02:23 PM       198,986,592 AtomSetup-x64.exe
+    07-11-2022  11:26 PM            10,265 attacks.jfif
+    08-01-2023  03:20 PM             6,834 Auverse-main.zip
+    22-10-2021  12:27 AM            54,091 AWS.pdf
+    14-09-2022  07:13 PM            93,852 BCE52 Final workspace.pdf
+    22-04-2023  01:54 PM        39,953,740 Bigshopper-E-Commerce-Website-master.zip
+    12-11-2022  06:05 PM       399,009,716 Bootstrap CSS Framework - Full Course for Beginners.mp4
+    10-11-2022  02:38 PM         1,452,180 bootstrap-5.2.2-dist.zip
+    11-12-2022  09:52 AM            19,748 Brospeaks - Tech Seminar Topics.docx
+    07-11-2022  10:13 PM           717,926 CamScanner 11-07-2022 22.10.40.pdf
+    20-11-2022  11:55 PM         4,159,856 CamScanner 11-20-2022 23.31.59 (1).pdf
+    21-11-2022  12:01 AM         4,159,856 CamScanner 11-20-2022 23.31.59 (2).pdf
+    20-11-2022  11:35 PM         3,778,761 CamScanner 11-20-2022 23.31.59.pdf
+    27-12-2022  10:09 AM         3,289,463 Caraft Free Website Template - Free-CSS.com.zip
+    13-11-2022  07:17 PM         3,239,695 CC_Unit_1.pdf
+    10-06-2021  03:03 PM            20,565 CH.JPG
+    02-01-2023  02:09 PM             8,819 cirt.png
+    17-01-2022  11:30 AM           353,101 cocubes-report-3476661.pdf
+    08-11-2021  07:46 PM           181,026 cocubess.png
+    10-04-2022  05:01 PM           108,381 ConversionofGPAtoPercentage.pdf
+    18-09-2022  08:37 AM           407,342 Copy of Week 0.1_ Assignments .docx
+    11-11-2022  07:02 PM             3,164 CryptoCoin-1.0.0.zip
+    22-02-2022  04:06 PM           532,386 CS theory quns&ans_1.pdf
+    22-02-2022  04:06 PM         4,135,248 CS theory quns&ans_2.pdf
+    22-10-2022  06:56 PM           717,745 cst205-oop-syllabus-35-46-from-computer-science-.pdf
+    28-12-2022  11:37 PM        17,305,405 cyberkraft-main.zip
+    27-04-2023  01:42 PM        95,283,010 Cyberkraftv1-main.zip
+    12-01-2023  08:13 PM             9,095 davinci.jfif
+    18-02-2021  12:31 AM            14,386 dl.pdf
+    08-12-2022  01:20 AM             4,736 download (1).png
+    04-12-2022  07:26 PM         2,263,521 Download Complete Free JavaScript Programming Book PDF.pdf
+    18-12-2022  06:56 PM             1,958 download lifi.png
+    08-12-2022  12:28 AM             4,142 download.png
+    16-03-2023  10:45 AM           717,928 driverfixwebdl-9326808277.exe
+    11-05-2021  08:18 PM            19,915 DSC_7227-min.JPG
+    10-12-2020  01:25 PM           106,982 DSC_7227.JPG
+    28-04-2021  09:56 AM           159,345 dsdasdsdasdsdasd.JPG
+    06-11-2022  08:56 PM           164,901 EC407 Computer Communication.pdf
+    23-01-2022  01:29 PM           104,303 ec409-b.tech-s7-control-systems-dec-2019 (1).pdf
+    23-01-2022  01:37 PM           104,303 ec409-b.tech-s7-control-systems-dec-2019 (2).pdf
+    23-01-2022  02:02 PM           104,303 ec409-b.tech-s7-control-systems-dec-2019 (3).pdf
+    23-01-2022  01:29 PM           104,303 ec409-b.tech-s7-control-systems-dec-2019.pdf
+    22-03-2023  11:04 AM        87,452,731 ecommerce-main.zip
+    16-05-2020  06:58 PM        44,081,152 EpicInstaller-10.15.2.msi
+    07-01-2023  10:44 AM    <DIR>          evara-frontend (1)
+    07-01-2023  10:48 AM    <DIR>          evara-frontend (1) 2
+    06-01-2023  11:49 PM         9,729,584 evara-frontend (1).rar
+    06-01-2023  05:21 PM         9,729,584 evara-frontend.rar
+    07-01-2023  12:08 PM        81,913,399 evara-project -1.zip
+    09-01-2023  06:33 PM        49,564,501 evara-project after8 (2) (1).zip
+    30-12-2022  02:44 PM        49,564,501 evara-project after8 (2).zip
+    27-12-2022  07:06 PM        49,034,141 evara-project.zip
+    27-12-2022  01:54 PM        21,066,936 Evara_updated2 (1).zip
+    27-12-2022  10:26 AM        21,066,936 Evara_updated2.zip
+    29-12-2022  10:55 PM        22,176,533 Evara_Working.zip
+    06-01-2021  08:44 PM           178,776 fdfdfsdf.pdf
+    12-01-2023  08:29 PM            25,110 Feedback Session.pdf
+    26-12-2022  03:06 PM            36,721 fgffff.dmm
+    20-12-2022  05:56 PM        97,467,040 FigmaSetup.exe
+    14-06-2020  08:40 PM         1,227,336 flashplayer32ppau_gc_install.exe
+    08-06-2020  06:29 PM         1,224,264 flashplayer32pp_gc_install.exe
+    19-09-2022  07:54 PM            87,452 Fumigation Pattern Questions.docx.pdf
+    17-09-2022  05:14 PM           651,727 fumigation.pdf
+    18-03-2023  07:18 PM       131,458,368 GeForce_Experience_v3.27.0.112.exe
+    17-07-2020  12:49 PM               130 General.zip
+    06-01-2021  08:42 PM           176,035 ggff.pdf
+    31-10-2022  06:12 PM        53,360,624 Git-2.38.1-64-bit.exe
+    18-07-2020  06:48 PM           418,834 gratisexam.com-Microsoft.Braindumps.98-381.v2018-07-27.by.Donna.21q.pdf
+    18-07-2020  06:49 PM           648,353 gratisexam.com-Microsoft.MTA.Certkiller.98-381.v2018-05-05.by.Luca.20q.pdf
+    18-07-2020  06:48 PM           873,105 gratisexam.com-Microsoft.Pass4sureexam.98-381.v2019-01-18.by.Hudson.24q.pdf
+    18-07-2020  06:48 PM           645,895 gratisexam.com-Microsoft.PracticeTest.98-381.v2018-05-20.by.Corbin.19q.pdf
+    18-07-2020  06:48 PM           398,336 gratisexam.com-Microsoft.PracticeTest.98-381.v2018-08-10.by.Benson.20q.pdf
+    18-07-2020  06:48 PM           667,141 gratisexam.com-Microsoft.Selftestengine.98-381.v2018-10-10.by.Bobby.22q.pdf
+    27-05-2021  12:14 PM           534,336 GuviCertification - s0r077KIg1986tO226.png
+    05-05-2023  08:42 PM               520 heart-solid.svg
+    26-12-2022  01:39 PM           774,881 home-screen-concept-illustration.zip
+    04-11-2022  06:29 PM           120,681 home_cards.png
+    05-11-2022  11:29 AM           197,211 home_dex.png
+    10-01-2023  06:30 PM            31,469 i phone 2.avif
+    18-10-2022  08:33 PM       628,520,112 ideaIC-2022.2.3.exe
+    02-05-2023  06:42 PM            24,574 image_2023-05-01_144745334.png
+    15-04-2022  12:30 AM         1,919,222 IMG20220414204148 (1).jpg
+    15-04-2022  12:29 AM         1,919,222 IMG20220414204148.jpg
+    14-11-2022  12:20 AM           162,610 IMG_20190805_060956_HDR-01 (1) (1).jpeg
+    14-11-2022  12:20 AM         3,125,966 IMG_20190805_060956_HDR-01 (1).jpeg
+    22-03-2023  10:30 PM         3,125,966 IMG_20190805_060956_HDR-01 (2).jpeg
+    18-06-2020  10:13 PM         3,125,966 IMG_20190805_060956_HDR-01.jpeg
+    16-04-2022  09:25 PM         4,255,336 IMG_20220416_205916.jpg
+    18-05-2022  05:41 PM            20,673 IMG_20220518_173002-01.jpg
+    04-10-2022  11:33 AM         4,946,209 IMG_20220929_151908.jpg
+    10-10-2022  05:51 PM         1,977,041 IMG_20221002_100101.jpg
+    14-11-2022  12:07 AM           184,884 IMG_20221114_000447 (1).jpg
+    28-01-2023  03:50 PM         5,284,965 IMG_20230127_113334.jpg
+    22-03-2023  10:32 PM         2,267,597 IMG_20230322_222609361.jpg
+    01-05-2023  05:51 PM           110,704 invoice (1).pdf
+    04-05-2023  07:05 PM           110,633 invoice (2).pdf
+    05-05-2023  01:23 PM           110,633 invoice (3).pdf
+    26-09-2020  09:50 AM            47,314 invoice.pdf
+    10-01-2023  06:29 PM            21,952 iphone img.avif
+    10-01-2023  06:31 PM           676,495 isaac-martin-5Tm4YRqnNcM-unsplash.jpg
+    17-09-2022  05:14 PM            80,133 Java all Concepts.pdf
+    17-09-2022  10:27 AM       160,901,280 jdk-18_windows-x64_bin.exe
+    07-05-2023  08:29 PM             9,567 jquery-fireworks-1.0.4.tgz
+    28-04-2023  11:59 AM        74,832,349 justkart-ecommerce-website-main.zip
+    27-12-2022  10:11 AM        10,699,330 karma-master.zip
+    08-05-2023  02:33 PM             1,678 key.pem
+    20-02-2023  04:11 PM           325,965 KTU-EX-II1-5300-2018(39).pdf
+    08-05-2023  02:29 PM           297,521 KTU-EX-II1-5300-2018(7).pdf
+    12-11-2022  10:47 AM             6,768 Leave Application.docx
+    17-09-2022  05:14 PM           574,309 Lesson_13.pdf
+    11-12-2022  10:50 PM         2,169,322 LI-FI.docx
+    30-08-2021  07:43 PM            94,328 licence img.jpeg
+    19-01-2023  08:23 PM        65,800,164 Linked List Data Structure ｜ JavaScript.mp4
+    19-01-2023  08:25 PM        72,126,349 Linked List in JavaScript for Beginners.mp4
+    19-01-2023  11:31 AM         2,047,370 LionWitchWardrobe_CSL.pdf
+    18-02-2021  10:51 AM           170,878 LL.pdf
+    29-10-2021  10:31 AM           131,657 math-20211029.svg
+    24-01-2022  11:21 AM           804,540 MAY 2019 (1).pdf
+    30-05-2022  04:30 PM        12,730,232 mechanics Theory.pdf
+    12-04-2021  02:40 PM         1,467,603 Mechanics.pdf
+    15-09-2022  10:30 AM            86,528 mingw-get-setup.exe
+    18-12-2022  08:17 PM         2,176,620 mix_2m16s (audio-joiner.com).mp3
+    25-09-2022  04:40 PM        10,578,707 Mock (1).pdf
+    19-09-2022  07:54 PM           243,911 Mock Questions (1).pdf
+    17-09-2022  05:14 PM           243,911 Mock Questions.pdf
+    25-09-2022  12:52 PM        10,578,707 Mock.pdf
+    28-11-2022  10:54 PM           346,497 Mod 1-CYBER SECURITY- Ktunotes.in.pdf
+    26-12-2022  03:03 PM             8,633 Module List.docx
+    17-10-2022  06:51 PM         1,542,261 module-2-chapter-2.pdf
+    06-12-2022  08:46 PM            82,508 MongoDB-Aggregation-Tutorial-master.zip
+    05-12-2022  07:21 PM         1,306,418 mongodb_tutorial (1).pdf
+    05-12-2022  07:20 PM           782,882 mongodb_tutorial.pdf
+    03-12-2022  11:24 AM    <DIR>          mongosh-1.6.1-win32-x64
+    03-12-2022  10:07 AM        41,364,162 mongosh-1.6.1-win32-x64.zip
+    22-12-2022  05:28 PM        80,709,092 Moon Modeler-5.2.0-x64.zip
+    25-10-2021  07:07 PM           236,322 MTA CERTIFICATE.pdf
+    27-12-2022  10:07 AM           804,564 MultiShop Free Website Template - Free-CSS.com.zip
+    17-03-2023  11:23 AM        36,012,381 New Pro - week8 fin.zip
+    15-12-2022  03:30 PM        30,522,869 new-login.zip
+    14-11-2022  09:39 AM         8,139,532 newdp.jpg
+    25-11-2022  09:52 AM        30,683,136 node-v18.12.1-x64.msi
+    09-11-2022  02:57 PM           318,362 Notification.pdf
+    17-09-2022  05:14 PM            97,378 null.pdf
+    16-10-2020  10:59 AM        74,839,360 OBS-Studio-26.0.2-Full-Installer-x64.exe
+    06-11-2021  10:56 AM            68,226 OD114101538917532000.pdf
+    02-12-2022  09:44 AM            38,373 Odw7UIyZ (1).jpg
+    01-12-2022  05:15 PM            38,373 Odw7UIyZ.jpg
+    28-11-2021  06:33 PM         8,102,032 OfficeSetup.exe
+    17-09-2022  05:14 PM         1,059,697 OOPS Concepts in Java PDF Download.pdf
+    17-09-2022  05:14 PM           112,820 OOPS in Java.pdf
+    07-10-2022  10:07 AM    <DIR>          opera autoupdate
+    04-11-2021  10:36 PM         2,608,400 OperaSetup.exe
+    08-11-2022  05:39 PM       120,631,020 Part 6.1 _ Javascript _ Web Designing Malayalam Tutorial.mp4
+    11-09-2022  01:48 PM         1,742,697 PASP.pdf
+    17-09-2022  05:14 PM         1,242,451 pattern fumigation.pdf
+    17-09-2022  05:14 PM            22,141 pattern.txt
+    29-03-2023  05:24 PM         4,095,787 PEDALX-main.zip
+    13-11-2022  11:33 AM             4,370 personal-website-main.zip
+    10-01-2023  05:59 PM         3,978,178 pexels-konstantin-mishchenko-1926769.jpg
+    26-12-2022  07:34 PM            17,753 PHONE STORE.dmm
+    04-04-2023  09:31 PM        38,121,001 Phone-Cart--main.zip
+    06-01-2023  01:00 PM             6,053 phone1.jfif
+    15-03-2023  10:17 AM            10,304 phonekart-main (1).zip
+    09-01-2023  05:30 PM            10,304 phonekart-main.zip
+    14-09-2020  10:28 AM         2,108,280 Photoshop_Set-Up.exe
+    22-03-2023  10:46 PM           762,205 plustwo.pdf
+    22-05-2022  07:23 PM           115,669 pppppppppp.JPG
+    07-01-2023  07:29 PM        82,349,808 Preparing the API Server - #nodejs Build Complete E-Commerce Web #api -.mp4
+    14-11-2022  12:06 AM         5,651,341 pro pic.jpg
+    07-01-2023  07:32 PM        56,770,051 Product Image u0026 Gallery Upload - #nodejs Build Complete E-Commerce Web #api -.mp4
+    07-05-2022  01:27 PM            30,187 RCMain.pdf
+    02-01-2021  10:07 AM           104,770 receipt (1).pdf
+    02-01-2021  10:18 AM           104,768 receipt (2).pdf
+    02-01-2021  09:56 AM           104,757 receipt.pdf
+    09-02-2023  07:28 PM             6,826 RegisteredStudentBillReport (Generated on 09_02_2023 07_28 PM).pdf
+    08-11-2022  06:00 PM       391,395,324 Restaurant Website Design Using Bootstrap 5 _ Bootstrap Landing Tutorial Step By Step.mp4
+    23-01-2022  02:02 PM            83,484 s7-control-systems-dec-2018.pdf
+    05-05-2023  10:56 AM           908,583 SalesReport1158051033.pdf
+    05-05-2023  07:15 PM         1,099,709 SalesReport8906402314.pdf
+    18-03-2023  06:05 PM    <DIR>          scoped_dir14040_303935736
+    16-03-2023  10:44 AM    <DIR>          scoped_dir9268_84293454
+    18-04-2022  12:10 AM            77,365 Screenshot 2022-04-18 001009.jpg
+    18-06-2022  08:21 PM            29,893 Screenshot 2022-06-18 202114.jpg
+    24-06-2022  08:49 PM            48,886 Screenshot 2022-06-24 204906.jpg
+    16-03-2023  10:30 AM            96,096 SerialNumberDetectionTool.exe
+    10-01-2023  06:33 PM         1,012,731 shiwa-id-Uae7ouMw91A-unsplash.jpg
+    27-05-2021  09:08 AM            97,991 shop-cart.html
+    06-01-2023  11:48 PM           120,184 shop-product-full.html
+    30-11-2022  08:13 AM            28,414 ShoppingCart-main (1).zip
+    30-11-2022  08:04 AM           131,730 ShoppingCart-main.zip
+    18-06-2022  11:37 AM             2,771 SIGN.JPEG.jpg
+    21-11-2022  08:41 PM       162,003,676 SnapSave.io-Callbacks, Event Loop, Promises, Async_Await JS _ Part 1_ ജാവാസ്ക്രിപ്റ്റ് _ javascript malaylam.mp4
+    01-01-2023  05:59 PM        58,866,363 SnapSave.io-javascript callback , promise , async await malayalam tutorial _ web development in malayalam.mp4
+    16-11-2022  03:06 PM     1,087,891,176 SnapSave.io-JavaScript Tutorial_ Full Course for Beginners �� (2022)-(1080p60).mp4
+    21-11-2022  08:54 PM       174,859,567 SnapSave.io-map, filter & reduce �� Namaste JavaScript Ep. 19 ��-(1080p).mp4
+    27-11-2022  04:21 PM       184,959,621 SnapSave.io-Node.js Passport Login System Tutorial-(1080p60).mp4
+    26-11-2022  08:20 PM       261,140,381 SnapSave.io-Part 15 _ Library installing, Card view, Array created for product, Express handle bars_ Part(1)-(1080p60).mp4
+    26-11-2022  08:24 PM       123,714,970 SnapSave.io-Part 16 _ Route setting _  Project E-commerce Application( Part-2)-(1080p60).mp4
+    20-03-2023  09:14 PM       225,803,629 SnapSave.io-Part 21 _ Edit product _  Project E-commerce Application( Part-7)-(1080p60).mp4
+    20-03-2023  09:15 PM       200,305,223 SnapSave.io-Part 22 _ Edit image, Add to cart , Aggregation _ Project E-commerce Application( Part-8)-(1080p60) (1).mp4
+    09-01-2023  09:02 PM       200,305,223 SnapSave.io-Part 22 _ Edit image, Add to cart , Aggregation _ Project E-commerce Application( Part-8)-(1080p60).mp4
+    20-03-2023  09:18 PM       208,247,379 SnapSave.io-Part 23 _ Add to cart (Cont.) _Project E-commerce Application( Part-9)-(1080p60).mp4
+    20-03-2023  09:19 PM       215,857,276 SnapSave.io-Part 24 _ Add to Cart(Cont.),Manage Cart Product Quantity _ Project E-commerce Application Part-10-(1080p60).mp4
+    25-11-2022  08:37 PM       211,699,350 SnapSave.io-Part 6 _ Node.js - Server Creation, Serving HTML File _ Web Development Challenge in Malayalam-(720p60).mp4
+    25-11-2022  04:22 PM       410,131,147 SnapSave.io-Part 7 _ Node.js Routing and GET Request Without Express _ Web Development Challenge in Malayalam-(1080p60).mp4
+    25-11-2022  03:50 PM       199,112,418 SnapSave.io-Part 8 _ Introduction to Express _ Web Development Challenge in Malayalam-(1080p60).mp4
+    25-11-2022  08:35 PM       118,981,868 SnapSave.io-Part 9 _ Express and Express Generator _ Web Development Challenge in Malayalam-(720p60).mp4
+    11-01-2023  10:14 AM       165,424,035 SnapSave.io-Setup Products  (1).mp4
+    04-01-2023  08:50 PM        59,716,799 SnapSave.io-Uploading Images with Multer _ NodeJS and ExpressJS.mp4
+    12-01-2023  10:22 AM        53,936,236 SnapSave.io-User Forgot Password API Features _ NFT Marketplace API Development Course 2023-(1080p) (1).mp4
+    12-01-2023  10:21 AM        53,936,236 SnapSave.io-User Forgot Password API Features _ NFT Marketplace API Development Course 2023-(1080p).mp4
+    05-01-2023  07:11 PM         4,546,185 sneat-1.0.0.zip
+    22-03-2023  10:38 PM           730,596 sslc.pdf
+    11-11-2022  07:57 PM               626 starbuck-responsive-main.zip
+    30-12-2022  02:24 AM             6,789 Subject_ Leave Application (1).docx
+    16-01-2023  10:03 PM            30,211 Subject_ Leave Application (1).pdf
+    03-02-2023  08:16 PM            28,679 Subject_ Leave Application (2).pdf
+    14-03-2023  07:30 AM            28,651 Subject_ Leave Application (3) (1).pdf
+    14-03-2023  07:30 AM            28,651 Subject_ Leave Application (3).pdf
+    11-11-2022  08:47 AM             6,786 Subject_ Leave Application.docx
+    30-12-2022  02:24 AM            30,560 Subject_ Leave Application.pdf
+    17-07-2020  10:28 AM        98,261,768 Teams_windows_x64.exe
+    25-10-2022  07:45 PM             3,494 temp.rar
+    05-05-2023  11:02 AM            16,095 test (1).xlsx
+    05-05-2023  11:41 AM            16,012 test (10).xlsx
+    05-05-2023  11:48 AM            16,012 test (11).xlsx
+    05-05-2023  11:51 AM            16,431 test (12).xlsx
+    05-05-2023  03:39 PM            16,711 test (13).xlsx
+    05-05-2023  11:14 AM            16,012 test (2).xlsx
+    05-05-2023  11:20 AM            16,012 test (3).xlsx
+    05-05-2023  11:22 AM            16,049 test (4).xlsx
+    05-05-2023  11:25 AM            16,049 test (5).xlsx
+    05-05-2023  11:28 AM            16,049 test (6).xlsx
+    05-05-2023  11:36 AM            16,012 test (7).xlsx
+    05-05-2023  11:38 AM            16,012 test (8).xlsx
+    05-05-2023  11:40 AM            16,012 test (9).xlsx
+    05-05-2023  10:48 AM            16,012 test.xlsx
+    05-05-2023  04:10 PM           865,915 Three Thousand Stitches by Sudha Murthy.pdf
+    29-11-2022  12:44 AM             6,886 thumb1.jfif
+    14-11-2022  01:54 PM             7,888 thumbnail week 2.png
+    07-01-2023  10:14 AM        60,800,430 TIMES HUB.zip
+    06-05-2023  05:34 PM           104,336 Topics for the BroSpeaks 3rd Edition (2) (1) (2).pdf
+    19-06-2022  09:54 AM           142,098 trip.jpg
+    06-11-2022  05:47 PM            14,621 trust_logotype.svg
+    27-06-2021  07:03 PM               435 Udacity.vcf
+    09-01-2023  02:22 PM           140,220 udemy-node-js-express-mongodb-more-the-complete-bootcamp-2020 (1).torrent
+    09-01-2023  02:22 PM           140,220 udemy-node-js-express-mongodb-more-the-complete-bootcamp-2020.torrent
+    12-12-2022  11:44 AM            25,203 Untitled document (1).pdf
+    15-12-2022  12:31 AM            33,788 Untitled document (2).pdf
+    15-12-2022  09:30 AM            34,852 Untitled document (3).pdf
+    06-05-2023  06:59 PM             9,255 Untitled document.docx
+    12-12-2022  11:09 AM            25,203 Untitled document.pdf
+    17-05-2021  09:04 AM         2,699,482 UPSTOX3235c29bc7354674ae03f6f84e3da353_FPUPST170521UPFA5E293N7Y4G48.pdf
+    17-05-2021  09:00 AM         2,699,482 UPSTOX92d84d4f543e4b378fc4353cbd2bc051_FPUPST170521UP2WQN7WYRRPV278.pdf
+    07-01-2023  07:14 PM        14,155,680 Users u0026 Authentication- #nodejs Build Complete E-Commerce Web #api -.mp4
+    18-03-2023  06:05 PM        25,490,328 VC_redist.x64.exe
+    24-10-2022  10:46 PM         5,871,791 VID-20221023-WA0000.mp4
+    26-03-2022  05:24 PM         9,725,143 vidma_20220326_172417.mp4
+    31-10-2022  05:44 PM        86,038,200 VSCodeUserSetup-x64-1.72.2.exe
+    16-06-2021  02:06 PM           387,584 webex.exe
+    21-09-2022  02:45 PM           267,629 Week 0.1_ Assignments  (1).docx
+    08-11-2022  04:48 PM             8,813 Week 2_ Web Designing Basics.docx
+    25-12-2022  05:46 PM             8,374 week 7 seminar.jfif
+    08-11-2022  12:29 AM           122,388 week1.jpg
+    20-05-2021  09:19 AM            94,821 WELCOME_LETTER_2TA644_Sign.pdf
+    21-11-2022  12:30 AM         2,324,484 WhatsApp Audio 2022-11-21 at 12.24.24 AM.mp4
+    29-11-2022  12:08 AM         2,655,624 WhatsApp Audio 2022-11-29 at 12.08.24 AM.mp4
+    08-12-2022  12:48 AM         1,972,709 WhatsApp Audio 2022-12-08 at 12.47.07 AM.mp4
+    09-12-2022  01:29 AM         1,972,709 WhatsApp Audio 2022-12-09 at 1.28.46 AM.mp4
+    09-12-2022  01:29 AM         1,994,906 WhatsApp Audio 2022-12-09 at 1.29.03 AM.mp4
+    09-12-2022  11:24 PM            16,396 WhatsApp Audio 2022-12-09 at 11.19.38 PM.ogg
+    18-12-2022  06:41 PM         3,354,651 WhatsApp Audio 2022-12-18 at 6.40.53 PM.mp4
+    18-12-2022  08:16 PM         1,984,778 WhatsApp Audio 2022-12-18 at 8.16.04 PM.mp4
+    18-12-2022  08:16 PM           278,515 WhatsApp Audio 2022-12-18 at 8.16.22 PM.mp4
+    25-12-2022  01:29 PM         2,467,387 WhatsApp Audio 2022-12-25 at 1.29.43 PM.mp4
+    13-09-2021  06:59 PM            81,544 WhatsApp Image 2021-09-13 at 6.59.27 PM.jpeg
+    01-01-2022  08:49 PM            81,544 WhatsApp Image 2022-01-01 at 8.48.50 PM.jpeg
+    15-04-2022  12:32 AM           125,435 WhatsApp Image 2022-04-15 at 12.32.30 AM.jpeg
+    19-05-2022  11:30 AM           121,497 WhatsApp Image 2022-05-19 at 11.30.20 AM.jpeg
+    25-01-2023  11:46 AM            58,399 WhatsApp Image 2023-01-25 at 11.20.20 AM (1).jpeg
+    25-01-2023  11:46 AM            59,036 WhatsApp Image 2023-01-25 at 11.20.20 AM.jpeg
+    25-01-2023  11:47 AM            69,628 WhatsApp Image 2023-01-25 at 11.20.21 AM.jpeg
+    28-11-2022  01:03 AM         2,363,633 WhatsApp Video 2022-11-27 at 9.17.03 PM.mp4
+    08-12-2022  01:18 AM       287,250,338 win-20221208-00-59-33-pro_pcxi1jPX.mp4
+    12-12-2018  12:41 PM            82,697 wp1923022.jpg
+    12-12-2018  12:32 PM           126,805 wp1923051.jpg
+    31-01-2019  09:43 PM            45,199 xinput1_3.zip
+    06-11-2022  09:58 PM           940,059 Your paragraph text (1).mp4
+    06-11-2022  10:01 PM           312,869 Your paragraph text.jpg
+    06-11-2022  09:56 PM         1,022,434 Your paragraph text.mp4
+    25-03-2021  07:15 PM            81,062 YYGYY.JPG
+    20-11-2020  02:38 PM            83,288 Zoom_cm_fo42anktZ9vvrZo4_m0hcOQZ1m7d4ntctyc34Jv+KqAD4b29fEZah8@TNwFUVOop1L5dxUy_k714b9e7f54cef4b3_.exe
+    22-02-2023  11:49 PM             5,857 [English (auto-generated)] 7 Powerful Life Lessons From the Eagle __ MOTIVANTURE [DownSub.com].srt
+    22-02-2023  11:49 PM             3,160 [English (auto-generated)] 7 Powerful Life Lessons From the Eagle __ MOTIVANTURE [DownSub.com].txt
+    21-04-2023  10:25 AM            22,262 [English (auto-generated)] The Cube_ Saudi Arabia's Next Megaproject [DownSub.com].srt
+    21-04-2023  10:25 AM            11,932 [English (auto-generated)] The Cube_ Saudi Arabia's Next Megaproject [DownSub.com].txt
+    18-12-2022  06:24 PM            11,707 [English] After 27 Years in Prison, He Became President and Changed The Whole Country [DownSub.com].txt
+    12-11-2022  06:08 PM           173,850 [English] Bootstrap CSS Framework - Full Course for Beginners [DownSub.com].srt
+    12-11-2022  06:08 PM           128,967 [English] Bootstrap CSS Framework - Full Course for Beginners [DownSub.com].txt
+                 343 File(s) 26,877,807,735 bytes
+                   7 Dir(s)  167,998,353,408 bytes free
     
-        <main class="main">
-    
-            <section class="mt-50 mb-50">
-                <div class="container">
-                    <div class="row flex-row-reverse">
-                        <div class="col-lg-9">
-                            <!-- <div class="shop-product-fillter">
-                              <div class="totall-product">
-                                  <p> We found <strong class="text-brand">688</strong> items for you!</p>
-                              </div>
-                              <div class="sort-by-product-area">
-                                  <div class="sort-by-cover mr-10">
-                                      <div class="sort-by-product-wrap">
-                                          <div class="sort-by">
-                                              <span><i class="fi-rs-apps"></i>Show:</span>
-                                          </div>
-                                          <div class="sort-by-dropdown-wrap">
-                                              <span> 50 <i class="fi-rs-angle-small-down"></i></span>
-                                          </div>
-                                      </div>
-                                      <div class="sort-by-dropdown">
-                                          <ul>
-                                              <li><a class="active" href="#">50</a></li>
-                                              <li><a href="#">100</a></li>
-                                              <li><a href="#">150</a></li>
-                                              <li><a href="#">200</a></li>
-                                              <li><a href="#">All</a></li>
-                                          </ul>
-                                      </div>
-                                  </div>
-                                  <div class="sort-by-cover">
-                                      <div class="sort-by-product-wrap">
-                                          <div class="sort-by">
-                                              <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
-                                          </div>
-                                          <div class="sort-by-dropdown-wrap">
-                                              <span> Featured <i class="fi-rs-angle-small-down"></i></span>
-                                          </div>
-                                      </div>
-                                      <div class="sort-by-dropdown">
-                                          <ul>
-                                              <li><a class="active" href="#">Featured</a></li>
-                                              <li><a href="#">Price: Low to High</a></li>
-                                              <li><a href="#">Price: High to Low</a></li>
-                                              <li><a href="#">Release Date</a></li>
-                                              <li><a href="#">Avg. Rating</a></li>
-                                          </ul>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div> -->
-    
-    
-                            <div class="row product-grid-3" id="catfilter">
-                                <% for(i=0;i< response.length;i++) { %>
-    
-                                    <div class="col-lg-4 col-md-4 col-12 col-sm-6">
-    
-    
-                                        <div class="product-cart-wrap mb-30">
-                                            <div class="product-img-action-wrap">
-                                                <div class="product-img product-img-zoom">
-                                                    <a href="/viewProductDetails">
-                                                        <a href="/viewProductDetails/<%=response[i]._id %> ">
-                                                            <img class="default-img"
-                                                                src="/uploads/<%= response[i].Image[0]%>" alt="">
-                                                            <!-- <img class="hover-img" src="assets/imgs/shop/product-7-1.jpg" alt=""> -->
-                                                        </a>
-                                                </div>
-                                                <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn hover-up"
-                                                        data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                                                        <i class="fi-rs-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn hover-up"
-                                                        href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn hover-up"
-                                                        href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                                </div>
-                                                <div class="product-badges product-badges-position product-badges-mrg">
-    
-                                                </div>
-                                            </div>
-                                            <div class="product-content-wrap">
-                                                <div class="product-category">
-                                                    <a href="shop-grid-right.html">
-                                                        <%=response[i].category%>
-                                                    </a>
-                                                </div>
-                                                <h2><a href="shop-product-right.html">
-                                                        <%=response[i].Productname%>
-                                                    </a></h2>
-                                                <div class="rating-result" title="90%">
-                                                    <span>
-                                                        <span>95%</span>
-                                                    </span>
-                                                </div>
-                                                <div class="product-price">
-                                                    <span>
-                                                        <%=response[i].Price%>
-                                                    </span>
-    
-                                                </div>
-                                                <div class="product-action-1 show">
-                                                    <!-- <a aria-label="Add To Cart" class="action-btn hover-up" href="/add-to-cart/<%=response._id%>" onclick="addToCart()"><i class="fi-rs-shopping-bag-add"></i></a> -->
-                                                    <button
-                                                    type="button"
-                                                    aria-label="Add To Cart"
-                                                    class="action-btn hover-up"
-                                                    onclick="addtocart('<%-response._id%>'),
-                                                   Swal.fire({
-                                                    position: 'center',
-                                                    icon: 'success',
-                                                    title: 'Item Added Successfully To Cart',
-                                                    showConfirmButton: false,
-                                                    timer: 2000
-                                                  })"
-                                                  >
-                                                    <i class="fi-rs-shopping-bag-add"></i>
-                                                  </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <% } %>
-                            </div>
-                            <!--pagination-->
-                            <div class="pagination-area mt-15 mb-sm-5 mb-lg-0">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination justify-content-start">
-                                        <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">02</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                        <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">16</a></li>
-                                        <li class="page-item"><a class="page-link" href="#"><i
-                                                    class="fi-rs-angle-double-small-right"></i></a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-    
-    
-    
-                        <div class="col-lg-3 primary-sidebar sticky-sidebar">
-                            <div class="widget-category mb-30">
-                                <h5 class="section-title style-1 mb-30 wow fadeIn animated">Category</h5>
-                                <div class="categories">
-                                    <% viewCategory.forEach(function(viewCategory,index) { %>
-                                        <div onclick="categoryFilter('<%=viewCategory.CategoryName%>')">
-                                            <%=viewCategory.CategoryName%>
-                                        </div>
-                                        <% }) %>
-                                </div>
-                            </div>
-                        </div>
-    
-    
-    
-                    </div>
-                </div>
-            </section>
-        </main>
-    
-    </body>
-    
-    
-    <script>
-        function addtocart(proId) {
-            $.ajax({
-                url: '/add-to-cart/' + proId,
-                method: 'get',
-                success: (response) => {
-                    if (response.new) {
-                        let count = $('#cart-count').html();
-                        count = parseInt(count) + 1;
-                        $('#cart-count').html(count);
-    
-                    }
-    
-                },
-            });
-        }
-    
-    
-        function categoryFilter(catName=null) {
-            $.ajax({
-                url: '/shop',
-                method: 'get',
-                data: {
-                    catName
-                },
-                success: (response) => {
-                    console.log("dddddddddd", response);
-                    let catfilter = ''
-                    console.log("ggggggggggg", response.length)
-                    for (let i = 0; i < response.length; i++) {
-                        console.log("filtered item", response[i])
-                        catfilter += `
-                 <div class="col-lg-4 col-md-4 col-12 col-sm-6">
-    
-    
-    <div class="product-cart-wrap mb-30">
-        <div class="product-img-action-wrap">
-            <div class="product-img product-img-zoom">
-                 <a href="/viewProductDetails"> 
-                  <a href ="/viewProductDetails/${response[i]._id}"> 
-                    <img class="default-img" src="/uploads/${response[i].Image[0]}" alt="">
-                    <!-- <img class="hover-img" src="assets/imgs/shop/product-7-1.jpg" alt=""> -->
-                </a>
-            </div>
-            <div class="product-action-1">
-                <a aria-label="Quick view" class="action-btn hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-    <i class="fi-rs-search"></i></a>
-                <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-            </div>
-            <div class="product-badges product-badges-position product-badges-mrg">
-                
-            </div>
-        </div>
-        <div class="product-content-wrap">
-            <div class="product-category">
-                <a href="shop-grid-right.html">${response[i].category}</a>
-            </div>
-            <h2><a href="shop-product-right.html">${response[i].Productname}</a></h2>
-            <div class="rating-result" title="90%">
-                <span>
-                    <span>95%</span>
-                </span>
-            </div>
-            <div class="product-price">
-                <span>${response[i].Price}</span>
-            
-            </div>
-            <div class="product-action-1 show">
-                <!-- <a aria-label="Add To Cart" class="action-btn hover-up" href="/add-to-cart/${response[i]._id}" onclick="addToCart()"><i class="fi-rs-shopping-bag-add"></i></a> -->
-                <button
-                type="button"
-                aria-label="Add To Cart"
-                class="action-btn hover-up"
-                onclick="addtocart('${response[i]._id}'),
-               Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Item Added Successfully To Cart',
-                showConfirmButton: false,
-                timer: 2000
-              })"
-              >
-                <i class="fi-rs-shopping-bag-add"></i>
-              </button>
-            </div>
-        </div>
-    </div>
-    </div>`
-    
-                    }
-                    console.log('3ftgtgrgrgtg', catfilter)
-                    document.getElementById('catfilter').innerHTML = catfilter
-    
-                },
-            });
-        }
-    
-    
-    
-    
-    </script>
-
-
-
-
-<!--coupon code-->
-<div class="row mb-50">
-
-    <div class="mb-30 mt-50">
-        <div class="heading_s1 mb-3">
-            <h4>Apply Coupon</h4>
-        </div>
-        <div class="total-amount">
-            <div class="left">
-                <div class="coupon">
-                    <form action="#" target="_blank">
-                        <div class="form-row row justify-content-center">
-                            <div class="form-group col-lg-6">
-                                <input class="font-medium" name="Coupon"
-                                    placeholder="Enter Your Coupon">
-                            </div>
-                            <div class="form-group col-lg-6">
-                                <button class="btn  btn-sm"><i
-                                        class="fi-rs-label mr-10"></i>Apply</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--coupon code-->
-
-
-
-
-
-    <
-        <section class="pt-150 pb-150">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-10 m-auto">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="dashboard-menu">
-                                    <ul class="nav flex-column" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><i class="fi-rs-settings-sliders mr-10"></i>Dashboard</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i class="fi-rs-shopping-bag mr-10"></i>Orders</a>
-                                        </li>
-                                        <!-- <li class="nav-item">
-                                            <a class="nav-link" id="track-orders-tab" data-bs-toggle="tab" href="#track-orders" role="tab" aria-controls="track-orders" aria-selected="false"><i class="fi-rs-shopping-cart-check mr-10"></i>Track Your Order</a>
-                                        </li> -->
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="address-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i class="fi-rs-marker mr-10"></i>My Address</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="add-address-tab" data-bs-toggle="tab" href="#add-address" role="tab" aria-controls="address" aria-selected="true"><i class="fi-rs-marker mr-10"></i>Add Address</a>
-                                        </li>
-                                        <!-- <li class="nav-item">
-                                            <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>Account details</a>
-                                        </li> -->
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/logout"><i class="fi-rs-sign-out mr-10"></i>Logout</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="tab-content dashboard-content">
-                                    <div class="tab-pane fade active show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="mb-0">Hello Rosie! </h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <p>From your account dashboard. you can easily check &amp; view your <a href="#">recent orders</a>, manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit your password and account details.</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                     <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="mb-0">Your Orders</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Order</th>
-                                                                <th>Date</th>
-                                                                <th>Status</th>
-                                                                <th>Total</th>
-                                                                <th>Actions</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <% orders.forEach((orders)=> { %>
-                                                                <% const timestamp = new Date(orders.createdAt);
-                                                        const options = { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
-                                                        const formattedDate = timestamp.toLocaleDateString('en-US', options); %>
-                                                            
-                                                            <tr>
-                                                                <td>#<%=orders.hashedId%></td>
-                                                                <td><%=formattedDate%></td>
-                                                                <td><%=orders.orderStatus%></td>
-                                                                <td>₹<%=orders.totalPrice%></td>
-                                                                <td><a href="/view-user-order-expand/<%=orders._id%>" class="btn-small d-block">View</a></td>
-                                                            </tr>
-                                                            <% } )%>
-                                                           
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                            <!-- pagination -->
-                                            <div class="pagination-area mt-15 mb-50">
-                                                <nav aria-label="Page navigation example">
-                                                    <ul class="pagination justify-content-start">
-                                                        <!-- <li class="page-item active"><a class="page-link" href="#">01</a></li> -->
-                                                        <% for(let i = 1; i <= pages ; i++) { %>
-                                                        <li class="page-item"><a class="page-link" href="?page=<%= i %>" id="pagination"><%= i %></a></li>
-                                                        <!-- <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                                        <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">16</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#"><i class="material-icons md-chevron_right"></i></a></li> -->
-                                                        <% } %>
-                                                    </ul>
-                                                </nav>
-                                            </div>
-    
-    
-    
-    
-    
-    
-    
-    
-                                    </div> 
-                                     <!-- <div class="tab-pane fade" id="track-orders" role="tabpanel" aria-labelledby="track-orders-tab">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="mb-0">Orders tracking</h5>
-                                            </div>
-                                            <div class="card-body contact-from-area">
-                                                <p>To track your order please enter your OrderID in the box below and press "Track" button. This was given to you on your receipt and in the confirmation email you should have received.</p>
-                                                <div class="row">
-                                                    <div class="col-lg-8">
-                                                        <form class="contact-form-style mt-30 mb-50" action="#" method="post">
-                                                            <div class="input-style mb-20">
-                                                                <label>Order ID</label>
-                                                                <input name="order-id" placeholder="Found in your order confirmation email" type="text" class="square">
-                                                            </div>
-                                                            <div class="input-style mb-20">
-                                                                <label>Billing email</label>
-                                                                <input name="billing-email" placeholder="Email you used during checkout" type="email" class="square">
-                                                            </div>
-                                                            <button class="submit submit-auto-width" type="submit">Track</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>  -->
-                                    <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
-                                        <div class="row">
-    
-                                            <% for(let i=0;i < addressCount;i++){%>
-                                            <div class="col-lg-6">
-                                                <div class="card mb-3 mb-lg-0">
-                                                    <div class="card-header">
-                                                        <h5 class="mb-0">Billing Address</h5>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <address> <%=multipleAddress.Address[i].street%>,
-                                                        <br> <%=multipleAddress.Address[i].building%>,<br> <%=multipleAddress.Address[i].city%>, <br><%=multipleAddress.Address[i].state%>,<br><%=multipleAddress.Address[i].mobile%>.</address>
-                                                        <p>India</p>
-                                                        <a href="#" class="btn-small">Remove</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <%} %>
-    
-                                            <!-- <div class="col-lg-6">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <h5 class="mb-0">Shipping Address</h5>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <address>4299 Express Lane<br>
-                                                            Sarasota, <br>FL 34249 USA <br>Phone: 1.941.227.4444</address>
-                                                        <p>Sarasota</p>
-                                                        <a href="#" class="btn-small">Edit</a>
-                                                    </div>
-                                                </div>
-                                            </div> -->
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="add-address" role="tabpanel" aria-labelledby="account-detail-tab">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5>Add Address</h5>
-                                            </div>
-                                            <div class="card-body">
-    
-                                                <form action="/add-address" method="post" name="address">
-                                                    <div class="row">
-                                                        <div class="form-group col-md-6">
-                                                            <label>First Name <span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="fname" type="text">
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label>Last Name <span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="lname">
-                                                        </div>
-                                                        <div class="form-group col-md-12">
-                                                            <label>Street <span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="street" type="text">
-                                                        </div>
-                                                        <div class="form-group col-md-12">
-                                                            <label>Building <span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="building" type="text">
-                                                        </div>
-                                                        <div class="form-group col-md-12">
-                                                            <label>City <span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="city" type="text">
-                                                        </div>
-                                                        <div class="form-group col-md-12">
-                                                            <label>State <span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="state" type="text">
-                                                        </div>
-                                                        <div class="form-group col-md-12">
-                                                            <label>Pincode<span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="pincode" type="text">
-                                                        </div>
-    
-                                                        <div class="form-group col-md-12">
-                                                            <label>Mobile<span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="mobile" type="text">
-                                                        </div>
-    
-                                                        <div class="form-group col-md-12">
-                                                            <label>Email<span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="email" type="email">
-                                                        </div>
-                                                        
-                                                        
-    
-                                                        <div class="col-md-12">
-                                                            <button type="submit" class="btn btn-fill-out submit" name="submit" value="Submit">Save</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-    
-    
-    
-                                    <div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5>Account Details</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <p>Already have an account? <a href="page-login-register.html">Log in instead!</a></p>
-                                                <form method="post" name="enq">
-                                                    <div class="row">
-                                                        <div class="form-group col-md-6">
-                                                            <label>First Name <span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="name" type="text">
-                                                        </div>
-                                                        <div class="form-group col-md-6">
-                                                            <label>Last Name <span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="phone">
-                                                        </div>
-                                                        <div class="form-group col-md-12">
-                                                            <label>Display Name <span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="dname" type="text">
-                                                        </div>
-                                                        <div class="form-group col-md-12">
-                                                            <label>Email Address <span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="email" type="email">
-                                                        </div>
-                                                        <div class="form-group col-md-12">
-                                                            <label>Current Password <span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="password" type="password">
-                                                        </div>
-                                                        <div class="form-group col-md-12">
-                                                            <label>New Password <span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="npassword" type="password">
-                                                        </div>
-                                                        <div class="form-group col-md-12">
-                                                            <label>Confirm Password <span class="required">*</span></label>
-                                                            <input required="" class="form-control square" name="cpassword" type="password">
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <button type="submit" class="btn btn-fill-out submit" name="submit" value="Submit">Save</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-    
-    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-
-
-
-
-    <div class="row product-grid-3" id="product-grid"></div>
-
-
-    <script>
-        $(document).ready(function() {
-          $('#sort-select').on('change', function() {
-            var selectedValue = $(this).val();
-            $.ajax({
-              type: 'POST',
-              url: '/sort',
-              data: { selectedValue: selectedValue },
-              success: function(response) {
-                $('#product-grid').html(response);
-              }
-            });
-          });
-        });
-        </script>
-
-
-
-
-app.post('/sort', function(req, res) {
-    var selectedValue = req.body.selectedValue;
-    var sortQuery = {};
-    if (selectedValue === 'price-low-to-high') {
-      sortQuery.Price = 1;
-    } else if (selectedValue === 'price-high-to-low') {
-      sortQuery.Price = -1;
-    }
-    Product.find().sort(sortQuery).exec(function(err, products) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.render('partials/product-grid', { products: products });
-      }
-    });
-  });
-
-  
-
-
-  <!-- product-grid.ejs -->
-<% for (var i = 0; i < products.length; i++) { %>
-    <div class="col-lg-4 col-md-4 col-12 col-sm-6">
-      <div class="product-cart-wrap mb-30">
-        ...
-      </div>
-    </div>
-  <% } %>
-  
-
-
-
-
-
-
-
-
-      <section class="mt-50 mb-50">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="table-responsive">
-                            <table class="table shopping-summery text-center">
-                                <thead>
-                                    <tr class="main-heading">
-                                        <th scope="col" colspan="2">Product</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Stock Status</th>
-                                        <th scope="col">Action</th>
-                                        <th scope="col">Remove</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="image product-thumbnail"><img src="assets/imgs/shop/product-1-1.jpg" alt="#"></td>
-                                        <td class="product-des product-name">
-                                            <h5 class="product-name"><a href="shop-product-right.html">J.Crew Mercantile Women's Short-Sleeve</a></h5>
-                                            <p class="font-xs">Maboriosam in a tonto nesciung eget<br> distingy magndapibus.
-                                            </p>
-                                        </td>
-                                        <td class="price" data-title="Price"><span>$65.00 </span></td>
-                                        <td class="text-center" data-title="Stock">
-                                            <span class="color3 font-weight-bold">In Stock</span>
-                                        </td>
-                                        <td class="text-right" data-title="Cart">
-                                            <button class="btn btn-sm"><i class="fi-rs-shopping-bag mr-5"></i>Add to cart</button>
-                                        </td>
-                                        <td class="action" data-title="Remove"><a href="#"><i class="fi-rs-trash"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="image"><img src="assets/imgs/shop/product-2-1.jpg" alt="#"></td>
-                                        <td class="product-des">
-                                            <h5 class="product-name"><a href="shop-product-right.html">Amazon Essentials Women's Tank</a></h5>
-                                            <p class="font-xs">Sit at ipsum amet clita no est,<br> sed amet sadipscing et gubergren</p>
-                                        </td>
-                                        <td class="price" data-title="Price"><span>$75.00 </span></td>
-                                        <td class="text-center" data-title="Stock">
-                                            <span class="color3 font-weight-bold">In Stock</span>
-                                        </td>
-                                        <td class="text-right" data-title="Cart">
-                                            <button class="btn btn-sm"><i class="fi-rs-shopping-bag mr-5"></i>Add to cart</button>
-                                        </td>
-                                        <td class="action" data-title="Remove"><a href="#"><i class="fi-rs-trash"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="image"><img src="assets/imgs/shop/product-3-1.jpg" alt="#"></td>
-                                        <td class="product-des">
-                                            <h5 class="product-name"><a href="shop-product-right.html">Amazon Brand - Daily Ritual Women's Jersey </a></h5>
-                                            <p class="font-xs">Erat amet et et amet diam et et.<br> Justo amet at dolore
-                                            </p>
-                                        </td>
-                                        <td class="price" data-title="Price"><span>$62.00 </span></td>
-                                        <td class="text-center" data-title="Stock">
-                                            <span class="text-danger font-weight-bold">Out of stock</span>
-                                        </td>
-                                        <td class="text-right" data-title="Cart">
-                                            <button class="btn btn-sm btn-secondary"><i class="fi-rs-headset mr-5"></i>Contact Us</button>
-                                        </td>
-                                        <td class="action" data-title="Remove"><a href="#"><i class="fi-rs-trash"></i></a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-   
-    <!-- Preloader Start -->
-    <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="text-center">
-                    <h5 class="mb-5">Now Loading</h5>
-                    <div class="loader">
-                        <div class="bar bar1"></div>
-                        <div class="bar bar2"></div>
-                        <div class="bar bar3"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-
-
-
-
-    <!--thelayout-->
-    <main class="main-wrap">
-        <section class="content-main">
-          <div class="content-header">
-            <div>
-              <h2 class="content-title card-title">Dashboard</h2>
-              <p>Whole data about your business here</p>
-            </div>
-        </div>
-           
-      </main>
-          <!--thelayout-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          <section class="mt-50 mb-50">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="mb-25">
-                    <h4>Select Your Address</h4>
-                  </div>
-          
-                  <br />
-          
-                  <% if (response.length!=0) { %>
-                    <form id="checkout-form">
-                      <% response.forEach(function(response) { %>
-                        <div>
-                          <div class="payment_option">
-                            <div class="list-group-item" style="
-                              border-radius: 1rem;
-                              padding: 1.5rem;
-                              margin-bottom: 2rem;
-                            ">
-                              <div class="list-group-item-heading">
-                                <div class="row radio">
-                                  <div class="col-xs-3">
-                                    <label>
-                                      <input type="radio" name="address" id="address1" value="<%=response.item._id%>"
-                                        style="height: 1.2rem; width: 1.2rem" checked />
-                                      <%=response.item.fname%>:<%=response.item.lname%>
-          
-                                    </label>
-                                  </div>
-                                  <div class="col-xs-5">
-                                    <dl class="dl-small">
-                                      <dt>
-                                        <%=response.item.street%>
-                                      </dt>
-                                      <dd>
-                                        <%=response.item.apartment%>
-                                      </dd>
-                                      <dd>
-                                        <%=response.item.city%>
-                                      </dd>
-                                      <dd>
-                                        <%=response.item.state%>
-                                      </dd>
-                                      <dd>
-                                        <%=response.item.pincode%>
-                                      </dd>
-                                      <dd>
-                                        <%=response.item.mobile%>
-                                      </dd>
-                                      <dd>
-                                        <%=response.item.email%>
-                                      </dd>
-                                    </dl>
-                                    <!-- <button class="btn btn-sm">Edit</button>
-                                    <button class="btn btn-sm btn-link">
-                                      Delete this address
-                                    </button> -->
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <% }) %>
-                          <div class="payment_method">
-                            <p>Payment Method</p>
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" name="payment-method" value="COD" checked />
-                              <label class="form-check-label" for="flexRadioDefault1">
-                                COD
-                              </label>
-                            </div>
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" name="payment-method" value="online" />
-                              <label class="form-check-label" for="flexRadioDefault1">
-                                Razorpay
-                              </label>
-                            </div>
-                            <div class="form-check">
-                              <!-- <input
-                            class="form-check-input"
-                            type="radio"
-                            name="payment-method"
-                            value="paypal"
-                          /> -->
-                              <!-- <label class="form-check-label" for="flexRadioDefault1">
-                            Paypal
-                          </label> -->
-                              <!-- <div id="paypal"></div> -->
-                            </div>
-          
-                            <div class="form-group">
-                              <input name="userId" value="<%=userId%>" type="hidden" />
-                            </div>
-                            <!-- <div class="form-group">
-                          <input name="user" value="" type="hidden" />
-                        </div> -->
-                          </div>
-                          <button id="checkout-button" class="btn btn-fill-out btn-block mt-30" onclick="postcheckout()">
-                            Proceed to payment
-                          </button>
-                          
-                    </form>
-          
-          
-                    <% } else { %>
-                      <h2>No Address Added</h2>
-          
-                      <% } %>
-          
-          
-          
-                        <br />
-                        <div style="
-                        width: 35rem;
-                        height: 3rem;
-                        background-color: whitesmoke;
-                        padding: 20px;
-                      ">
-                          <a href="/profile">
-                            <h5>+ Add an address</h5>
-                          </a>
-                        </div>
-                </div>
-          
-          
-                <div class="col-md-6">
-                  <div class="order_review">
-                    <div class="mb-20">
-                      <h4>Your Orders</h4>
-                    </div>
-                    <div class="table-responsive order_table text-center">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th colspan="2">Product</th>
-                            <th>Price</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <% cartItems.forEach(function(cartItems){%>
-          
-                            <tr>
-                              <td class="image product-thumbnail">
-                                <img src="/uploads/<%=cartItems.cartItems.Image[0] %>" />
-                              </td>
-                              <td>
-                                <h5>
-                                  <a href="shop-product-full.html">
-                                    <%=cartItems.cartItems.Productname%>
-                                  </a>
-                                </h5>
-                                <span class="product-qty"> x<%=cartItems.quantity%></span>
-                              </td>
-                              <td>
-                                <%= cartItems.cartItems.Price%>
-                              </td>
-                            </tr>
-                            <%}) %>
-          
-                              <!-- <tr>
-                          <th>SubTotal</th>
-                          <td class="product-subtotal" colspan="2">$280.00</td>
-                      </tr> -->
-          
-                              <th>Sub Total</th>
-                              <td colspan="2" class="product-subtotal">
-                                <span class="font-xl text-brand fw-900" id="sub-total">
-                                  <%=total%>
-                                </span>
-                              </td>
-                              <tr>
-          
-                                <th>Discount Amount</th>
-                                <td colspan="2" class="product-subtotal">
-                                  <span class="font-xl text-brand fw-900" id="discountAmount">0</span>
-                                </td>
-                              <tr>
-          
-                                <th>Shipping</th>
-                                <td colspan="2"><em>Free Shipping</em></td>
-                              </tr>
-          
-                              <tr>
-                                <th>Total</th>
-                                <td colspan="2" class="product-total">
-                                  <span class="font-xl text-brand fw-900" id="total">
-                                    <%=total%>
-                                  </span>
-                                </td>
-          
-                        </tbody>
-                      </table>
-          
-                    </div>
-          
-                  </div>
-          
-                  <div class="col-md-6" style="position: relative; top: 51px; left: 35%; transform: translateX(-50%);">
-          
-                    <div class="heading_s1 mb-3">
-                      <h4>Apply Coupon</h4>
-                    </div>
-                    <div class="total-amount">
-                      <div class="left">
-                        <div class="coupon">
-                          <form action="">
-                            <div class="form-row row justify-content-center">
-                              <div class="form-group col-lg-9">
-                                <input id="code" class="font-medium" name="Coupon" placeholder="Enter Your Coupon">
-                              </div>
-                              <div class="form-group col-lg-3">
-                                <button type="button" class="btn  btn-sm" onclick="validatecoupon()"><i
-                                    class="fi-rs-label mr-10"></i>Apply</button>
-          
-          
-                              </div>
-                              <h6 id="successMesage" class="successmessage" style="color: green;"></h6>
-                              <h6 id="couponUsedErr" class="message" style="color: red;"></h6>
-                            </div>
-                          </form>
-                          <span class="couponErr"></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <br>
-                  <br>
-          
-          
-                </div>
-                <!-- <div class="mb-30 mt-50"> -->
-          
-          
-              </div>
-          </section>
-          <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-          <script>
-          
-          window.onload = function() {
-            var button = document.getElementById("checkout-button");
-            button.innerHTML = "Finish Checkout";
-          }
-          
-              // Get the payment method radio buttons
-              const paymentMethodRadios = document.querySelectorAll('input[name="payment-method"]');
-          
-          // Get the checkout button
-          const checkoutButton = document.querySelector('.btn-block');
-          
-          // Add event listener to payment method radios
-          paymentMethodRadios.forEach((radio) => {
-            radio.addEventListener('change', () => {
-              // If COD is selected, change button text to "Finish Checkout"
-              if (radio.value === 'COD') {
-                checkoutButton.textContent = 'Finish Checkout';
-              } else if (radio.value === 'online') {
-                // If Razorpay is selected, change button text to "Proceed to Payment"
-                checkoutButton.textContent = 'Proceed to Payment';
-              }
-            });
-          });
-            function validatecoupon() {
-              couponname = document.getElementById('code').value
-              let fulltotal = parseInt(document.getElementById("total").textContent);
-          
-              $.ajax({
-                url: '/validate_coupon',
-                data: {
-                  couponname: couponname,
-                  fulltotal: fulltotal
-          
-                },
-                method: "POST",
-                success: (response) => {
-                  
-                  if (response.discountAmount && response.couponTotal) {
-                    document.getElementById('discountAmount').innerHTML = "-" + (response?.discountAmount)
-                    document.getElementById('total').innerHTML = response?.couponTotal
-                    document.getElementById('successMesage').innerHTML = response?.success
-                  }
-          
-                  if (response.err) {
-                    document.getElementById('couponUsedErr').innerHTML = response.err
-                  }
-          
-          
-                }
-              })
-            }
-          
-            function postcheckout() {
-          
-              $('#checkout-form').submit((e) => {
-                e.preventDefault();
-          
-          
-                const post_checksubtotal = document.getElementById('sub-total');
-                const post_checktotal = document.getElementById('total');
-                const couponCode = document.getElementById('code').value;
-          
-                const postchecksubtotal = parseInt(post_checksubtotal.innerText);
-                const postchecktotal = parseInt(post_checktotal.innerText);
-          
-              
-          
-          
-          
-          
-                $.ajax({
-                  url: '/checkout',
-                  method: 'post',
-                  data: {
-                    postchecksubtotal: postchecksubtotal,
-                    postchecktotal: postchecktotal,
-                    couponCode: couponCode,
-                    ...$('#checkout-form').serializeArray().reduce(function (obj, item) {
-                      obj[item.name] = item.value;
-                      return obj;
-                    }, {})
-                  },
-                  success: (response) => {
-                  console.log("checkoutresponse:",response)
-          
-                    if (response.codstatus == true) {
-          
-          
-                      Swal.fire("Order placed!", "You clicked the button!", "success").then(function () {
-                        location.href = '/order_success';
-                      });
-                    }else{
-                      razorpay(response)
-                    }
-          
-          
-          
-                  }
-                })
-              })
-          
-              function razorpay(order) {
-              console.log(order);
-              var options = {
-                key: 'rzp_test_QHKpFsUnBlrIDB', // Enter the Key ID generated from the Dashboard
-                amount: Number(order.amount), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise,
-                currency: 'INR',
-                name: 'ELECTRIFY CART',
-                description: 'Test Transaction',
-                image: 'https://example.com/your_logo',
-                order_id: order.id, //This is a sample Order ID. Pass the id obtained in the response of Step 1
-                handler: function (response) {
-                  //   alert(response.razorpay_payment_id);
-                  //   alert(response.razorpay_order_id);
-                  //   alert(response.razorpay_signature)
-                  verifyPayment(response, order);
-                },
-                prefill: {
-                  name: 'Gaurav Kumar',
-                  email: 'gaurav.kumar@example.com',
-                  contact: '9999999999',
-                },
-                notes: {
-                  address: 'Razorpay Corporate Office',
-                },
-                theme: {
-                  color: '#3399cc',
-                },
-              };
-              var rzp1 = new Razorpay(options);
-              rzp1.open();
-            }
-          
-          
-          
-          
-          
-          
-            function verifyPayment(payment, order) {
-              console.log("payment:",payment,"order:",order);
-              $.ajax({
-                url: '/verify_payment',
-                data: {
-                  payment,
-                  order,
-                },
-                method: 'POST',
-                success: (response) => {
-                  console.log("postresponse",response)
-                  if (response.status) location.replace('/order_success');
-                  else {
-                    //order Failed
-                    Swal.fire({
-                      icon: 'error',
-                      title: 'Oops...',
-                      text: 'Something went wrong!',
-                      footer: '<a href="/">Goto home page</a>',
-                    });
-                  }
-                },
-              });
-            }
-          
-          
-          
-          
-          
-          
-          
-            }
-          
-          
-            
-          
-          </script>

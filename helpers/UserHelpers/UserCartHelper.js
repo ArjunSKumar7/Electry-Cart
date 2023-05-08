@@ -158,7 +158,8 @@ const user = require("../../models/connection");
                     },
                 ])
                 .then((total) => {
-                    resolve(total[0]?.total);
+                    resolve(total.length > 0 ? total[0].total : undefined);
+
                 });
         });
     },
