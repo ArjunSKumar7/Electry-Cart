@@ -16,8 +16,9 @@ module.exports = {
             if (coupon && total >= coupon.minPurchase) {
 
               discountAmount = (total * coupon.discountPercentage) / 100;
-              if (discountAmount > coupon?.maxDiscountValue) {
-                discountAmount = coupon?.maxDiscountValue;
+             if (coupon && discountAmount > coupon.maxDiscountValue) {
+
+              discountAmount = coupon.maxDiscountValue;
                 couponTotal = total - discountAmount;
               }
               resolve({
