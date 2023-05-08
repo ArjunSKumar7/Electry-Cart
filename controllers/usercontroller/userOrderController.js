@@ -119,4 +119,42 @@ module.exports={
 
 
 
+
+
+
+
+      getquickdetails: async (req, res) => {
+
+        try {
+            let userId=req.session.user._id
+            cartcount = req.session.count;
+            
+            wishcount = await userWhishlistHelpers.getWishCount(req.session.user._id)
+          const getDate = (date) => {
+            let orderDate = new Date(date);
+            let day = orderDate.getDate();
+            let month = orderDate.getMonth() + 1;
+            let year = orderDate.getFullYear();
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            let seconds = date.getSeconds();
+            return `${isNaN(day) ? "00" : day}-${isNaN(month) ? "00" : month}-${isNaN(year) ? "0000" : year
+              } ${date.getHours(hours)}:${date.getMinutes(minutes)}:${date.getSeconds(seconds)}`;
+          };
+          await userOrderHelpers.orderPage(req.session.user._id).then((response) => {
+    
+    
+           
+    
+            res.render('user/quickdetails', { response, userSession:true, userId, wishcount, cartcount, getDate })
+          })
+        } catch (error) {
+          res.status(500)
+        }
+    
+    
+      },
+      
+
+
 }

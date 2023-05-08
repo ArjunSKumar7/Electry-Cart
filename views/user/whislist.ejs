@@ -5,9 +5,33 @@
           <div class="col-12">
             <div class="table-responsive">
               <% if(wishlistItems.length==0){%>
-              <div class="d-flex justify-content-center">
-                <img src="/assets/imgs/banners/no-wishlist" alt="" />
-              </div>
+            <div class="container-fluid  ">
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <!-- <div class="card"> -->
+
+                    <div class="card-body cart">
+                        <div class="col-sm-12 empty-cart-cls text-center">
+                           <i class="fa-solid fa-heart fa-beat-fade"></i>
+                              
+                            <h3><strong>Your Whishlist is Empty</strong></h3>
+                            <h4>Add somethin :)</h4>
+                            <a href="/shop" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue
+                                shopping</a>
+
+
+                        </div>
+                    </div>
+                <!-- </div> -->
+
+
+            </div>
+
+        </div>
+
+    </div>
               <%} else{%>
               <table class="table shopping-summery text-center">
                 <thead>

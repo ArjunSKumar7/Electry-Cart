@@ -82,8 +82,8 @@ module.exports={
             let orderStatus = orderData['payment-method'] === 'COD' ? 'Success' : 'Pending'
 
             let orderdata = {
-
-                name: orderaddress.fname,
+                _id:new ObjectId(),
+                name: orderaddress[0].fname,
                 paymentStatus: status,
                 paymentmode: orderData['payment-method'],
                 productDetails: productdetails,
@@ -91,7 +91,7 @@ module.exports={
                 shippingAddress: orderaddress,
                 totalPrice: total
             }
-
+            let orderId=orderdata._id
             let order = await orderschema.order.findOne({ userid: orderData.userId })
 
             if (order) {
@@ -107,14 +107,26 @@ module.exports={
                     })
             } else {
                 let newOrder = orderschema.order({
-                    userid: orderData.userId,
+                        userid: orderData.userId,
                     orders: orderdata
                 })
 
                 await newOrder.save().then((orders) => {
+                   
+                    
                     resolve(orders)
                 })
             }
+
+            for (let i = 0; i < productdetails.length; i++) {
+                let product = productdetails[i];
+                let productId = product._id;
+                let orderedQuantity = product.quantity;
+                await user.product.findOneAndUpdate(
+                  { _id: productId },
+                  { $inc: { Quantity: -orderedQuantity } }
+                );
+              }
             await user.cart.updateOne({ user: orderData.userId },{$set:{cartItems:[]}}).then(() => {
                 resolve()
             })
@@ -138,6 +150,7 @@ module.exports={
                 resolve(response)
             })
         })
+
 
     },
 
@@ -244,7 +257,7 @@ module.exports={
             },
           ],
           // The message you would like to display on the bottom of your invoice
-          "bottom-notice": "Thank you for your order from WHITE SPARROW",
+          "bottom-notice": "Thank you for your order from ELECTRIFY CART",
           // Settings to customize your invoice
           settings: {
             currency: "INR", // See documentation 'Locales and Currency' for more info. Leave empty for no currency.

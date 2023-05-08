@@ -87,10 +87,23 @@ findUser: (userId) => {
   })
 },
 
+getlatestproducts:()=>{
 
- 
-  
+    return new Promise(async(resolve, reject) => {
+    await user.product.find().sort({_id: -1}).limit(4).then((products)=>{
+       
+          resolve(products);
+        
+   
+    });
+  })
+
 }
+ 
+
+}
+  
+
 
 
 

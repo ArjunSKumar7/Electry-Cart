@@ -15,7 +15,7 @@ module.exports = {
     const page=req.query.page||1;
     const perpage =5;
     const count = await user.product.countDocuments({})
-      const prodlistcount=count;
+      const prodlistcount=count;    
 
     wishcount = await userWhishlistHelpers.getWishCount(req.session.user._id)
     

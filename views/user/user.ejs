@@ -431,7 +431,37 @@
     </div>
   </div>
   <main class="main">
-    <section class="home-slider position-relative pt-25 pb-20">
+
+
+    <section class="home-slider position-relative pt-50">
+      <div class="hero-slider-1 dot-style-1 dot-style-1-position-1">
+        <% bannerresponse.forEach(function(bannerresponse) { %>
+          <div class="single-hero-slider single-animation-wrap">
+              <div class="container">
+                  <div class="row align-items-center slider-animated-1">
+                      <div class="col-lg-5 col-md-6">
+                          <div class="hero-slider-content-2">
+                              <!-- <h4 class="animated">Hot promotions</h4> -->
+                              <h2 class="animated fw-900"><%=bannerresponse.title%></h2>
+                              <h1 class="animated fw-900 text-7">Great Price</h1>
+                              <p class="animated"><%=bannerresponse.description%></p>
+                              <a class="animated btn btn-brush btn-brush-2" href="<%=bannerresponse.link%>"> Discover Now </a>
+                          </div>
+                      </div>
+                      <div class="col-lg-7 col-md-6">
+                          <div class="single-slider-img single-slider-img-1">
+                              <img class="animated slider-1-2" src="/uploads/<%=bannerresponse.image%>" alt="">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <% }); %>
+       
+      </div>
+      <div class="slider-arrow hero-slider-1-arrow"></div>
+  </section>
+    <!-- <section class="home-slider position-relative pt-25 pb-20">
       <div class="container">
         <div class="row">
           <div class="col-lg-9">
@@ -439,31 +469,7 @@
               <div
                 class="hero-slider-1 style-3 dot-style-1 dot-style-1-position-1"
               >
-                <!-- <div class="single-hero-slider single-animation-wrap">
-                  <div class="container">
-                    <div class="slider-1-height-3 slider-animated-1">
-                      <div class="hero-slider-content-2">
-                        <h4 class="animated">Trade-In Offer</h4>
-                        <h2 class="animated fw-900">Supper Value Deals</h2>
-                        <h1 class="animated fw-900 text-brand">
-                          On All Products
-                        </h1>
-                        <p class="animated">
-                          Save more with coupons & up to 70% off
-                        </p>
-                        <a
-                          class="animated btn btn-brush btn-brush-3"
-                          href="shop-product-right.html"
-                        >
-                          Shop Now
-                        </a>
-                      </div>
-                      <div class="slider-img">
-                        <img src="/uploads/<%=bannerresponse.image%>" alt="" />
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
+                
                  <% bannerresponse.forEach(function(bannerresponse) { %>
                 <div class="single-hero-slider single-animation-wrap">
                   <div class="container">
@@ -517,24 +523,15 @@
             <% } %>
             
             </div>
-            <!-- <div class="banner-img banner-2 wow fadeIn animated mb-0">
-              <img
-                class="border-radius-10"
-                src="assets/imgs/banner/banner-7.jpg"
-                alt=""
-              />
-              <div class="banner-text">
-                <span>Smart Offer</span>
-                <h4>Save 20% on <br />Eardrop</h4>
-                <a href="shop-grid-right.html"
-                  >Shop Now <i class="fi-rs-arrow-right"></i
-                ></a>
-              </div>                                
-            </div> -->
+           
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
+
+
+
+
     <section class="featured section-padding">
       <div class="container">
         <div class="row">
@@ -604,77 +601,26 @@
 
     <section class="popular-categories section-padding mt-15">
       <div class="container wow fadeIn animated">
-        <h3 class="section-title mb-20"><span>Popular</span> Categories</h3>
+        <h3 class="section-title mb-20"><span>Newly Added</span> Products</h3>
         <div class="carausel-6-columns-cover position-relative">
           <div
             class="slider-arrow slider-arrow-2 carausel-6-columns-arrow"
             id="carausel-6-columns-arrows"
           ></div>
           <div class="carausel-6-columns" id="carausel-6-columns">
+            <% latestproducts.forEach(function(latestproducts) { %>
             <div class="card-1">
               <figure class="img-hover-scale overflow-hidden">
                 <a href="shop-grid-right.html"
-                  ><img src="assets/imgs/shop/category-thumb-1.jpg" alt=""
+                  ><img src="/uploads/<%=latestproducts.Image[0]%>" alt=""
                 /></a>
               </figure>
-              <h5><a href="shop-grid-right.html">T-Shirt</a></h5>
+              <h5><a href="shop-grid-right.html"><%=latestproducts.Productname%></a></h5>
             </div>
-            <div class="card-1">
-              <figure class="img-hover-scale overflow-hidden">
-                <a href="shop-grid-right.html">
-                  <img src="assets/imgs/shop/category-thumb-2.jpg" alt=""
-                /></a>
-              </figure>
-              <h5><a href="shop-grid-right.html">Bags</a></h5>
-            </div>
-            <div class="card-1">
-              <figure class="img-hover-scale overflow-hidden">
-                <a href="shop-grid-right.html"
-                  ><img src="assets/imgs/shop/category-thumb-3.jpg" alt=""
-                /></a>
-              </figure>
-              <h5><a href="shop-grid-right.html">Sandan</a></h5>
-            </div>
-            <div class="card-1">
-              <figure class="img-hover-scale overflow-hidden">
-                <a href="shop-grid-right.html"
-                  ><img src="assets/imgs/shop/category-thumb-4.jpg" alt=""
-                /></a>
-              </figure>
-              <h5><a href="shop-grid-right.html">Scarf Cap</a></h5>
-            </div>
-            <div class="card-1">
-              <figure class="img-hover-scale overflow-hidden">
-                <a href="shop-grid-right.html"
-                  ><img src="assets/imgs/shop/category-thumb-5.jpg" alt=""
-                /></a>
-              </figure>
-              <h5><a href="shop-grid-right.html">Shoes</a></h5>
-            </div>
-            <div class="card-1">
-              <figure class="img-hover-scale overflow-hidden">
-                <a href="shop-grid-right.html"
-                  ><img src="assets/imgs/shop/category-thumb-6.jpg" alt=""
-                /></a>
-              </figure>
-              <h5><a href="shop-grid-right.html">Pillowcase</a></h5>
-            </div>
-            <div class="card-1">
-              <figure class="img-hover-scale overflow-hidden">
-                <a href="shop-grid-right.html"
-                  ><img src="assets/imgs/shop/category-thumb-7.jpg" alt=""
-                /></a>
-              </figure>
-              <h5><a href="shop-grid-right.html">Jumpsuits</a></h5>
-            </div>
-            <div class="card-1">
-              <figure class="img-hover-scale overflow-hidden">
-                <a href="shop-grid-right.html"
-                  ><img src="assets/imgs/shop/category-thumb-8.jpg" alt=""
-                /></a>
-              </figure>
-              <h5><a href="shop-grid-right.html">Hats</a></h5>
-            </div>
+            <% }); %>
+           
+            
+      
           </div>
         </div>
       </div>
@@ -747,31 +693,5 @@
     </div>
   </div>
 </section>
-<!-- Vendor JS-->
-<!-- <script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
-    <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/plugins/slick.js"></script>
-    <script src="assets/js/plugins/jquery.syotimer.min.js"></script>
-    <script src="assets/js/plugins/wow.js"></script>
-    <script src="assets/js/plugins/jquery-ui.js"></script>
-    <script src="assets/js/plugins/perfect-scrollbar.js"></script>
-    <script src="assets/js/plugins/magnific-popup.js"></script>
-    <script src="assets/js/plugins/select2.min.js"></script>
-    <script src="assets/js/plugins/waypoints.js"></script>
-    <script src="assets/js/plugins/counterup.js"></script>
-    <script src="assets/js/plugins/jquery.countdown.min.js"></script>
-    <script src="assets/js/plugins/images-loaded.js"></script>
-    <script src="assets/js/plugins/isotope.js"></script>
-    <script src="assets/js/plugins/scrollup.js"></script>
-    <script src="assets/js/plugins/jquery.vticker-min.js"></script>
-    <script src="assets/js/plugins/jquery.theia.sticky.js"></script>
-    <script src="assets/js/plugins/jquery.elevatezoom.js"></script> -->
-<!-- Template  JS -->
-<!-- <script src="assets/js/main.js"></script>
-    <script src="assets/js/shop.js"></script>
-</body>
 
 
-</html> -->

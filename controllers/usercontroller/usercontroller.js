@@ -20,6 +20,8 @@ module.exports = {
       userSession = req.session.loggedIn;
       if(userSession){
        userId=req.session.user._id
+      
+     
       const count = await user.cart.findOne({ user: req.session.user._id });
       if(count==null){
         req.session.count = 0;
@@ -32,7 +34,8 @@ module.exports = {
      
       
       }
-
+      let latestproducts= await userhelpers.getlatestproducts()
+      console.log("latestproducts",latestproducts)
       const bannerresponse = await bannerdb.find({bannerblocked:false});
       res.render("user/user", {
         users,
@@ -40,7 +43,8 @@ module.exports = {
         bannerresponse,
         cartcount,
         wishcount,
-        userId
+        userId,
+        latestproducts
       });
     } catch (err) {
       res.status(500);

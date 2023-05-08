@@ -5,7 +5,7 @@ const userCouponHelpers = require("../../helpers/UserHelpers/userCouponHelper");
 const userWhishlistHelpers = require("../../helpers/UserHelpers/userWhishlistHelpers");
 const userPaymemtHelpers = require("../../helpers/UserHelpers/userPaymemtHelper");
 
-let cartcount, userSession,wishcount;
+let cartcount, userSession, wishcount;
 module.exports = {
   getCheckOut: async (req, res) => {
     try {
@@ -19,14 +19,12 @@ module.exports = {
         req.session.user._id
       );
 
-      // let count = await userCartHelpers.getCartItemsCount(req.session.user.id);
+
 
       cartcount = req.session.count;
 
       let cartItems = await userCartHelpers.viewCart(req.session.user._id);
-      wishcount = await userWhishlistHelpers.getWishCount(
-        req.session.user._id
-      );
+      wishcount = await userWhishlistHelpers.getWishCount(req.session.user._id);
       userCheckoutHelper.checkOutpage(req.session.user._id).then((response) => {
         res.render("user/checkout", {
           userSession,
@@ -66,18 +64,22 @@ module.exports = {
 
     //  await userCouponHelpers.addCouponIntUseroDb(couponData, userId)
     // }
-
+    
     let order = await userOrderHelpers
       .placeOrder(req.body, postchecksubtotal, postchecktotal, userId)
       .then(async (response) => {
+
         if (req.body["payment-method"] == "COD") {
           res.json({ codstatus: true });
-        }else if(req.body["payment-method"]=="online"){
-          userPaymemtHelpers.generateRazorpay(req.session.user._id, postchecktotal).then((order) => {
-            res.json(order)
-
-          })
+        } else if (req.body["payment-method"] == "online") {
+          userPaymemtHelpers
+            .generateRazorpay(req.session.user._id, postchecktotal)
+            .then((order) => {
+              res.json(order);
+            });
         }
+
       });
+      
   },
 };

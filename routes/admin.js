@@ -8,6 +8,7 @@ const adminproduct = require("../controllers/admincontroller/product")
 const adminbanner= require("../controllers/admincontroller/bannercontroll")
 const admincopuon= require("../controllers/admincontroller/CouponController")
 const adminOrderController= require("../controllers/admincontroller/orderController")
+const adminSalesController=require("../controllers/admincontroller/adminSalesController")
 var router = express.Router();
 const multer= require('multer');
 const upload=require('../multer/multer')
@@ -104,7 +105,9 @@ router.get("/order_details", auths.auth,adminOrderController.getOrderDetails)
 
 router.post("/order_details", auths.auth,adminOrderController.postOrderDetails)
 
+router.get("/sales_report",auths.auth,adminSalesController.getSalesReport)
 
+router.post("/sales_report",auths.auth,adminSalesController.postSalesReport)
 
 
 

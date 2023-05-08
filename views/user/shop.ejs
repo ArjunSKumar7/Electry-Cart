@@ -156,6 +156,7 @@
             url: '/add-to-cart/' + proId,
             method: 'get',
             success: (response) => {
+                console.log("r",response)
                 if (response.new) {
                     let count = $('#cart-count').html();
                     count = parseInt(count) + 1;
@@ -175,12 +176,13 @@
       url: '/add_to_wishlist?wishid=' + prodId,
       method: 'get',
       success: (response) => {
-        if (response.status) {
+        console.log("respse",response)
+        if (response==true) {
           let wishcount = $('#wishcount').html();
           wishcount = parseInt(wishcount) + 1;
           $('#wishcount').html(wishcount);
 
-          $('#wishlist-icon').addClass('active');
+         
 
         }
       },

@@ -3,12 +3,12 @@ const userCartController = require("../controllers/usercontroller/userCartContro
 var router = express.Router();
 const controllers=require('../controllers/usercontroller/usercontroller')
 const userProductController=require('../controllers/usercontroller/userProductControllers')
-// const userBannerContoller=require('../controllers/usercontroller/userBannerController')
 const userCheckoutController=require('../controllers/usercontroller/userCheckoutController')
 const userCouponController=require('../controllers/usercontroller/userCouponController')
 const userOrderController=require('../controllers/usercontroller/userOrderController')
 const userWhislistController=require('../controllers/usercontroller/userWhishlistController')
 const userPaymentController=require('../controllers/usercontroller/userPaymentController')
+
 const auths=require('../middlewares/middleware')
 
 /* login */
@@ -34,7 +34,7 @@ router.get("/profile", auths.userauth, controllers.getProfile);
 
 // router.get("/reset_password",auths.userauth,controllers.getPasswordReset)
 
-router.get("/logout",controllers.logOut);
+router.get("/logout",controllers.logOut); 
 
 
 
@@ -99,6 +99,8 @@ router.post('/checkout',auths.userauth,userCheckoutController.postcheckout)
 /*order routes*/
 
 router.get('/orders',auths.userauth,userOrderController.getOrderPage)
+
+router.get('/quick_details',auths.userauth,userOrderController.getquickdetails)
 
 
 router.get('/order_details', auths.userauth,userOrderController.orderDetails)

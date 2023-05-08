@@ -1,0 +1,185 @@
+<section class="h-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-10 col-xl-8" style="width: 78%;">
+        <div class="card" style="margin-left:50px;border-radius: 10px;border-color: #1a1a1a;border-width: 2px;">
+          <div class="card-header px-4 py-5" style="background-color: #1a1a1a;">
+
+
+
+            <h2 class="text-muted mb-0"> <span style="color: rgb(255, 254, 254);">Thanks for your Order,
+              <%= address[0].fname%></span>!</h2>
+
+          
+              <%if(orderDetails.orderStatus=='Delivered' ){%>
+  
+                <button class=" mt-5 btn btn-suucess" onclick="invoiceCreator()">Download invoice</button>
+                <%}%>
+
+          </div>
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <p class="lead fw-normal mb-0" style="font-size: 20px;color: #2e2b2b;">Order Details </p>
+              <p class="small mb-0" style="font-size: 18px;color: #2e2b2b;">Order Id : <%=orderDetails._id%>
+              </p>
+        
+
+                <h4 class=" small  mb-0" style="font-size: 15px;color: #272222be;">Ordered Date:<%= getDate(orderDetails.createdAt)%>
+                </h4>
+
+            </div>
+
+            <!-- <p class=class="lead fw-normal mb-0" style="font-size: 20px;color: #272222be;">Payment-Method:
+              <%=currentOrder.paymentMethod%>
+            </p> -->
+            <div class="card shadow-0 border mb-4">
+              <% products?.forEach(function(response) { %>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <a href="#">    <!--  /fullImage/<%=currentOrder.productDetails[i]._ProId%> -->
+                        <img src="/uploads/<%=response.image[0] %>" class="img-fluid" alt="Phone">
+                      </a>
+                    </div>
+                    <div class="col-md-10">
+                      <div class="row align-items-center">
+                        <div class="col-md-4">
+                          <a href="#"  target="_blank"   
+                            onmouseover="this.style.textDecoration='underline';"
+                            onmouseout="this.style.textDecoration='none';">
+                            <%=response.productsName%>
+                          </a><!--  /productDetails/<%=currentOrder.productDetails[i]._ProId%> -->
+                        </div>
+                        <div class="col-md-3 text-muted">
+                          <p class=" mb-0 small" style="font-size: 17px;color: #4a5252;">Price ₹
+                            ₹<%=response.productsPrice%>
+                          </p>
+                        </div>
+                        <div class="col-md-2 text-muted">
+                          <p class="text-muted mb-0 small" style="font-size: 17px;color: #4a5252;">Quantity
+                            <%=response.quantity%>
+                          </p>
+                        </div>
+                        <div class="col-md-3">
+                          <p class="text-muted mb-0 small" style="font-size: 17px;color: #4a5252;">Subtotal ₹
+                            ₹<%=orderDetails.totalPrice%>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                  </div>
+                  <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
+
+                </div>
+                <% }) %>
+            </div>
+
+            <table>
+              <tr>
+                <td class="fw-bold">Delivering to:</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Customer Name:</td>
+                <td>
+                  <%= address[0].fname%>
+                </td>
+
+              </tr>
+              <tr>
+                <td class="fw-bold">Address:</td>
+                <td>
+                  <%= address[0].apartment%>
+                </td>
+              </tr>
+              <tr>
+                <td class="fw-bold">Street:</td>
+                <td>
+                  <%= address[0].street%>
+                </td>
+              </tr>
+              <tr>
+                <td class="fw-bold">City:</td>
+                <td>
+                  <%= address[0].city%>
+                </td>
+              </tr>
+              <tr>
+                <td class="fw-bold">PinCode:</td>
+                <td>
+                  <%= address[0].pincode%>
+                </td>
+              </tr>
+              <tr>
+                <!-- <td class="fw-bold">Contact No:</td>
+                <td>
+                  <%= currentOrder.shippingAddress.mobile%>
+                </td> -->
+              </tr>
+              <tr>
+                <td><span class="fw-bold">Grand Total</span></td>
+                <td>  ₹<%=orderDetails.totalPrice%>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <p class="text-success mb-0"></p>
+                  <p class="text-muted mb-0"><span class="fw-bold me-4">Delivery Charges</span>Free</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                <td>
+                  <%if(orderDetails. orderStatus=='Success' ){ %>
+                    <p class="text-muted mb-0"><span class="fw-bold me-4"><span>Order Status</span>: <span
+                          style="color:green;">
+                          <%=orderDetails. orderStatus%>
+                        </span> </p>
+                    <!-- <button class="button button-add-to-cart" id="button-add-to-cart" style="background-color: rgb(205, 76, 76);margin-left: 200px; font-size: 14px;
+                        padding: 5px 10px;" onclick="showCancelOrderWarning()">Cancel Order</button> -->
+
+
+
+                        <%} else if(orderDetails. orderStatus=='Delivered' ) {%>
+                          <p class="text-muted mb-0"><span class="fw-bold me-4"><span>Order Status</span>: <span
+                                style="color: orange;">
+                                <%=orderDetails. orderStatus%>
+                              </span> </p>
+                              <%} else {%>
+
+                                <p class="text-muted mb-0"><span class="fw-bold me-4"><span>Order Status</span>: <span
+                                      style="color: red;">
+                                      <%=orderDetails. orderStatus%>
+                                    </span> </p>
+            
+                                <%} %>
+
+                </td>
+                </td>
+                <td>
+                  <h5 class="d-flex align-items-center justify-content-end text-black text-uppercase mb-0">Grand Total:
+                    ₹<%=currentOrder.totalPrice%><span class="h2 mb-0 ms-2"></span></h5>
+                </td>
+              </tr>
+            </table>
+
+          </div>
+        </div>
+      </div>
+      <div class="row d-flex align-items-center">
+
+        <div class="col-md-10">
+
+
+        </div>
+      </div>
+
+</section>
+
+
+
+ 

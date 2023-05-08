@@ -26,7 +26,7 @@ module.exports={
         await userWhishlistHelpers
           .ListWishList(req.session.user._id)
           .then((wishlistItems) => {
-    
+       
             res.render("user/whislist", {
               wishlistItems,
               wishcount,

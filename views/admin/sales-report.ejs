@@ -1,0 +1,137 @@
+<main class="main-wrap">
+  <section class="content-main">
+    <div class="content-header">
+      <div class="main_container container">
+        <% if(Details.length==0){%>
+         <div class="d-flex justify-content-center align-items-center">
+           <h2 class="">No Orders Available</h2>
+         </div>
+         <%}else{%>
+     
+         <div class="d-flex justify-content-center m-4">
+             <button type="button" class="btn btn-danger btn_print me-3"
+                 value="Download as Pdf">Download PDF</button>
+             <button type="button" class="btn btn-danger btn_print me-3" onclick="export_data()"
+                 value="Export to excel">Download as Excel</button>
+        
+         <div>
+     <!-- <form>
+     <div> <input type="date" name="startdate" id="startdate"></div>
+      
+       <div><input type="date" name="enddate" id="enddate" ></div>
+     
+     </form> -->
+     <form action="/admin/sales_report" method="POST">
+     
+       <div> <input type="date" name="startdate" id="startdate"></div>
+     
+       <div><input type="date" name="enddate" id="enddate"></div>
+     
+       
+     </div> 
+       <div class="ml-3 my-auto"><button class="btn btn-primary " type="submit">submit</button></div>
+        
+        <!-- <input class="ms-1" type="text" name="daterange" value="01/01/2022 - 12/01/2023"/> -->
+     </form>
+        
+         </div>
+     
+     
+     
+     <table class="table table-striped" id="container_content">
+         <thead>
+           <tr>
+             <th scope="col">OrderId</th>
+             <th scope="col">User Name</th>
+             <th scope="col">Item Name</th>
+             <th scope="col">Quantity</th>
+             <th scope="col">Price</th>
+             <th scope="col">Payment Method</th>
+             <th scope="col">Delivered Date</th>
+           </tr>
+         </thead>
+         <tbody>
+             <% Details.forEach((order)=>{ %>
+           <tr>
+             <td><%=order._id%></td>
+             <td><%=order.shippingAddress[0].fname%></td>
+             <td><%=order.productDetails[0].productsName%></td>
+             <td><%=order.productDetails[0].quantity%></td>
+             <td>₹<%=order.productDetails[0].productsPrice%></td>
+             <td><%=order.paymentmode%></td>
+             <td><%=getDate(order.createdAt)%></td>
+             
+     
+           </tr>
+           <%})%>
+     
+          
+           <h5 class="text-right">Total Earnings: &nbsp; <span class="fw-bold"></span>₹<%=total%> </h5>
+         </tbody>
+     
+       </table>
+     
+     </div>
+     <br>
+     <br>
+     <hr>
+     
+     <hr>
+     <%}
+     %>
+     
+     </div>
+  </div>
+     
+</main>
+
+
+ 
+ 
+ <script>
+ 
+ $(document).ready(function ($) {
+         $(document).on('click', '.btn_print', function (event) {
+             event.preventDefault();
+             var element = document.getElementById('container_content');
+             let randomNumber = Math.floor(Math.random() * (10000000000 - 1)) + 1;
+             var opt = {
+                 margin: 0,
+                 filename: 'SalesReport' + randomNumber + '.pdf',
+                 html2canvas: { scale: 10 },
+                 jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+             };
+ 
+             html2pdf().set(opt).from(element).save();
+         });
+     });
+ 
+ 
+ 
+ 
+     function export_data() {
+    let data = document.getElementById('container_content');
+    var fp = XLSX.utils.table_to_book(data, { sheet: 'vishal' });
+    XLSX.write(fp, {
+        bookType: 'xlsx',
+        type: 'base64'
+    });
+    var wb = XLSX.utils.book_new();
+    var ws = XLSX.utils.table_to_sheet(data);
+    var cols = [{ wch: 15 }, { wch: 20 }, { wch: 20 }, { wch: 10 }, { wch: 10 }, { wch: 20 }, { wch: 20 }];
+    ws['!cols'] = cols;
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+    function s2ab(s) {
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+        return buf;
+    }
+    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'test.xlsx');
+}
+
+
+
+
+ </script>

@@ -97,9 +97,10 @@
                 <input name="user" value="" type="hidden" />
               </div> -->
                 </div>
-                <button class="btn btn-fill-out btn-block mt-30" onclick="postcheckout()">
-                  Proceed to payment
+                <button id="checkout-button" class="btn btn-fill-out btn-block mt-30" onclick="postcheckout()">
+                  Finish Checkout
                 </button>
+
           </form>
 
 
@@ -196,6 +197,10 @@
 
         </div>
 
+        <script src="
+https://cdn.jsdelivr.net/npm/jquery-fireworks@1.0.4/jquery.fireworks.min.js
+"></script>
+
         <div class="col-md-6" style="position: relative; top: 51px; left: 35%; transform: translateX(-50%);">
 
           <div class="heading_s1 mb-3">
@@ -210,7 +215,7 @@
                       <input id="code" class="font-medium" name="Coupon" placeholder="Enter Your Coupon">
                     </div>
                     <div class="form-group col-lg-3">
-                      <button type="button" class="btn  btn-sm" onclick="validatecoupon()"><i
+                      <button type="button" id="applybutton" class="btn  btn-sm" onclick="validatecoupon()"><i
                           class="fi-rs-label mr-10"></i>Apply</button>
 
 
@@ -236,7 +241,31 @@
 </section>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
+
+
+
+  // Get the payment method radio buttons
+  const paymentMethodRadios = document.querySelectorAll('input[name="payment-method"]');
+
+  // Get the checkout button
+  const checkoutButton = document.querySelector('.btn-block');
+
+  // Add event listener to payment method radios
+  paymentMethodRadios.forEach((radio) => {
+    radio.addEventListener('change', () => {
+      // If COD is selected, change button text to "Finish Checkout"
+      if (radio.value === 'COD') {
+        checkoutButton.textContent = 'Finish Checkout';
+      } else if (radio.value === 'online') {
+        // If Razorpay is selected, change button text to "Proceed to Payment"
+        checkoutButton.textContent = 'Proceed to Payment';
+      }
+    });
+  });
+
+
   function validatecoupon() {
+
     couponname = document.getElementById('code').value
     let fulltotal = parseInt(document.getElementById("total").textContent);
 
@@ -249,7 +278,7 @@
       },
       method: "POST",
       success: (response) => {
-        
+
         if (response.discountAmount && response.couponTotal) {
           document.getElementById('discountAmount').innerHTML = "-" + (response?.discountAmount)
           document.getElementById('total').innerHTML = response?.couponTotal
@@ -263,7 +292,9 @@
 
       }
     })
+
   }
+
 
   function postcheckout() {
 
@@ -278,7 +309,7 @@
       const postchecksubtotal = parseInt(post_checksubtotal.innerText);
       const postchecktotal = parseInt(post_checktotal.innerText);
 
-    
+
 
 
 
@@ -296,7 +327,7 @@
           }, {})
         },
         success: (response) => {
-        console.log("checkoutresponse:",response)
+          console.log("checkoutresponse:", response)
 
           if (response.codstatus == true) {
 
@@ -304,7 +335,7 @@
             Swal.fire("Order placed!", "You clicked the button!", "success").then(function () {
               location.href = '/order_success';
             });
-          }else{
+          } else {
             razorpay(response)
           }
 
@@ -315,76 +346,76 @@
     })
 
     function razorpay(order) {
-    console.log(order);
-    var options = {
-      key: 'rzp_test_QHKpFsUnBlrIDB', // Enter the Key ID generated from the Dashboard
-      amount: Number(order.amount), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise,
-      currency: 'INR',
-      name: 'ELECTRIFY CART',
-      description: 'Test Transaction',
-      image: 'https://example.com/your_logo',
-      order_id: order.id, //This is a sample Order ID. Pass the id obtained in the response of Step 1
-      handler: function (response) {
-        //   alert(response.razorpay_payment_id);
-        //   alert(response.razorpay_order_id);
-        //   alert(response.razorpay_signature)
-        verifyPayment(response, order);
-      },
-      prefill: {
-        name: 'Gaurav Kumar',
-        email: 'gaurav.kumar@example.com',
-        contact: '9999999999',
-      },
-      notes: {
-        address: 'Razorpay Corporate Office',
-      },
-      theme: {
-        color: '#3399cc',
-      },
-    };
-    var rzp1 = new Razorpay(options);
-    rzp1.open();
+      console.log(order);
+      var options = {
+        key: 'rzp_test_QHKpFsUnBlrIDB', // Enter the Key ID generated from the Dashboard
+        amount: Number(order.amount), // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise,
+        currency: 'INR',
+        name: 'ELECTRIFY CART',
+        description: 'Test Transaction',
+        image: 'https://example.com/your_logo',
+        order_id: order.id, //This is a sample Order ID. Pass the id obtained in the response of Step 1
+        handler: function (response) {
+          //   alert(response.razorpay_payment_id);
+          //   alert(response.razorpay_order_id);
+          //   alert(response.razorpay_signature)
+          verifyPayment(response, order);
+        },
+        prefill: {
+          name: 'Gaurav Kumar',
+          email: 'gaurav.kumar@example.com',
+          contact: '9999999999',
+        },
+        notes: {
+          address: 'Razorpay Corporate Office',
+        },
+        theme: {
+          color: '#3399cc',
+        },
+      };
+      var rzp1 = new Razorpay(options);
+      rzp1.open();
+    }
+
+
+
+
+
+
+    function verifyPayment(payment, order) {
+      console.log("payment:", payment, "order:", order);
+      $.ajax({
+        url: '/verify_payment',
+        data: {
+          payment,
+          order,
+        },
+        method: 'POST',
+        success: (response) => {
+          console.log("postresponse", response)
+          if (response.status) location.replace('/order_success');
+          else {
+            //order Failed
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+              footer: '<a href="/">Goto home page</a>',
+            });
+          }
+        },
+      });
+    }
+
+
+
+
+
+
+
   }
 
 
 
-
-
-
-  function verifyPayment(payment, order) {
-    console.log("payment:",payment,"order:",order);
-    $.ajax({
-      url: '/verify_payment',
-      data: {
-        payment,
-        order,
-      },
-      method: 'POST',
-      success: (response) => {
-        console.log("postresponse",response)
-        if (response.status) location.replace('/order_success');
-        else {
-          //order Failed
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
-            footer: '<a href="/">Goto home page</a>',
-          });
-        }
-      },
-    });
-  }
-
-
-
-
-
-
-
-  }
-
-
-  
 
 </script>
