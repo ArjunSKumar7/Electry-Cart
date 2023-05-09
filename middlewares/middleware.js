@@ -4,7 +4,7 @@ module.exports = {
     if (req.session.adminloggedIn) {
       next();
     } else {
-      res.render("admin/login", { layout: "adminlayout", login: false });
+      res.render("admin/login", { layout: "adminLayout", login: false });
     }
   },
 

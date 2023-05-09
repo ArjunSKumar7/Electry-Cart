@@ -16,17 +16,9 @@ module.exports={
 
      getAdminLogin:(req,res)=>{
        
-        if(req.session.adminloggedIn)
-         {
-            
-           
-            login=true
-            res.render("admin/admin-dashboard", )
-        }
-        else{
-           
-            res.render("admin/login",{layout:"adminLayout",adminlogin:false}) 
-        }
+       
+     res.render("admin/login",{layout:"adminLayout",adminlogin:false}) 
+        
          },
          
 
