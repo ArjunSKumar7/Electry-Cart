@@ -22,20 +22,20 @@
             </select>
           
             <label for="">Quantity</label>
-            <input type="text" name="quantity" class="form-control" value="<%=editproduct.Quantity%>" />
+            <input type="text" name="quantity" class="form-control" value="<%=editproduct.Quantity%>"   required pattern="[0-9]+" title="Please enter only numeric values"/>
   
             <label for="">Image</label>
             <img src="/uploads/<%=editproduct.Image[0]%>" alt=""  id="image1"  style="width:100px;height:auto" id="imgview">
-            <input type="file" accept=".jpg,jpeg,webp" name="image1" class="form-control"  onchange="display1(event)"/>
+            <input type="file" name="image1" class="form-control"  onchange="display1(event)"/>
 
             <img src="/uploads/<%=editproduct.Image[1]%>" alt=""  id="image2"  style="width:100px;height:auto" id="imgview">
-            <input type="file" accept=".jpg,jpeg,webp" name="image2" class="form-control"  onchange="display2(event)"/>
+            <input type="file" name="image2" class="form-control"  onchange="display2(event)"/>
 
             <img src="/uploads/<%=editproduct.Image[2]%>" alt="" id="image3"  style="width:100px;height:auto" id="imgview">
-            <input type="file" accept=".jpg,jpeg,webp" name="image3" class="form-control"  onchange="display3(event)"/>
+            <input type="file" name="image3" class="form-control"  onchange="display3(event)"/>
 
             <img src="/uploads/<%=editproduct.Image[3]%>" alt="" id="image4" style="width:100px;height:auto" id="imgview">
-            <input type="file" accept=".jpg,jpeg,webp" name="image4" class="form-control"  onchange="display4(event)"/>
+            <input type="file" name="image4" class="form-control"  onchange="display4(event)"/>
   
             <button type="submit" class="btn btn-success mt-4">Submit</button>
           </form>

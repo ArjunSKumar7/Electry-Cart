@@ -16,7 +16,7 @@
               <% response?.forEach(function(response) { %>
               <tr>
                 
-                <td><a href="#" class="fw-bold"> <%=response.orders._id%></a></td>
+                <td><a href="#" class="fw-bold"> <%=response.orders._id.toString().slice(-6)a></td>
           
                 <td><%=getDate(response.orders.createdAt)%></td>
                 <td>

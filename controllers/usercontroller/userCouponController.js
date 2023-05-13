@@ -1,19 +1,14 @@
 const userCartHelpers = require("../../helpers/UserHelpers/UserCartHelper");
-const userCouponHelpers=require("../../helpers/UserHelpers/userCouponHelper")
+const userCouponHelpers = require("../../helpers/UserHelpers/userCouponHelper");
 
-module.exports={
+module.exports = {
+  validateCoupon: async (req, res) => {
+    let userId = req.session.user._id;
 
-
-
-    validateCoupon: async (req, res) => {
-        let userId=req.session.user._id
-          
-       
-        let code = req.body.couponname;
-        let total = await userCartHelpers.totalCheckOutAmount(userId)
-        userCouponHelpers.couponValidator(code, userId, total).then((response) => {
-          res.json(response)
-        })
-    
-      },
-}
+    let code = req.body.couponname;
+    let total = await userCartHelpers.totalCheckOutAmount(userId);
+    userCouponHelpers.couponValidator(code, userId, total).then((response) => {
+      res.json(response);
+    });
+  },
+};

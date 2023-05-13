@@ -27,7 +27,7 @@
                 <tbody>
                   <% response.forEach(function(response) { %>
                   <tr>
-                    <td><%=response.orders._id%></td>
+                    <td><%=response.orders._id.toString().slice(-6)%></td>
                     <td><b><%=response.orders.shippingAddress[0].fname%></b></td>
     
                     <td><%=getDate(response.orders.createdAt)%></td>

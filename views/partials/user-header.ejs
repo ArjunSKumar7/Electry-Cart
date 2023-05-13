@@ -9,19 +9,27 @@
           <h3>ELECTRIFY<span style="color: black">CART</span></h3>
         </div>
 
-        <div class="header-right">
-          <div class="search-style-2">
-            <form action="/search" method="post">
-              <input
+        <div class="header-right d-flex" style="position: relative; left: -78px;">
+          <div class="search-style-2 position:relative;right:52px">
+           
+              <input style="position: relative;"
+
+              onkeyup="searchByName()"
                 type="text"
                 name="search"
                 id="keyword"
                 placeholder="Search for items..."
-              />
+              /> 
+            <span style="position: absolute;left:10px;top:55px; background-color: rgb(255, 255, 255); z-index: 1000; width:500px" id="searchlist">
 
-                <button type="submit" style="display: none">Submit</button>
-            </form>
-          </div>
+            </span>
+            </div>
+
+
+
+
+
+
           <div class="header-action-right">
             <div class="header-action-2">
               <li class="dropdown nav-item" style="list-style: none">
@@ -253,3 +261,30 @@
     </div>
   </div>
 </div>
+
+
+<script>
+function searchByName(){
+
+  let keyword=document.getElementById("keyword").value
+  if(keyword != ' ' && keyword != ''){
+  $.ajax({
+  url:'/search' ,
+  type:'post',
+  data:{
+    keyword
+  }, 
+  success:(response)=>{
+    console.log(response);
+    let searchlist=''
+    for(let i=0;i<response.length;i++){
+      searchlist+=`<a  href='/viewProductDetails/${response[i]._id}'>${response[i].Productname}</a><br>`
+    }
+    document.getElementById('searchlist').innerHTML=searchlist
+  }
+  })}else{
+    document.getElementById('searchlist').innerHTML=""
+  }
+}
+
+</script>

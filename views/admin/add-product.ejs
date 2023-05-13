@@ -9,16 +9,16 @@
           enctype="multipart/form-data"
         >
           <label for="">Prodcut Name</label>
-          <input type="text" name="name" class="form-control" />
+          <input type="text" name="name" class="form-control" required="" />
 
           <label for="">ProductDescription</label>
-          <input type="text" name="description" class="form-control" />
+          <input type="text" name="description" class="form-control" required="" />
 
           <label for="">Quantity</label>
-          <input type="text" name="quantity" class="form-control" />
+          <input type="text" name="quantity" class="form-control" required=""  onsubmit="return validateForm()" />
 
           <label for="">Price</label>
-          <input type="text" name="price" class="form-control" />
+          <input type="text" name="price" class="form-control" required="" />
 
           <!-- <label for="">Category</label>
           <input type="text" name="category" class="form-control" /> -->
@@ -44,28 +44,28 @@
           <div>
             <img src="" alt="image1" width="90px" height="90px" id="displayImg1">
           </div>
-          <input type="file"  name="Image" class="form-control" onchange="display1(event)"/>
+          <input type="file"  name="Image" required="" class="form-control" onchange="display1(event)"/>
 
 
           <label for="">Image 2</label>
           <div>
             <img src="" alt="image2" width="90px" height="90px" id="displayImg2">
           </div>
-          <input type="file"  name="Image"   class="form-control" onchange="display2(event)"/>
+          <input type="file"  name="Image" required=""  class="form-control" onchange="display2(event)"/>
 
 
           <label for="">Image 3</label>
           <div>
             <img src="" alt="image3" width="90px" height="90px" id="displayImg3">
           </div>
-          <input type="file"  name="Image" class="form-control" onchange="display3(event)"/>
+          <input type="file"  name="Image" required="" class="form-control" onchange="display3(event)"/>
 
 
           <label for="">Image 4</label>
           <div>
             <img src="" alt="image4" width="90px" height="90px" id="displayImg4">
           </div>
-          <input type="file"  name="Image" class="form-control" onchange="display4(event)"/>
+          <input type="file"  name="Image" required="" class="form-control" onchange="display4(event)"/>
 
 
           <button type="submit" class="btn btn-success mt-4">Submit</button>
@@ -91,5 +91,17 @@
     document.getElementById('displayImg4').src= URL.createObjectURL(event.target.files[0])
     
   }
+
+
+  function validateForm() {
+    var quantity = document.getElementById("quantity").value;
+    if (quantity < 0) {
+      alert("Quantity cannot be negative.");
+      return false;
+    }
+    return true;
+  }
+
+
   
 </script>

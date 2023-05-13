@@ -3,21 +3,17 @@ const { ObjectId } = require("mongodb");
 const user = require("../../models/connection");
 
 module.exports = {
+  getWishCount: (userId) => {
+    return new Promise(async (resolve, reject) => {
+      let count = 0;
+      let wishlist = await user.wishlist.findOne({ user: userId });
+      if (wishlist) {
+        count = wishlist.wishitems.length;
+      }
 
-
-    getWishCount: (userId) => {
-        return new Promise(async (resolve, reject) => {
-            let count = 0;
-            let wishlist = await user.wishlist.findOne({ user: userId })
-            if (wishlist) {
-                count = wishlist.wishitems.length
-            }
-
-            resolve(count)
-
-        })
-    },
-
+      resolve(count);
+    });
+  },
 
   addToWishList: (proId, userId) => {
     let proObj = {
@@ -57,63 +53,56 @@ module.exports = {
     });
   },
 
-
-
   ListWishList: (userId) => {
     return new Promise(async (resolve, reject) => {
-
-
-        await user.wishlist.aggregate([
-            {
-                $match: {
-                    user: ObjectId(userId)
-                }
+      await user.wishlist
+        .aggregate([
+          {
+            $match: {
+              user: ObjectId(userId),
             },
-            {
-                $unwind: '$wishitems'
+          },
+          {
+            $unwind: "$wishitems",
+          },
+          {
+            $project: {
+              item: "$wishitems.productId",
             },
-            {
-                $project: {
-                    item: '$wishitems.productId',
-                }
+          },
+          {
+            $lookup: {
+              from: "products",
+              localField: "item",
+              foreignField: "_id",
+              as: "wishlist",
             },
-            {
-                $lookup: {
-                    from: 'products',
-                    localField: "item",
-                    foreignField: "_id",
-                    as: 'wishlist'
-                }
+          },
+          {
+            $project: {
+              item: 1,
+              wishlist: { $arrayElemAt: ["$wishlist", 0] },
             },
-            {
-                $project: {
-                    item: 1, wishlist: { $arrayElemAt: ['$wishlist', 0] }
-                }
-            },
-        ]).then((wishlist) => {
-            resolve(wishlist)
-        })
-    })
-},
+          },
+        ])
+        .then((wishlist) => {
+          resolve(wishlist);
+        });
+    });
+  },
 
-
-getDeleteWishList: (body) => {
-
+  getDeleteWishList: (body) => {
     return new Promise(async (resolve, reject) => {
-
-        await user.wishlist.updateOne({ _id: body.wishlistId },
-            {
-                "$pull":
-
-                    { wishitems: { productId: body.productId } }
-            }).then(() => {
-                resolve({ removeProduct: true })
-            })
-
-
-    })
-},
-
-
-
+      await user.wishlist
+        .updateOne(
+          { _id: body.wishlistId },
+          {
+            $pull: { wishitems: { productId: body.productId } },
+          }
+        )
+        .then(() => {
+          resolve({ removeProduct: true });
+        });
+    });
+  },
 };

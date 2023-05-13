@@ -20,7 +20,7 @@
           <div class="card-body p-4">
             <div class="d-flex justify-content-between align-items-center mb-4">
               <p class="lead fw-normal mb-0" style="color: black;">Order Details </p>
-              <p class="small text-muted mb-0">Order Id : <%=orderDetails._id%>
+              <p class="small text-muted mb-0">Order Id : <%=orderDetails._id.toString().slice(-6)%>
               </p>
               <p class="small text-muted mb-0">Ordered Date:<%= getDate(orderDetails.createdAt)%>
               </p>

@@ -120,6 +120,11 @@ router.post('/verify_payment', auths.userauth,userPaymentController.postVerifyPa
 
 router.get('/order_success', auths.userauth,userOrderController.getSuccessPage)
 
+
+router.post('/search',auths.userauth,userProductController.search)
+
+router.get('/sort',auths.userauth,userProductController.sort)
+
 module.exports = router; 
 
 

@@ -9,34 +9,30 @@ const client = require("twilio")(accountSid, authToken);
 
 const bannerdb = require("../../models/banner");
 
-let loggedinstatus, userSession, cartcount,userId,wishcount;
+let loggedinstatus, userSession, cartcount, userId, wishcount;
 
 module.exports = {
   // user home
   getHome: async (req, res) => {
     try {
       let users = req.session.user;
-      wishcount = await userWhishlistHelpers.getWishCount(req.session.user._id)
+      wishcount = await userWhishlistHelpers.getWishCount(req.session.user._id);
       userSession = req.session.loggedIn;
-      if(userSession){
-       userId=req.session.user._id
-      
-     
-      const count = await user.cart.findOne({ user: req.session.user._id });
-      if(count==null){
-        req.session.count = 0;
-      cartcount = req.session.count;
-      }else{
-        req.session.count = count.cartItems.length;
-        cartcount = req.session.count;
-       
+      if (userSession) {
+        userId = req.session.user._id;
+
+        const count = await user.cart.findOne({ user: req.session.user._id });
+        if (count == null) {
+          req.session.count = 0;
+          cartcount = req.session.count;
+        } else {
+          req.session.count = count.cartItems.length;
+          cartcount = req.session.count;
+        }
       }
-     
-      
-      }
-      let latestproducts= await userhelpers.getlatestproducts()
-      console.log("latestproducts",latestproducts)
-      const bannerresponse = await bannerdb.find({bannerblocked:false});
+      let latestproducts = await userhelpers.getlatestproducts();
+      console.log("latestproducts", latestproducts);
+      const bannerresponse = await bannerdb.find({ bannerblocked: false });
       res.render("user/user", {
         users,
         userSession,
@@ -44,23 +40,22 @@ module.exports = {
         cartcount,
         wishcount,
         userId,
-        latestproducts
+        latestproducts,
       });
     } catch (err) {
       res.status(500);
     }
   },
-  
+
   // get user login
   getUserLogin: (req, res) => {
- 
     if (req.session.loggedIn) {
       res.redirect("/");
     } else {
       req.session.loggedIn = false;
       userSession = req.session.loggedIn;
-      userId=req.session.user._id
-      res.render("user/login", { userSession,userId });
+      userId = req.session.user._id;
+      res.render("user/login", { userSession, userId });
       loggedinstatus = true;
     }
   },
@@ -74,7 +69,7 @@ module.exports = {
       if (loggedinstatus == true) {
         // let login=true
         req.session.user = response.response.user;
-        userId=req.session.user._id
+        userId = req.session.user._id;
         req.session.loggedIn = true;
 
         userSession = req.session.loggedIn;
@@ -103,7 +98,7 @@ module.exports = {
     userhelpers.doSignUp(req.body).then((response) => {
       req.session.userloggedIn = true;
 
-     emailStatus = response.status;
+      emailStatus = response.status;
       if (emailStatus == true) {
         res.redirect("/login");
       } else {
@@ -132,7 +127,7 @@ module.exports = {
         res.redirect("/login");
       } else {
         req.session.number = req.body.number;
-      
+
         await client.verify.v2
           .services(serviceSid)
           .verifications.create({ to: `+91${number}`, channel: "sms" })
@@ -156,9 +151,8 @@ module.exports = {
 
       const otpNumber = req.body.otp;
 
-
       const serviceSid = process.env.TWILIO_SERVICE_SID;
-     
+
       const verification_check = await client.verify.v2
         .services(serviceSid)
         .verificationChecks.create({ to: `+91${number}`, code: otpNumber });
@@ -195,21 +189,15 @@ module.exports = {
   getProfile: async (req, res) => {
     try {
       req.session.loggedIn = true;
-        userSession = req.session.loggedIn;
-       userId=req.session.user._id
+      userSession = req.session.loggedIn;
+      userId = req.session.user._id;
       let data = await userhelpers.findUser(userId);
       cartcount = req.session.count;
-      res.render("user/profile", { userSession,cartcount, userId,data });
+      res.render("user/profile", { userSession, cartcount, userId, data });
     } catch (error) {
-      res.status(500)
+      res.status(500);
     }
-
   },
-
-
-
-
-
 
   logOut: (req, res) => {
     req.session.user = null;

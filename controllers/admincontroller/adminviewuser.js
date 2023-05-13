@@ -1,34 +1,31 @@
 // const { response } = require("../../app")
-const adminuserhelpers = require("../../helpers/adminHelpers/adminuserhelpers")
+const adminuserhelpers = require("../../helpers/adminHelpers/adminuserhelpers");
 const user = require("../../models/connection");
 
-module.exports={
-      //***********get user view***********//
-      getViewUser:(req,res)=>{
-            adminuserhelpers.getUser().then((user)=>{
-                  res.render("admin/view-users",{layout:"adminLayout",user,adminlogin:true});
-            })
-        
-      },
-      //***********Block user**********//
+module.exports = {
+  //***********get user view***********//
+  getViewUser: (req, res) => {
+    adminuserhelpers.getUser().then((user) => {
+      res.render("admin/view-users", {
+        layout: "adminLayout",
+        user,
+        adminlogin: true,
+      });
+    });
+  },
+  //***********Block user**********//
 
-      getBlockUser:(req,res)=>{
-       
-            adminuserhelpers.blockUser(req.params.id).then((response)=>{
-                  res.redirect('back')
-            })
-            
-      },
+  getBlockUser: (req, res) => {
+    adminuserhelpers.blockUser(req.params.id).then((response) => {
+      res.redirect("back");
+    });
+  },
 
-      //***********UnBlock user**********//
+  //***********UnBlock user**********//
 
-      getUnblockUser:(req,res)=>{
-            adminuserhelpers.unBlockUser(req.params.id).then((response)=>{
-                  res.redirect('back')
-            })
-      },
-
-
-      
-
-}
+  getUnblockUser: (req, res) => {
+    adminuserhelpers.unBlockUser(req.params.id).then((response) => {
+      res.redirect("back");
+    });
+  },
+};

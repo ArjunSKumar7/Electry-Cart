@@ -20,7 +20,7 @@
             ></span>
             <div class="text">
               <h6 class="mb-1 card-title">Revenue</h6>
-              <span>$13,456.5</span>
+              <span><%=saleData.revenue%></span>
               <span class="text-sm"> Shipping fees are not included </span>
             </div>
           </article>
@@ -34,7 +34,7 @@
             ></span>
             <div class="text">
               <h6 class="mb-1 card-title">Orders</h6>
-              <span>53.668</span>
+              <span><%=saleData.ordercount%></span>
               <span class="text-sm"> Excluding orders in transit </span>
             </div>
           </article>
@@ -48,8 +48,8 @@
             ></span>
             <div class="text">
               <h6 class="mb-1 card-title">Products</h6>
-              <span>9.856</span>
-              <span class="text-sm"> In 19 Categories </span>
+              <span><%=saleData.productsCount%></span>
+              <span class="text-sm"> In <%=saleData.catagoryCount%> Categories </span>
             </div>
           </article>
         </div>
@@ -69,7 +69,7 @@
             ></span>
             <div class="text">
               <h6 class="mb-1 card-title">Monthly Earning</h6>
-              <span>$6,982</span>
+              <span><%=saleData.monthlyEarnings.totalPrice%></span>
               <span class="text-sm"> Based in your local time. </span>
             </div>
           </article>
@@ -77,238 +77,205 @@
       </div>
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    <!-- Styles -->
+<style>
+  #chartdiv {
+    width: 100%;
+    height: 500px;
+  }
+  </style>
+  
+  <!-- Resources -->
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+  
+  <!-- Chart code -->
+  <script>
+    am5.ready(function () {
+  
+      // Create root element
+      // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+      var root = am5.Root.new("chartdiv");
+  
+  
+      // Set themes
+      // https://www.amcharts.com/docs/v5/concepts/themes/
+      root.setThemes([
+        am5themes_Animated.new(root)
+      ]);
+  
+  
+      // Create chart
+      // https://www.amcharts.com/docs/v5/charts/xy-chart/
+      var chart = root.container.children.push(am5xy.XYChart.new(root, {
+        panX: true,
+        panY: true,
+        wheelX: "panX",
+        wheelY: "zoomX",
+        pinchZoomX: true
+      }));
+  
+      // Add cursor
+      // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+      var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
+      cursor.lineY.set("visible", false);
+  
+  
+      // Create axes
+      // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+      var xRenderer = am5xy.AxisRendererX.new(root, { minGridDistance: 30 });
+      xRenderer.labels.template.setAll({
+        rotation: -90,
+        centerY: am5.p50,
+        centerX: am5.p100,
+        paddingRight: 15
+      });
+  
+      xRenderer.grid.template.setAll({
+        location: 1
+      })
+  
+      var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
+        maxDeviation: 0.3,
+        categoryField: "month",
+        renderer: xRenderer,
+        tooltip: am5.Tooltip.new(root, {})
+      }));
+  
+      var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
+        maxDeviation: 0.3,
+        renderer: am5xy.AxisRendererY.new(root, {
+          strokeOpacity: 0.1
+        })
+      }));
+  
+  
+      // Create series
+      // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+      var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+        name: "Series 1",
+        xAxis: xAxis,
+        yAxis: yAxis,
+        valueYField: "value",
+        sequencedInterpolation: true,
+        categoryXField: "month",
+        tooltip: am5.Tooltip.new(root, {
+          labelText: "{valueY}"
+        })
+      }));
+  
+      series.columns.template.setAll({ cornerRadiusTL: 5, cornerRadiusTR: 5, strokeOpacity: 0 });
+      series.columns.template.adapters.add("fill", function (fill, target) {
+        return chart.get("colors").getIndex(series.columns.indexOf(target));
+      });
+  
+      series.columns.template.adapters.add("stroke", function (stroke, target) {
+        return chart.get("colors").getIndex(series.columns.indexOf(target));
+      });
+  
+      // Set data
+  
+      var data = [
+        {
+          month: '<%=saleData.dataForGraph_Sales[0].month%>',
+          value: <%=saleData?.dataForGraph_Sales[0].value %>
+    },
+        {
+          month: '<%=saleData.dataForGraph_Sales[1].month%>',
+          value: <%=saleData?.dataForGraph_Sales[1].value %>
+    },
+        {
+          month: '<%=saleData.dataForGraph_Sales[2].month%>',
+          value: <%=saleData?.dataForGraph_Sales[2].value %>
+    },
+        {
+          month: '<%=saleData.dataForGraph_Sales[3].month%>',
+          value: <%=saleData?.dataForGraph_Sales[3].value %>
+    },
+        {
+          month: '<%=saleData.dataForGraph_Sales[4].month%>',
+          value: <%=saleData?.dataForGraph_Sales[4].value %>
+    },
+        {
+          month: '<%=saleData.dataForGraph_Sales[5].month%>',
+          value: <%=saleData?.dataForGraph_Sales[5].value %>
+    },
+        {
+          month: '<%=saleData.dataForGraph_Sales[6].month%>',
+          value: <%=saleData?.dataForGraph_Sales[6].value %>
+    },
+        {
+          month: '<%=saleData.dataForGraph_Sales[7].month%>',
+          value: <%=saleData?.dataForGraph_Sales[7].value %>
+    },
+        {
+          month: '<%=saleData.dataForGraph_Sales[8].month%>',
+          value: <%=saleData?.dataForGraph_Sales[8].value %>
+    },
+        {
+          month: '<%=saleData.dataForGraph_Sales[9].month%>',
+          value: <%=saleData?.dataForGraph_Sales[9].value %>
+    },
+        {
+          month: '<%=saleData.dataForGraph_Sales[10].month%>',
+          value: <%=saleData?.dataForGraph_Sales[10].value %>
+    },
+        {
+          month: '<%=saleData.dataForGraph_Sales[11].month%>',
+          value: <%=saleData?.dataForGraph_Sales[11].value %>
+    }]
+  
+  
+  
+      console.log('sales', data);
+  
+      xAxis.data.setAll(data);
+      series.data.setAll(data);
+  
+  
+      // Make stuff animate on load
+      // https://www.amcharts.com/docs/v5/concepts/animations/
+      series.appear(1000);
+      chart.appear(1000, 100);
+  
+    }); // end am5.ready()
+  
+  
+  
+  
+    //donuotchart
+  
+  
+  
+  
+  </script>
+  
+  <!-- HTML -->
+  <div id="chartdiv"></div>
+
    
       
       <!-- HTML -->
      
       
-    <div class="row">
-      <div class="col-xl-8 col-lg-12">
 
-        <div class="row">
-          <div class="col-lg-5">
-            <div class="card mb-4">
-              <article class="card-body">
-                <h5 class="card-title">New Members</h5>
-                <div class="new-member-list">
-                  <div
-                    class="d-flex align-items-center justify-content-between mb-4"
-                  >
-                    <div class="d-flex align-items-center">
-                      <img
-                        src="assets/imgs/people/avatar4.jpg"
-                        alt=""
-                        class="avatar"
-                      />
-                      <div>
-                        <h6>Patric Adams</h6>
-                        <p class="text-muted font-xs">Sanfrancisco</p>
-                      </div>
-                    </div>
-                    <a href="#" class="btn btn-xs"
-                      ><i class="material-icons md-add"></i> Add</a
-                    >
-                  </div>
-                  <div
-                    class="d-flex align-items-center justify-content-between mb-4"
-                  >
-                    <div class="d-flex align-items-center">
-                      <img
-                        src="assets/imgs/people/avatar2.jpg"
-                        alt=""
-                        class="avatar"
-                      />
-                      <div>
-                        <h6>Dilan Specter</h6>
-                        <p class="text-muted font-xs">Sanfrancisco</p>
-                      </div>
-                    </div>
-                    <a href="#" class="btn btn-xs"
-                      ><i class="material-icons md-add"></i> Add</a
-                    >
-                  </div>
-                  <div
-                    class="d-flex align-items-center justify-content-between mb-4"
-                  >
-                    <div class="d-flex align-items-center">
-                      <img
-                        src="assets/imgs/people/avatar3.jpg"
-                        alt=""
-                        class="avatar"
-                      />
-                      <div>
-                        <h6>Tomas Baker</h6>
-                        <p class="text-muted font-xs">Sanfrancisco</p>
-                      </div>
-                    </div>
-                    <a href="#" class="btn btn-xs"
-                      ><i class="material-icons md-add"></i> Add</a
-                    >
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-          <div class="col-lg-7">
-            <div class="card mb-4">
-              <article class="card-body">
-                <h5 class="card-title">Recent activities</h5>
-                <ul class="verti-timeline list-unstyled font-sm">
-                  <li class="event-list">
-                    <div class="event-timeline-dot">
-                      <i
-                        class="material-icons md-play_circle_outline font-xxl"
-                      ></i>
-                    </div>
-                    <div class="media">
-                      <div class="me-3">
-                        <h6>
-                          <span>Today</span>
-                          <i
-                            class="material-icons md-trending_flat text-brand ml-15 d-inline-block"
-                          ></i>
-                        </h6>
-                      </div>
-                      <div class="media-body">
-                        <div>Lorem ipsum dolor sit amet consectetur</div>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="event-list active">
-                    <div class="event-timeline-dot">
-                      <i
-                        class="material-icons md-play_circle_outline font-xxl animation-fade-right"
-                      ></i>
-                    </div>
-                    <div class="media">
-                      <div class="me-3">
-                        <h6>
-                          <span>17 May</span>
-                          <i
-                            class="material-icons md-trending_flat text-brand ml-15 d-inline-block"
-                          ></i>
-                        </h6>
-                      </div>
-                      <div class="media-body">
-                        <div>
-                          Debitis nesciunt voluptatum dicta reprehenderit
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="event-list">
-                    <div class="event-timeline-dot">
-                      <i
-                        class="material-icons md-play_circle_outline font-xxl"
-                      ></i>
-                    </div>
-                    <div class="media">
-                      <div class="me-3">
-                        <h6>
-                          <span>13 May</span>
-                          <i
-                            class="material-icons md-trending_flat text-brand ml-15 d-inline-block"
-                          ></i>
-                        </h6>
-                      </div>
-                      <div class="media-body">
-                        <div>Accusamus voluptatibus voluptas.</div>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="event-list">
-                    <div class="event-timeline-dot">
-                      <i
-                        class="material-icons md-play_circle_outline font-xxl"
-                      ></i>
-                    </div>
-                    <div class="media">
-                      <div class="me-3">
-                        <h6>
-                          <span>05 April</span>
-                          <i
-                            class="material-icons md-trending_flat text-brand ml-15 d-inline-block"
-                          ></i>
-                        </h6>
-                      </div>
-                      <div class="media-body">
-                        <div>
-                          At vero eos et accusamus et iusto odio dignissi
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="event-list">
-                    <div class="event-timeline-dot">
-                      <i
-                        class="material-icons md-play_circle_outline font-xxl"
-                      ></i>
-                    </div>
-                    <div class="media">
-                      <div class="me-3">
-                        <h6>
-                          <span>26 Mar</span>
-                          <i
-                            class="material-icons md-trending_flat text-brand ml-15 d-inline-block"
-                          ></i>
-                        </h6>
-                      </div>
-                      <div class="media-body">
-                        <div>Responded to need “Volunteer Activities</div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-12">
-        <div class="card mb-4">
-          <article class="card-body">
-            <h5 class="card-title">Revenue Base on Area</h5>
-            <canvas id="myChart2" height="217"></canvas>
-          </article>
-        </div>
-        <div class="card mb-4">
-          <article class="card-body">
-            <h5 class="card-title">Marketing Chanel</h5>
-            <span class="text-muted font-xs">Facebook</span>
-            <div class="progress mb-3">
-              <div class="progress-bar" role="progressbar" style="width: 15%">
-                15%
-              </div>
-            </div>
-            <span class="text-muted font-xs">Instagram</span>
-            <div class="progress mb-3">
-              <div class="progress-bar" role="progressbar" style="width: 65%">
-                65%
-              </div>
-            </div>
-            <span class="text-muted font-xs">Google</span>
-            <div class="progress mb-3">
-              <div class="progress-bar" role="progressbar" style="width: 51%">
-                51%
-              </div>
-            </div>
-            <span class="text-muted font-xs">Twitter</span>
-            <div class="progress mb-3">
-              <div class="progress-bar" role="progressbar" style="width: 80%">
-                80%
-              </div>
-            </div>
-            <span class="text-muted font-xs">Other</span>
-            <div class="progress mb-3">
-              <div class="progress-bar" role="progressbar" style="width: 80%">
-                80%
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-    <div class="card mb-4">
+    <!-- <div class="card mb-4">
       <header class="card-header">
         <h4 class="card-title">Latest orders</h4>
         <div class="row align-items-center">
@@ -576,7 +543,7 @@
             </table>
           </div>
         </div>
-        <!-- table-responsive end// -->
+     
       </div>
     </div>
     <div class="pagination-area mt-30 mb-50">
@@ -595,7 +562,7 @@
         </ul>
       </nav>
     </div>
-  </section>
+  </section> -->
   <!-- content-main end// -->
   <footer class="main-footer font-xs">
     <div class="row pb-30 pt-15">

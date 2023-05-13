@@ -19,8 +19,6 @@ module.exports = {
         req.session.user._id
       );
 
-
-
       cartcount = req.session.count;
 
       let cartItems = await userCartHelpers.viewCart(req.session.user._id);
@@ -64,11 +62,10 @@ module.exports = {
 
     //  await userCouponHelpers.addCouponIntUseroDb(couponData, userId)
     // }
-    
+
     let order = await userOrderHelpers
       .placeOrder(req.body, postchecksubtotal, postchecktotal, userId)
       .then(async (response) => {
-
         if (req.body["payment-method"] == "COD") {
           res.json({ codstatus: true });
         } else if (req.body["payment-method"] == "online") {
@@ -78,8 +75,6 @@ module.exports = {
               res.json(order);
             });
         }
-
       });
-      
   },
 };

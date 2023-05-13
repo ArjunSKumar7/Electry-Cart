@@ -1,94 +1,54 @@
-const { response } = require("express")
-const adminBannerHelpers=require("../../helpers/adminHelpers/adminBannerHelper")
-const bannerdb=require("../../models/banner")
-const { Admin } = require("mongodb")
+const adminBannerHelpers = require("../../helpers/adminHelpers/adminBannerHelper");
+const bannerdb = require("../../models/banner");
 
+module.exports = {
+  getbanner: (req, res) => {
+    adminBannerHelpers.getbanner().then((response) => {
+      const getbanner = response;
 
-module.exports={
+      res.render("admin/banner", {
+        layout: "adminLayout",
+        getbanner,
+        adminlogin: true,
+      });
+    });
+  },
 
-    getbanner:(req,res)=>{
+  postbanner: (req, res) => {
+    adminBannerHelpers.postbanner(req.body, req.file.filename).then((data) => {
+      res.redirect("/admin/banner");
+    });
+  },
 
-        adminBannerHelpers.getbanner().then((response)=>{
-           
-            const getbanner=response
+  geteditbanner: (req, res) => {
+    adminBannerHelpers.editbanner(req.params.id).then((response) => {
+      let editbanner = response;
 
-            res.render("admin/banner",{layout:"adminLayout",getbanner,adminlogin:true})
-        })
+      res.render("admin/editbanner", {
+        layout: "adminLayout",
+        editbanner,
+        adminlogin: true,
+      });
+    });
+  },
 
-        
+  posteditbanner: (req, res) => {
+    adminBannerHelpers
+      .posteditbanner(req.params.id, req.body, req?.file?.filename)
+      .then((response) => {
+        res.redirect("/admin/editbanner");
+      });
+  },
 
-    },
+  blockbanner: (req, res) => {
+    adminBannerHelpers.blockbanner(req.params.id).then((response) => {
+      res.redirect("/admin/banner");
+    });
+  },
 
-
-
-
-
-    postbanner:(req,res)=>{
-        adminBannerHelpers.postbanner(req.body,req.file.filename).then((data)=>{
-            res.redirect('/admin/banner')
-        })
-    },
-
-    
-    // editViewProduct:(req,res) =>{
-    //   let admins=req.session.admin
-    //   adminProductHelpers.viewAddCategory().then((response)=>{
-    
-    //     var procategory=response
-    //     adminProductHelpers.  editProduct(req.params.id).then((response)=>{
-    //       editproduct=response
-         
-    //     res.render('admin/edit-viewproduct',{ layout: "adminLayout" ,editproduct,procategory,admins,adminlogin:true});
-    
-    //   })})
-      
-      
-    
-    // }, 
-
-    geteditbanner:(req,res)=>{
-        adminBannerHelpers.editbanner(req.params.id).then((response)=>{
-         
-            let editbanner=response
-
-            res.render("admin/editbanner",{layout:"adminLayout",editbanner,adminlogin:true})
-        })
-    },
-
-
-    posteditbanner:(req,res) =>{
-    
-      adminBannerHelpers.posteditbanner(req.params.id,req.body,req?.file?.filename).then((response)=>{
-      
-        res.redirect('/admin/editbanner')
-      })
-    
-      
-    },
-
-
-
-
-
-
-
-
-    blockbanner:(req,res)=>{
-     
-        adminBannerHelpers.blockbanner(req.params.id).then((response)=>{
-       
-          res.redirect("/admin/banner")
-        })
-      },
-
-      unblockbanner:(req,res)=>{
-       
-        adminBannerHelpers.unblockbanner(req.params.id).then((response)=>{
-         
-          res.redirect('/admin/banner')
-
-        })
-      },
-    
-
-}
+  unblockbanner: (req, res) => {
+    adminBannerHelpers.unblockbanner(req.params.id).then((response) => {
+      res.redirect("/admin/banner");
+    });
+  },
+};

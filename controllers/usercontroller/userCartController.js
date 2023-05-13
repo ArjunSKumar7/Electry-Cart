@@ -2,7 +2,7 @@ const userCartHelpers = require("../../helpers/UserHelpers/UserCartHelper");
 const userCouponHelpers = require("../../helpers/UserHelpers/userCouponHelper");
 const userWhishlistHelpers = require("../../helpers/UserHelpers/userWhishlistHelpers");
 
-let cartcount, userId,wishcount;
+let cartcount, userId, wishcount;
 
 module.exports = {
   addtocart: (req, res) => {
@@ -24,7 +24,6 @@ module.exports = {
   },
 
   getViewCart: async (req, res) => {
-    
     let total = await userCartHelpers.totalCheckOutAmount(req.session.user._id);
     wishcount = await userWhishlistHelpers.getWishCount(req.session.user._id);
     let cartItems = await userCartHelpers.viewCart(req.session.user._id);
@@ -73,7 +72,7 @@ module.exports = {
 
   postCart: async (req, res) => {
     const couponData = req.body;
- 
+
     couponName = req.body.couponName;
     couponTotal = req.body.total;
     discountAmount = req.body.discountAmount;
