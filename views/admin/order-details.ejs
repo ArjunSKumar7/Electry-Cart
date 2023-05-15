@@ -22,8 +22,19 @@
                   action="/admin/order_details?orderId=<%=order.orders[0]._id%>"
                   method="POST"
                 >
-                <% if(order.orders[0].orderStatus == 'Delivered'||order.orders[0].orderStatus == 'Success') { %>
+                <% if(order.orders[0].orderStatus == 'Success') { %>
                   <select
+                    class="form-select d-inline-block mb-lg-0 mb-15 mw-200"
+                    name="status"
+                  >
+                    
+                    <option>Shipped</option>
+                    <option>Delivered</option>
+                  </select>
+                 
+                  <button type="submit" class="btn btn-primary">UPDATE</button>
+                  <% } else if (order.orders[0].orderStatus == 'Pending') { %>
+                    <select
                     class="form-select d-inline-block mb-lg-0 mb-15 mw-200"
                     name="status"
                   >
@@ -33,7 +44,20 @@
                   </select>
                  
                   <button type="submit" class="btn btn-primary">UPDATE</button>
-                  <% } %>
+                  <% } else if (order.orders[0].orderStatus == 'Shipped') { %>
+                    <select
+                    class="form-select d-inline-block mb-lg-0 mb-15 mw-200"
+                    name="status"
+                  >
+                    
+                    <option>Delivered</option>
+                  </select>
+                 
+                  <button type="submit" class="btn btn-primary">UPDATE</button>
+
+                  <% } else { %> 
+                  
+                  <% } %> 
                 </form>
               </div>
             </div>
