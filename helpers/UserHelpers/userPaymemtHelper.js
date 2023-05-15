@@ -4,12 +4,9 @@ const Razorpay = require("razorpay");
 const razorpay = require("../../test/razorpay");
 const user = require("../../models/connection");
 
-const razorpaykey_id = process.env.key_id;
-const razorpaykey_secret = process.env.key_secret;
-
 const instance = new Razorpay({
-  key_id: "razorpaykey_id",
-  key_secret: "razorpaykey_secret",
+  key_id: "rzp_test_QHKpFsUnBlrIDB",
+  key_secret: "GqE882vECAaQFFxGHyWuA7RA",
 });
 
 module.exports = {
@@ -19,7 +16,7 @@ module.exports = {
       let order = orders[0].orders.slice().reverse();
       let orderId = order[0]._id;
       total = total * 100;
-      console.log("generateRazorpay:", total);
+     
       let options = {
         amount: parseInt(total),
         currency: "INR",
