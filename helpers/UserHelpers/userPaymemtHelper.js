@@ -4,9 +4,12 @@ const Razorpay = require("razorpay");
 const razorpay = require("../../test/razorpay");
 const user = require("../../models/connection");
 
+const razorpaykey_id = process.env.key_id;
+const razorpaykey_secret = process.env.key_secret;
+
 const instance = new Razorpay({
-  key_id: "rzp_test_QHKpFsUnBlrIDB",
-  key_secret: "GqE882vECAaQFFxGHyWuA7RA",
+  key_id: "razorpaykey_id",
+  key_secret: "razorpaykey_secret",
 });
 
 module.exports = {
