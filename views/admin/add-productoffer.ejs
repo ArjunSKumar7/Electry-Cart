@@ -1,0 +1,135 @@
+<main class="main-wrap">
+
+    <!-- <div class="content-header"> -->
+    <!-- <div> -->
+
+    <div class="container d-flex justify-content-center">
+        <div class="mt-3">
+            <div class="col-md-12">
+                <h2 class="text-center">Product List</h2>
+                <form action="/admin/add_sub" method="post" enctype="multipart/form-data">
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table section -->
+    <!-- <section  mx-auto> -->
+    <div class="card-body">
+        <!-- <div class="row mt-5 mx-auto"> -->
+        <div class="table-responsive">
+            <div class="table-responsive">
+                <table class="table align-middle table-nowrap mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="align-middle" scope="col">No:</th>
+                            <th class="align-middle" scope="col">product Name</th>
+                            <th class="align-middle" scope="col">price</th>
+                            <th class="align-middle" scope="col">offer%</th>
+                            <th class="align-middle" scope="col">offer price</th>
+                            <th class="align-middle" scope="col">Category</th>
+                            <th class="align-middle" scope="col">Image</th>
+                            <th class="align-middle" scope="col">Option</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% response.forEach(function(response,index) { %>
+                            <tr>
+                                <td>
+                                    <%=index+1 %>
+                                </td>
+                                <td>
+                                    <%=response.Productname%>
+                                </td>
+
+
+                                <% if (response.oldPrice) { %>
+                                    <td id="totalprice<%=response._id%>">
+                                        <%=response.oldPrice%>
+                                    </td>
+                                  <% } else { %>
+                                    <td id="totalprice<%=response._id%>">
+                                        <%=response.Price%>
+                                    </td>
+                                  <% } %>
+                                  
+                               
+                                <td>
+                                    <input type="number" value="<%=response.offerpercentage%>" name="offerPercentage" id="offerPercentage<%=response._id%>"
+
+
+
+                                        min="0" max="100" step="1" onchange="calculateoffer('<%=response._id%>')">
+                                </td>
+
+                                <td id="offerprice<%=response._id%>"><%=response.Price%> </td>
+
+
+                                
+                                <td>
+                                    <%=response.category%>
+                                </td>
+
+
+                                <td><img src='/uploads/<%= response.Image[0]%>' alt="" style="width:50px;height:50px" ;>
+                                </td>
+
+                                <td>
+                                <a href =""  class="btn btn-success">submit</a>
+                            </td>
+
+
+
+
+
+
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+</main>
+
+<script>
+    function calculateoffer(id) {
+        let offerpercentage = document.getElementById("offerPercentage" + id).value
+        const Price = document.getElementById("totalprice" + id).innerText
+
+        const percentage = parseInt(offerpercentage)
+        const total = parseInt(Price)
+
+        const offerPrice = Math.round(total * (100 - percentage) / 100)
+
+       
+
+
+
+        $.ajax({
+            url:'/admin/productoffer',
+            type:"post",
+            data:{
+                offerPrice,
+                id,
+                Price,
+                offerpercentage
+            },
+            success:(response)=>{
+                if(response.status)
+                document.getElementById("offerprice" + id).innerText = offerPrice
+            }
+        })
+
+    }
+</script>

@@ -85,9 +85,18 @@
                                                 </span>
                                             </div>
                                             <div class="product-price">
-                                                <span>
-                                                    <%=response[i].Price%>
-                                                </span>
+                                              
+
+                                                <% if(response[i].oldPrice) { %>
+                                                    <span class="text-brand"><%=response[i].Price%></span>
+                                                    <span class="old-price font-md ml-15"><%=response[i].oldPrice%></span>
+                                   
+                                                    <% }else { %>
+    
+                                                        <span class="text-brand"><%=response[i].Price%></span>
+                                                    
+    
+                                                        <% } %>
 
                                             </div>
                                             <div class="product-action-1 show">

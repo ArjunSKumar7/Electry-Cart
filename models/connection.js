@@ -78,6 +78,14 @@ const categorySchema= new mongoose.Schema({
     blocked:{
       type:Boolean,
       default:false
+    },
+
+    oldPrice:{
+      type:Number
+    },
+
+    offerpercentage:{
+      type:Number
     }
     
 

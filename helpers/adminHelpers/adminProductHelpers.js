@@ -3,6 +3,7 @@ const multer = require("multer");
 // const { response } = require("../../app");
 const adminBannerHelper = require("./adminBannerHelper");
 const { resolve, reject } = require("promise");
+const ObjectId = require("mongodb").ObjectId;
 
   module.exports = {
   //get add product
@@ -125,4 +126,19 @@ const { resolve, reject } = require("promise");
         });
     });
   },
+
+
+  productofferajax:(offer)=>{
+    console.log("offer",offer);
+    offer.offerPrice = parseInt(offer.offerPrice)
+    offer.Price = parseInt(offer.Price)
+    offer.offerpercentage=parseInt(offer.offerpercentage)
+    return new Promise(async(resolve,reject)=>{
+    
+     let a= await user.product.updateOne({_id:ObjectId(offer.id)},{$set:{oldPrice:offer.Price,Price:offer.offerPrice,offerpercentage:offer.offerpercentage}})
+console.log("Aaaaaaaaaaaa",a)
+      resolve()
+    })
+
+  }
 };

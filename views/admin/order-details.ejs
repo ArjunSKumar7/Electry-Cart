@@ -22,6 +22,7 @@
                   action="/admin/order_details?orderId=<%=order.orders[0]._id%>"
                   method="POST"
                 >
+                <% if(order.orders[0].orderStatus == 'Delivered'||order.orders[0].orderStatus == 'Success') { %>
                   <select
                     class="form-select d-inline-block mb-lg-0 mb-15 mw-200"
                     name="status"
@@ -30,8 +31,9 @@
                     <option>Shipped</option>
                     <option>Delivered</option>
                   </select>
-      
+                 
                   <button type="submit" class="btn btn-primary">UPDATE</button>
+                  <% } %>
                 </form>
               </div>
             </div>
@@ -132,6 +134,26 @@
                   <% total?.forEach(function(total) { %>
                   <h6>AMOUNT : ₹ <%=total.totalPrice%></h6>
                   <% }) %>
+
+                  <%if(order.orders[0].orderStatus =='Success' ){ %>
+                    <p class="text-muted mb-0"><span class="fw-bold me-4"><span>Order Status</span>: <span
+                          style="color:green;">
+                          <%=order.orders[0].orderStatus%>
+                        </span> </p>
+                    <%} else if(order.orders[0].orderStatus =='Delivered' ) {%>
+                      <p class="text-muted mb-0"><span class="fw-bold me-4"><span>Order Status</span>: <span
+                            style="color: orange;">
+                            <%=order.orders[0].orderStatus%>
+                          </span> </p>
+    
+                      <%} else {%>
+    
+                        <p class="text-muted mb-0"><span class="fw-bold me-4"><span>Order Status</span>: <span
+                              style="color: red;">
+                              <%=order.orders[0].orderStatus%>
+                            </span> </p>
+    
+                        <%} %>
                 </div>
                 <!-- table-responsive// -->
               </div>

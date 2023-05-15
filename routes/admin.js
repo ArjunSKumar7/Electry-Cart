@@ -7,6 +7,7 @@ const admincategory = require("../controllers/admincontroller/Category");
 const adminproduct = require("../controllers/admincontroller/product")
 const adminbanner= require("../controllers/admincontroller/bannercontroll")
 const admincopuon= require("../controllers/admincontroller/CouponController")
+const adminoffer=require("../controllers/admincontroller/adminOfferController")
 const adminOrderController= require("../controllers/admincontroller/orderController")
 const adminSalesController=require("../controllers/admincontroller/adminSalesController")
 var router = express.Router();
@@ -93,6 +94,10 @@ router.get("/generate_coupon",auths.auth,admincopuon.generateCoupon);
 router.get("/coupons", auths.auth,admincopuon.newCoupons);
 
 router.delete("/coupon_delete/:id",auths.auth,admincopuon.deleteCoupon);
+
+router.get("/add_productoffer",auths.auth,adminoffer.productoffer)
+
+router.post('/productoffer',auths.auth,adminoffer.productofferajax)
 
 
 

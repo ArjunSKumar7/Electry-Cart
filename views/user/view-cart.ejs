@@ -12,7 +12,7 @@
                                     <th scope="col">Price</th>
                                     <th scope="col">Quantity</th>
                                     <!-- <th scope="col">Subtotal</th> -->
-                                    <th scope="col">Remove</th>
+                                    
                                 </tr>
                             </thead>
                             <% cartItems.forEach(function(item) { %>
@@ -38,9 +38,20 @@
                                                   <%= item.cartItems.category %><br>
                                                     <%= item.cartItems.ProductDescription%>
                                         </td>
-                                        <td class="price" data-title="Price"><span>
-                                                <%= item.cartItems.Price %>
-                                            </span></td>
+                                        <td class="price" data-title="Price">
+                                        
+
+                                      
+                                                <span class="text-brand"><%=item.cartItems.Price%></span>
+                                               
+                               
+
+                                                  
+                                                
+
+
+
+                                        </td>
                                         <td class="text-center" data-title="Stock">
                                             <!-- <div class="detail-qty border radius  m-auto">
                                                 <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
@@ -67,9 +78,7 @@
                                         <h2 style="display: none;" id="Quantity">
                                             <%=item.cartItems.Quantity%>
                                         </h2>
-                                        <td class="text-right" data-title="Cart">
-                                            <span>$65.00 </span>
-                                        </td>
+                                      
                                         
                                 <td class="action" data-title="Remove"><button class="text-muted" onclick="removeItem('<%-item._id%>','<%-item.item%>')"><i class="fi-rs-trash"></i></button></td>
                                     </tr>

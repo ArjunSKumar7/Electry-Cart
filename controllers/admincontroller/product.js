@@ -14,18 +14,17 @@ module.exports = {
 
   postAddProduct: (req, res) => {
     let image = req.files.map((files) => files.filename);
-adminProductHelpers.postAddProduct(req.body, image).then((response) => {
+    adminProductHelpers.postAddProduct(req.body, image).then((response) => {
       res.redirect("/admin/view_product");
     });
   },
 
   getViewproduct: (req, res) => {
-    let admins = req.session.admin;
     adminProductHelpers.getViewProduct().then((response) => {
       res.render("admin/view-product", {
         layout: "adminLayout",
         response,
-        admins,
+
         adminlogin: true,
       });
     });
@@ -44,7 +43,6 @@ adminProductHelpers.postAddProduct(req.body, image).then((response) => {
   },
 
   editViewProduct: (req, res) => {
-    let admins = req.session.admin;
     adminProductHelpers.viewAddCategory().then((response) => {
       var procategory = response;
       adminProductHelpers.editProduct(req.params.id).then((response) => {
@@ -54,7 +52,7 @@ adminProductHelpers.postAddProduct(req.body, image).then((response) => {
           layout: "adminLayout",
           editproduct,
           procategory,
-          admins,
+
           adminlogin: true,
         });
       });
@@ -63,9 +61,10 @@ adminProductHelpers.postAddProduct(req.body, image).then((response) => {
 
   //posteditaddproduct
 
-  postAddEditProduct: async(req, res) => {
-
-    let oldProductDetails = await adminProductHelpers.productImage(req.params.id);
+  postAddEditProduct: async (req, res) => {
+    let oldProductDetails = await adminProductHelpers.productImage(
+      req.params.id
+    );
     let oldImageArray = oldProductDetails.Image;
     let Editedimages = [];
     // console.log("oldImageArray",req.files.image1);
@@ -92,7 +91,6 @@ adminProductHelpers.postAddProduct(req.body, image).then((response) => {
     } else {
       Editedimages[3] = oldImageArray[3];
     }
-
 
     adminProductHelpers
       .postEditProduct(req.params.id, req.body, Editedimages)

@@ -110,6 +110,7 @@ module.exports = {
 
   totalCheckOutAmount: (userId) => {
     return new Promise(async (resolve, reject) => {
+      
       const id = await user.cart
         .aggregate([
           {
