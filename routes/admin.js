@@ -100,6 +100,10 @@ router.get("/add_productoffer",auths.auth,adminoffer.productoffer)
 router.post('/productoffer',auths.auth,adminoffer.productofferajax)
 
 
+router.put('/removeoffer', auths.auth, adminoffer.removeofferajax);
+
+
+
 
 
 

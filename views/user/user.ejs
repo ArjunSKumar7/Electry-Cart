@@ -611,8 +611,8 @@
             <% latestproducts.forEach(function(latestproducts) { %>
             <div class="card-1">
               <figure class="img-hover-scale overflow-hidden">
-                <a href="shop-grid-right.html"
-                  ><img src="/uploads/<%=latestproducts.Image[0]%>" alt=""
+                <a href="/viewProductDetails/<%=latestproducts._id %> "
+                  ><img src="/uploads/<%=latestproducts.Image[0]%>" alt="" width="280px" height="280px"
                 /></a>
               </figure>
               <h5><a href="shop-grid-right.html"><%=latestproducts.Productname%></a></h5>

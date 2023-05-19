@@ -49,36 +49,38 @@
                                     <td id="totalprice<%=response._id%>">
                                         <%=response.oldPrice%>
                                     </td>
-                                  <% } else { %>
-                                    <td id="totalprice<%=response._id%>">
-                                        <%=response.Price%>
-                                    </td>
-                                  <% } %>
-                                  
-                               
-                                <td>
-                                    <input type="number" value="<%=response.offerpercentage%>" name="offerPercentage" id="offerPercentage<%=response._id%>"
+                                    <% } else { %>
+                                        <td id="totalprice<%=response._id%>">
+                                            <%=response.Price%>
+                                        </td>
+                                        <% } %>
+
+
+                                            <td>
+                                                <input type="number" value="<%=response.offerpercentage%>"
+                                                    name="offerPercentage" id="offerPercentage<%=response._id%>" min="0"
+                                                    max="100" step="1" onchange="calculateoffer('<%=response._id%>')">
+                                            </td>
+
+                                            <td id="offerprice<%=response._id%>">
+                                                <%=response.Price%>
+                                            </td>
 
 
 
-                                        min="0" max="100" step="1" onchange="calculateoffer('<%=response._id%>')">
-                                </td>
-
-                                <td id="offerprice<%=response._id%>"><%=response.Price%> </td>
-
-
-                                
-                                <td>
-                                    <%=response.category%>
-                                </td>
+                                            <td>
+                                                <%=response.category%>
+                                            </td>
 
 
-                                <td><img src='/uploads/<%= response.Image[0]%>' alt="" style="width:50px;height:50px" ;>
-                                </td>
+                                            <td><img src='/uploads/<%= response.Image[0]%>' alt=""
+                                                    style="width:50px;height:50px" ;>
+                                            </td>
 
-                                <td>
-                                <a href =""  class="btn btn-success">submit</a>
-                            </td>
+                                            <td>
+                                                <a href="" class="btn btn-success"
+                                                    onclick="removeoffer('<%=response._id%>')">Remove</a>
+                                            </td>
 
 
 
@@ -112,24 +114,64 @@
 
         const offerPrice = Math.round(total * (100 - percentage) / 100)
 
-       
+
 
 
 
         $.ajax({
-            url:'/admin/productoffer',
-            type:"post",
-            data:{
+            url: '/admin/productoffer',
+            type: "post",
+            data: {
                 offerPrice,
                 id,
                 Price,
                 offerpercentage
             },
-            success:(response)=>{
-                if(response.status)
-                document.getElementById("offerprice" + id).innerText = offerPrice
+            success: (response) => {
+                if (response.status)
+                    document.getElementById("offerprice" + id).innerText = offerPrice
             }
         })
 
+    }
+
+
+
+    function removeoffer(id) {
+        let removePrice = document.getElementById("totalprice" + id).innerText
+        removePrice=parseInt(removePrice)
+        event.preventDefault(); // Add this line to prevent default behavior
+
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, remove it!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/admin/removeoffer',
+                    method: 'PUT',
+                    data: {
+                        offerId: id,
+                        removePrice:removePrice
+                    },
+                    success: (response) => {
+                        if (response) {
+                            location.reload()
+                        }
+                    },
+                });
+                Swal.fire(
+                    'Removed!',
+                    'This offer has been removed.',
+                    'success'
+                );
+            }
+        });
     }
 </script>

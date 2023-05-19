@@ -1,355 +1,365 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.9/cropper.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.9/cropper.min.css" />
+
+<div class="container">
+  <div class="screen-overlay"></div>
+  <main class="main-wrap mx-auto">
+    <section class="content-main">
+      <div class="row">
+        <div class="col-12">
+          <div class="content-header">
+            <h2 class="content-title">Add New Product</h2>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="card mb-4">
+            <div class="card-body">
+              <form class="myForm" id="myForm" method="post" action="/admin/addProduct" enctype="multipart/form-data">
+                <div class="row">
+                  <div class="col-lg-6 mb-3">
+                    <label for="product_name" class="form-label">Name</label>
+                    <input type="text" name="name" placeholder="Type here" class="form-control" id="name">
+                    <p id="error1" class="text-danger"></p>
+                  </div>
+                  <div class="col-lg-6 mb-3">
+                    <label for="product_brand" class="form-label">Brand</label>
+                    <input type="text" name="brand" placeholder="Type here" class="form-control" id="brand">
+                    <p id="error2" class="text-danger"></p>
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <label class="form-label">Description</label>
+                  <textarea placeholder="Type here" name="description" id="description" class="form-control" rows="4"></textarea>
+                  <p id="error3" class="text-danger"></p>
+                </div>
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="mb-4">
+                      <label class="form-label">Price</label>
+                      <div class="row gx-2">
+                        <input placeholder="₹" name="price" id="price" type="text" class="form-control">
+                        <p id="error4" class="text-danger"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="mb-4">
+                      <label class="form-label">Quantity</label>
+                      <input name="quantity" id="quantity" type="number" min="1" max="100" required class="form-control">
+                      <p id="error5" class="text-danger"></p>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <label class="form-label">Category</label>
+                    <select class="form-select" name="category" id="category">
+                      <% categories.forEach(function(item) { %>
+                      <option value="<%= item.category %>"> <%= item.category %> </option>
+                      <% }); %>
+                    </select>
+                    <p id="error6" class="text-danger"></p>
+                  </div>
+                  <div class="col-lg-4">
+                    <label class="form-label">Sub Category</label>
+                    <select class="form-select" name="sub_category" id="sub_category">
+                      <option value="">-- Please select a category first --</option>
+                    </select>
+                    <p id="error7" class="text-danger"></p>
+                  </div>
 
 
-08-05-2023  02:33 PM    <DIR>          .
-    10-01-2023  03:46 PM             5,322 -original-imaghxemnnnkd8bg.webp
-    09-01-2023  02:34 PM     8,181,652,270 02 [HowToFree.Org] Udemy - Node.js, Express, MongoDB & More The Complete Bootcamp 2020.zip
-    05-12-2022  07:23 PM           388,413 0912-learning-mongodb.pdf
-    11-11-2022  08:06 PM            11,347 1 - Course Structure and Projects English.srt
-    10-04-2022  05:19 PM           730,596 10TH.pdf
-    06-01-2023  01:00 PM             4,039 2.jfif
-    23-01-2022  02:02 PM           280,518 2019 May EC409-B - ktu qbank.pdf
-    09-01-2023  02:35 PM     9,915,125,912 2020 p1.zip
-    23-01-2022  01:06 PM           531,665 2020-09-18SupplementaryEC409EC409-E - ktu qbank.pdf
-    22-08-2022  04:41 PM           256,662 2312204271266701000.pdf
-    18-05-2022  06:40 PM            10,246 29-ARJUN_S_KUMAR_SIGNATURE.jpg
-    31-03-2023  11:09 AM         5,507,062 580-2023-KTUractifiedoforder7.pdf
-    17-05-2021  09:06 AM         2,758,386 5f50e50ae8271836f5017ae9_all_UPSTOX3235c29bc7354674ae03f6f84e3da353_SIGNED.pdf
-    01-06-2022  04:27 PM           509,440 5_2019_01_19!11_45_30_PM.ppt
-    22-06-2020  05:05 PM            60,464 881054111144675_encrypt_signedFinal.pdf
-    18-03-2023  07:08 PM         7,032,832 9fed6464-b33d-4bb7-a771-3b6389b6441c
-    13-03-2022  10:28 PM            99,916 @2022.jpg
-    22-03-2023  10:45 PM           808,570 aa1e9578c5-p-02.pdf
-    03-09-2022  09:21 PM           578,060 AAI recruitment 2022.pdf
-    22-04-2023  06:26 AM           689,914 ab-fhmRqhD_dYg-unsplash.jpg
-    07-11-2022  08:28 PM             6,631 AFFIRMATION.docx
-    31-12-2020  07:24 PM           141,153 ansa aadhaar.pdf
-    09-12-2022  11:23 PM            16,396 Arj Audio (1).ogg
-    09-12-2022  11:22 PM            16,396 Arj Audio.ogg
-    19-05-2022  11:42 AM           414,488 ARJUN PAN CARD.pdf
-    19-05-2022  11:48 AM           123,904 ARJUN PAN CARD_.pdf
-    19-12-2021  07:48 AM            55,413 ARJUN S KUMAR (1).jpeg
-    01-01-2022  08:47 PM            36,842 ARJUN S KUMAR (1).jpg
-    14-11-2022  09:55 AM           241,193 ARJUN S KUMAR (2).jpeg
-    13-09-2021  07:04 PM            76,112 ARJUN S KUMAR DL.pdf
-    26-01-2023  11:48 AM           337,123 Arjun S Kumar RESUME (1).pdf
-    30-07-2022  11:44 AM           336,192 Arjun S Kumar Resume ..pdf
-    28-09-2022  06:31 PM           337,123 Arjun S Kumar Resume....pdf
-    09-10-2022  02:46 PM           337,123 Arjun S Kumar RESUME.pdf
-    18-05-2022  05:43 PM             7,914 ARJUN S KUMAR SIGNATURE.jpg
-    26-11-2021  11:14 AM            55,413 ARJUN S KUMAR.jpeg
-    18-06-2022  11:36 AM             5,100 ARJUN S KUMAR.jpg
-    27-06-2020  07:42 PM           107,538 ARJUN S KUMAR_MTA Introduction to Programming Using Python (98-381) .pdf
-    16-01-2023  12:18 AM             2,413 arjunskumar2000@gmail.com.pdf
-    17-09-2022  05:14 PM            21,784 array (1).txt
-    17-09-2022  05:14 PM            20,579 Array pdf patterns.txt
-    17-09-2022  05:14 PM            14,025 array-1.txt
-    17-09-2022  05:14 PM           132,269 Array.pdf
-    17-09-2022  05:14 PM            21,322 array.txt
-    25-10-2022  08:43 PM            22,056 arrays.rar
-    28-04-2021  09:57 AM           183,374 asdsdsdsdsdsdsd.JPG
-    21-11-2022  08:52 PM        84,311,371 Asynchronous JavaScript & EVENT LOOP from scratch 🔥 _ Namaste JavaScript Ep.15.mp4
-    13-01-2023  02:07 AM        10,840,133 Atomic habit audio report (mp3cut.net).m4a
-    13-01-2023  02:06 AM        10,843,105 Atomic habit audio report.m4a
-    12-01-2023  08:46 PM         6,150,949 Atomic Habits by James Clear (PDF) PDFDrive ( PDFDrive ).pdf
-    12-09-2022  02:23 PM       198,986,592 AtomSetup-x64.exe
-    07-11-2022  11:26 PM            10,265 attacks.jfif
-    08-01-2023  03:20 PM             6,834 Auverse-main.zip
-    22-10-2021  12:27 AM            54,091 AWS.pdf
-    14-09-2022  07:13 PM            93,852 BCE52 Final workspace.pdf
-    22-04-2023  01:54 PM        39,953,740 Bigshopper-E-Commerce-Website-master.zip
-    12-11-2022  06:05 PM       399,009,716 Bootstrap CSS Framework - Full Course for Beginners.mp4
-    10-11-2022  02:38 PM         1,452,180 bootstrap-5.2.2-dist.zip
-    11-12-2022  09:52 AM            19,748 Brospeaks - Tech Seminar Topics.docx
-    07-11-2022  10:13 PM           717,926 CamScanner 11-07-2022 22.10.40.pdf
-    20-11-2022  11:55 PM         4,159,856 CamScanner 11-20-2022 23.31.59 (1).pdf
-    21-11-2022  12:01 AM         4,159,856 CamScanner 11-20-2022 23.31.59 (2).pdf
-    20-11-2022  11:35 PM         3,778,761 CamScanner 11-20-2022 23.31.59.pdf
-    27-12-2022  10:09 AM         3,289,463 Caraft Free Website Template - Free-CSS.com.zip
-    13-11-2022  07:17 PM         3,239,695 CC_Unit_1.pdf
-    10-06-2021  03:03 PM            20,565 CH.JPG
-    02-01-2023  02:09 PM             8,819 cirt.png
-    17-01-2022  11:30 AM           353,101 cocubes-report-3476661.pdf
-    08-11-2021  07:46 PM           181,026 cocubess.png
-    10-04-2022  05:01 PM           108,381 ConversionofGPAtoPercentage.pdf
-    18-09-2022  08:37 AM           407,342 Copy of Week 0.1_ Assignments .docx
-    11-11-2022  07:02 PM             3,164 CryptoCoin-1.0.0.zip
-    22-02-2022  04:06 PM           532,386 CS theory quns&ans_1.pdf
-    22-02-2022  04:06 PM         4,135,248 CS theory quns&ans_2.pdf
-    22-10-2022  06:56 PM           717,745 cst205-oop-syllabus-35-46-from-computer-science-.pdf
-    28-12-2022  11:37 PM        17,305,405 cyberkraft-main.zip
-    27-04-2023  01:42 PM        95,283,010 Cyberkraftv1-main.zip
-    12-01-2023  08:13 PM             9,095 davinci.jfif
-    18-02-2021  12:31 AM            14,386 dl.pdf
-    08-12-2022  01:20 AM             4,736 download (1).png
-    04-12-2022  07:26 PM         2,263,521 Download Complete Free JavaScript Programming Book PDF.pdf
-    18-12-2022  06:56 PM             1,958 download lifi.png
-    08-12-2022  12:28 AM             4,142 download.png
-    16-03-2023  10:45 AM           717,928 driverfixwebdl-9326808277.exe
-    11-05-2021  08:18 PM            19,915 DSC_7227-min.JPG
-    10-12-2020  01:25 PM           106,982 DSC_7227.JPG
-    28-04-2021  09:56 AM           159,345 dsdasdsdasdsdasd.JPG
-    06-11-2022  08:56 PM           164,901 EC407 Computer Communication.pdf
-    23-01-2022  01:29 PM           104,303 ec409-b.tech-s7-control-systems-dec-2019 (1).pdf
-    23-01-2022  01:37 PM           104,303 ec409-b.tech-s7-control-systems-dec-2019 (2).pdf
-    23-01-2022  02:02 PM           104,303 ec409-b.tech-s7-control-systems-dec-2019 (3).pdf
-    23-01-2022  01:29 PM           104,303 ec409-b.tech-s7-control-systems-dec-2019.pdf
-    22-03-2023  11:04 AM        87,452,731 ecommerce-main.zip
-    16-05-2020  06:58 PM        44,081,152 EpicInstaller-10.15.2.msi
-    07-01-2023  10:44 AM    <DIR>          evara-frontend (1)
-    07-01-2023  10:48 AM    <DIR>          evara-frontend (1) 2
-    06-01-2023  11:49 PM         9,729,584 evara-frontend (1).rar
-    06-01-2023  05:21 PM         9,729,584 evara-frontend.rar
-    07-01-2023  12:08 PM        81,913,399 evara-project -1.zip
-    09-01-2023  06:33 PM        49,564,501 evara-project after8 (2) (1).zip
-    30-12-2022  02:44 PM        49,564,501 evara-project after8 (2).zip
-    27-12-2022  07:06 PM        49,034,141 evara-project.zip
-    27-12-2022  01:54 PM        21,066,936 Evara_updated2 (1).zip
-    27-12-2022  10:26 AM        21,066,936 Evara_updated2.zip
-    29-12-2022  10:55 PM        22,176,533 Evara_Working.zip
-    06-01-2021  08:44 PM           178,776 fdfdfsdf.pdf
-    12-01-2023  08:29 PM            25,110 Feedback Session.pdf
-    26-12-2022  03:06 PM            36,721 fgffff.dmm
-    20-12-2022  05:56 PM        97,467,040 FigmaSetup.exe
-    14-06-2020  08:40 PM         1,227,336 flashplayer32ppau_gc_install.exe
-    08-06-2020  06:29 PM         1,224,264 flashplayer32pp_gc_install.exe
-    19-09-2022  07:54 PM            87,452 Fumigation Pattern Questions.docx.pdf
-    17-09-2022  05:14 PM           651,727 fumigation.pdf
-    18-03-2023  07:18 PM       131,458,368 GeForce_Experience_v3.27.0.112.exe
-    17-07-2020  12:49 PM               130 General.zip
-    06-01-2021  08:42 PM           176,035 ggff.pdf
-    31-10-2022  06:12 PM        53,360,624 Git-2.38.1-64-bit.exe
-    18-07-2020  06:48 PM           418,834 gratisexam.com-Microsoft.Braindumps.98-381.v2018-07-27.by.Donna.21q.pdf
-    18-07-2020  06:49 PM           648,353 gratisexam.com-Microsoft.MTA.Certkiller.98-381.v2018-05-05.by.Luca.20q.pdf
-    18-07-2020  06:48 PM           873,105 gratisexam.com-Microsoft.Pass4sureexam.98-381.v2019-01-18.by.Hudson.24q.pdf
-    18-07-2020  06:48 PM           645,895 gratisexam.com-Microsoft.PracticeTest.98-381.v2018-05-20.by.Corbin.19q.pdf
-    18-07-2020  06:48 PM           398,336 gratisexam.com-Microsoft.PracticeTest.98-381.v2018-08-10.by.Benson.20q.pdf
-    18-07-2020  06:48 PM           667,141 gratisexam.com-Microsoft.Selftestengine.98-381.v2018-10-10.by.Bobby.22q.pdf
-    27-05-2021  12:14 PM           534,336 GuviCertification - s0r077KIg1986tO226.png
-    05-05-2023  08:42 PM               520 heart-solid.svg
-    26-12-2022  01:39 PM           774,881 home-screen-concept-illustration.zip
-    04-11-2022  06:29 PM           120,681 home_cards.png
-    05-11-2022  11:29 AM           197,211 home_dex.png
-    10-01-2023  06:30 PM            31,469 i phone 2.avif
-    18-10-2022  08:33 PM       628,520,112 ideaIC-2022.2.3.exe
-    02-05-2023  06:42 PM            24,574 image_2023-05-01_144745334.png
-    15-04-2022  12:30 AM         1,919,222 IMG20220414204148 (1).jpg
-    15-04-2022  12:29 AM         1,919,222 IMG20220414204148.jpg
-    14-11-2022  12:20 AM           162,610 IMG_20190805_060956_HDR-01 (1) (1).jpeg
-    14-11-2022  12:20 AM         3,125,966 IMG_20190805_060956_HDR-01 (1).jpeg
-    22-03-2023  10:30 PM         3,125,966 IMG_20190805_060956_HDR-01 (2).jpeg
-    18-06-2020  10:13 PM         3,125,966 IMG_20190805_060956_HDR-01.jpeg
-    16-04-2022  09:25 PM         4,255,336 IMG_20220416_205916.jpg
-    18-05-2022  05:41 PM            20,673 IMG_20220518_173002-01.jpg
-    04-10-2022  11:33 AM         4,946,209 IMG_20220929_151908.jpg
-    10-10-2022  05:51 PM         1,977,041 IMG_20221002_100101.jpg
-    14-11-2022  12:07 AM           184,884 IMG_20221114_000447 (1).jpg
-    28-01-2023  03:50 PM         5,284,965 IMG_20230127_113334.jpg
-    22-03-2023  10:32 PM         2,267,597 IMG_20230322_222609361.jpg
-    01-05-2023  05:51 PM           110,704 invoice (1).pdf
-    04-05-2023  07:05 PM           110,633 invoice (2).pdf
-    05-05-2023  01:23 PM           110,633 invoice (3).pdf
-    26-09-2020  09:50 AM            47,314 invoice.pdf
-    10-01-2023  06:29 PM            21,952 iphone img.avif
-    10-01-2023  06:31 PM           676,495 isaac-martin-5Tm4YRqnNcM-unsplash.jpg
-    17-09-2022  05:14 PM            80,133 Java all Concepts.pdf
-    17-09-2022  10:27 AM       160,901,280 jdk-18_windows-x64_bin.exe
-    07-05-2023  08:29 PM             9,567 jquery-fireworks-1.0.4.tgz
-    28-04-2023  11:59 AM        74,832,349 justkart-ecommerce-website-main.zip
-    27-12-2022  10:11 AM        10,699,330 karma-master.zip
-    08-05-2023  02:33 PM             1,678 key.pem
-    20-02-2023  04:11 PM           325,965 KTU-EX-II1-5300-2018(39).pdf
-    08-05-2023  02:29 PM           297,521 KTU-EX-II1-5300-2018(7).pdf
-    12-11-2022  10:47 AM             6,768 Leave Application.docx
-    17-09-2022  05:14 PM           574,309 Lesson_13.pdf
-    11-12-2022  10:50 PM         2,169,322 LI-FI.docx
-    30-08-2021  07:43 PM            94,328 licence img.jpeg
-    19-01-2023  08:23 PM        65,800,164 Linked List Data Structure ｜ JavaScript.mp4
-    19-01-2023  08:25 PM        72,126,349 Linked List in JavaScript for Beginners.mp4
-    19-01-2023  11:31 AM         2,047,370 LionWitchWardrobe_CSL.pdf
-    18-02-2021  10:51 AM           170,878 LL.pdf
-    29-10-2021  10:31 AM           131,657 math-20211029.svg
-    24-01-2022  11:21 AM           804,540 MAY 2019 (1).pdf
-    30-05-2022  04:30 PM        12,730,232 mechanics Theory.pdf
-    12-04-2021  02:40 PM         1,467,603 Mechanics.pdf
-    15-09-2022  10:30 AM            86,528 mingw-get-setup.exe
-    18-12-2022  08:17 PM         2,176,620 mix_2m16s (audio-joiner.com).mp3
-    25-09-2022  04:40 PM        10,578,707 Mock (1).pdf
-    19-09-2022  07:54 PM           243,911 Mock Questions (1).pdf
-    17-09-2022  05:14 PM           243,911 Mock Questions.pdf
-    25-09-2022  12:52 PM        10,578,707 Mock.pdf
-    28-11-2022  10:54 PM           346,497 Mod 1-CYBER SECURITY- Ktunotes.in.pdf
-    26-12-2022  03:03 PM             8,633 Module List.docx
-    17-10-2022  06:51 PM         1,542,261 module-2-chapter-2.pdf
-    06-12-2022  08:46 PM            82,508 MongoDB-Aggregation-Tutorial-master.zip
-    05-12-2022  07:21 PM         1,306,418 mongodb_tutorial (1).pdf
-    05-12-2022  07:20 PM           782,882 mongodb_tutorial.pdf
-    03-12-2022  11:24 AM    <DIR>          mongosh-1.6.1-win32-x64
-    03-12-2022  10:07 AM        41,364,162 mongosh-1.6.1-win32-x64.zip
-    22-12-2022  05:28 PM        80,709,092 Moon Modeler-5.2.0-x64.zip
-    25-10-2021  07:07 PM           236,322 MTA CERTIFICATE.pdf
-    27-12-2022  10:07 AM           804,564 MultiShop Free Website Template - Free-CSS.com.zip
-    17-03-2023  11:23 AM        36,012,381 New Pro - week8 fin.zip
-    15-12-2022  03:30 PM        30,522,869 new-login.zip
-    14-11-2022  09:39 AM         8,139,532 newdp.jpg
-    25-11-2022  09:52 AM        30,683,136 node-v18.12.1-x64.msi
-    09-11-2022  02:57 PM           318,362 Notification.pdf
-    17-09-2022  05:14 PM            97,378 null.pdf
-    16-10-2020  10:59 AM        74,839,360 OBS-Studio-26.0.2-Full-Installer-x64.exe
-    06-11-2021  10:56 AM            68,226 OD114101538917532000.pdf
-    02-12-2022  09:44 AM            38,373 Odw7UIyZ (1).jpg
-    01-12-2022  05:15 PM            38,373 Odw7UIyZ.jpg
-    28-11-2021  06:33 PM         8,102,032 OfficeSetup.exe
-    17-09-2022  05:14 PM         1,059,697 OOPS Concepts in Java PDF Download.pdf
-    17-09-2022  05:14 PM           112,820 OOPS in Java.pdf
-    07-10-2022  10:07 AM    <DIR>          opera autoupdate
-    04-11-2021  10:36 PM         2,608,400 OperaSetup.exe
-    08-11-2022  05:39 PM       120,631,020 Part 6.1 _ Javascript _ Web Designing Malayalam Tutorial.mp4
-    11-09-2022  01:48 PM         1,742,697 PASP.pdf
-    17-09-2022  05:14 PM         1,242,451 pattern fumigation.pdf
-    17-09-2022  05:14 PM            22,141 pattern.txt
-    29-03-2023  05:24 PM         4,095,787 PEDALX-main.zip
-    13-11-2022  11:33 AM             4,370 personal-website-main.zip
-    10-01-2023  05:59 PM         3,978,178 pexels-konstantin-mishchenko-1926769.jpg
-    26-12-2022  07:34 PM            17,753 PHONE STORE.dmm
-    04-04-2023  09:31 PM        38,121,001 Phone-Cart--main.zip
-    06-01-2023  01:00 PM             6,053 phone1.jfif
-    15-03-2023  10:17 AM            10,304 phonekart-main (1).zip
-    09-01-2023  05:30 PM            10,304 phonekart-main.zip
-    14-09-2020  10:28 AM         2,108,280 Photoshop_Set-Up.exe
-    22-03-2023  10:46 PM           762,205 plustwo.pdf
-    22-05-2022  07:23 PM           115,669 pppppppppp.JPG
-    07-01-2023  07:29 PM        82,349,808 Preparing the API Server - #nodejs Build Complete E-Commerce Web #api -.mp4
-    14-11-2022  12:06 AM         5,651,341 pro pic.jpg
-    07-01-2023  07:32 PM        56,770,051 Product Image u0026 Gallery Upload - #nodejs Build Complete E-Commerce Web #api -.mp4
-    07-05-2022  01:27 PM            30,187 RCMain.pdf
-    02-01-2021  10:07 AM           104,770 receipt (1).pdf
-    02-01-2021  10:18 AM           104,768 receipt (2).pdf
-    02-01-2021  09:56 AM           104,757 receipt.pdf
-    09-02-2023  07:28 PM             6,826 RegisteredStudentBillReport (Generated on 09_02_2023 07_28 PM).pdf
-    08-11-2022  06:00 PM       391,395,324 Restaurant Website Design Using Bootstrap 5 _ Bootstrap Landing Tutorial Step By Step.mp4
-    23-01-2022  02:02 PM            83,484 s7-control-systems-dec-2018.pdf
-    05-05-2023  10:56 AM           908,583 SalesReport1158051033.pdf
-    05-05-2023  07:15 PM         1,099,709 SalesReport8906402314.pdf
-    18-03-2023  06:05 PM    <DIR>          scoped_dir14040_303935736
-    16-03-2023  10:44 AM    <DIR>          scoped_dir9268_84293454
-    18-04-2022  12:10 AM            77,365 Screenshot 2022-04-18 001009.jpg
-    18-06-2022  08:21 PM            29,893 Screenshot 2022-06-18 202114.jpg
-    24-06-2022  08:49 PM            48,886 Screenshot 2022-06-24 204906.jpg
-    16-03-2023  10:30 AM            96,096 SerialNumberDetectionTool.exe
-    10-01-2023  06:33 PM         1,012,731 shiwa-id-Uae7ouMw91A-unsplash.jpg
-    27-05-2021  09:08 AM            97,991 shop-cart.html
-    06-01-2023  11:48 PM           120,184 shop-product-full.html
-    30-11-2022  08:13 AM            28,414 ShoppingCart-main (1).zip
-    30-11-2022  08:04 AM           131,730 ShoppingCart-main.zip
-    18-06-2022  11:37 AM             2,771 SIGN.JPEG.jpg
-    21-11-2022  08:41 PM       162,003,676 SnapSave.io-Callbacks, Event Loop, Promises, Async_Await JS _ Part 1_ ജാവാസ്ക്രിപ്റ്റ് _ javascript malaylam.mp4
-    01-01-2023  05:59 PM        58,866,363 SnapSave.io-javascript callback , promise , async await malayalam tutorial _ web development in malayalam.mp4
-    16-11-2022  03:06 PM     1,087,891,176 SnapSave.io-JavaScript Tutorial_ Full Course for Beginners �� (2022)-(1080p60).mp4
-    21-11-2022  08:54 PM       174,859,567 SnapSave.io-map, filter & reduce �� Namaste JavaScript Ep. 19 ��-(1080p).mp4
-    27-11-2022  04:21 PM       184,959,621 SnapSave.io-Node.js Passport Login System Tutorial-(1080p60).mp4
-    26-11-2022  08:20 PM       261,140,381 SnapSave.io-Part 15 _ Library installing, Card view, Array created for product, Express handle bars_ Part(1)-(1080p60).mp4
-    26-11-2022  08:24 PM       123,714,970 SnapSave.io-Part 16 _ Route setting _  Project E-commerce Application( Part-2)-(1080p60).mp4
-    20-03-2023  09:14 PM       225,803,629 SnapSave.io-Part 21 _ Edit product _  Project E-commerce Application( Part-7)-(1080p60).mp4
-    20-03-2023  09:15 PM       200,305,223 SnapSave.io-Part 22 _ Edit image, Add to cart , Aggregation _ Project E-commerce Application( Part-8)-(1080p60) (1).mp4
-    09-01-2023  09:02 PM       200,305,223 SnapSave.io-Part 22 _ Edit image, Add to cart , Aggregation _ Project E-commerce Application( Part-8)-(1080p60).mp4
-    20-03-2023  09:18 PM       208,247,379 SnapSave.io-Part 23 _ Add to cart (Cont.) _Project E-commerce Application( Part-9)-(1080p60).mp4
-    20-03-2023  09:19 PM       215,857,276 SnapSave.io-Part 24 _ Add to Cart(Cont.),Manage Cart Product Quantity _ Project E-commerce Application Part-10-(1080p60).mp4
-    25-11-2022  08:37 PM       211,699,350 SnapSave.io-Part 6 _ Node.js - Server Creation, Serving HTML File _ Web Development Challenge in Malayalam-(720p60).mp4
-    25-11-2022  04:22 PM       410,131,147 SnapSave.io-Part 7 _ Node.js Routing and GET Request Without Express _ Web Development Challenge in Malayalam-(1080p60).mp4
-    25-11-2022  03:50 PM       199,112,418 SnapSave.io-Part 8 _ Introduction to Express _ Web Development Challenge in Malayalam-(1080p60).mp4
-    25-11-2022  08:35 PM       118,981,868 SnapSave.io-Part 9 _ Express and Express Generator _ Web Development Challenge in Malayalam-(720p60).mp4
-    11-01-2023  10:14 AM       165,424,035 SnapSave.io-Setup Products  (1).mp4
-    04-01-2023  08:50 PM        59,716,799 SnapSave.io-Uploading Images with Multer _ NodeJS and ExpressJS.mp4
-    12-01-2023  10:22 AM        53,936,236 SnapSave.io-User Forgot Password API Features _ NFT Marketplace API Development Course 2023-(1080p) (1).mp4
-    12-01-2023  10:21 AM        53,936,236 SnapSave.io-User Forgot Password API Features _ NFT Marketplace API Development Course 2023-(1080p).mp4
-    05-01-2023  07:11 PM         4,546,185 sneat-1.0.0.zip
-    22-03-2023  10:38 PM           730,596 sslc.pdf
-    11-11-2022  07:57 PM               626 starbuck-responsive-main.zip
-    30-12-2022  02:24 AM             6,789 Subject_ Leave Application (1).docx
-    16-01-2023  10:03 PM            30,211 Subject_ Leave Application (1).pdf
-    03-02-2023  08:16 PM            28,679 Subject_ Leave Application (2).pdf
-    14-03-2023  07:30 AM            28,651 Subject_ Leave Application (3) (1).pdf
-    14-03-2023  07:30 AM            28,651 Subject_ Leave Application (3).pdf
-    11-11-2022  08:47 AM             6,786 Subject_ Leave Application.docx
-    30-12-2022  02:24 AM            30,560 Subject_ Leave Application.pdf
-    17-07-2020  10:28 AM        98,261,768 Teams_windows_x64.exe
-    25-10-2022  07:45 PM             3,494 temp.rar
-    05-05-2023  11:02 AM            16,095 test (1).xlsx
-    05-05-2023  11:41 AM            16,012 test (10).xlsx
-    05-05-2023  11:48 AM            16,012 test (11).xlsx
-    05-05-2023  11:51 AM            16,431 test (12).xlsx
-    05-05-2023  03:39 PM            16,711 test (13).xlsx
-    05-05-2023  11:14 AM            16,012 test (2).xlsx
-    05-05-2023  11:20 AM            16,012 test (3).xlsx
-    05-05-2023  11:22 AM            16,049 test (4).xlsx
-    05-05-2023  11:25 AM            16,049 test (5).xlsx
-    05-05-2023  11:28 AM            16,049 test (6).xlsx
-    05-05-2023  11:36 AM            16,012 test (7).xlsx
-    05-05-2023  11:38 AM            16,012 test (8).xlsx
-    05-05-2023  11:40 AM            16,012 test (9).xlsx
-    05-05-2023  10:48 AM            16,012 test.xlsx
-    05-05-2023  04:10 PM           865,915 Three Thousand Stitches by Sudha Murthy.pdf
-    29-11-2022  12:44 AM             6,886 thumb1.jfif
-    14-11-2022  01:54 PM             7,888 thumbnail week 2.png
-    07-01-2023  10:14 AM        60,800,430 TIMES HUB.zip
-    06-05-2023  05:34 PM           104,336 Topics for the BroSpeaks 3rd Edition (2) (1) (2).pdf
-    19-06-2022  09:54 AM           142,098 trip.jpg
-    06-11-2022  05:47 PM            14,621 trust_logotype.svg
-    27-06-2021  07:03 PM               435 Udacity.vcf
-    09-01-2023  02:22 PM           140,220 udemy-node-js-express-mongodb-more-the-complete-bootcamp-2020 (1).torrent
-    09-01-2023  02:22 PM           140,220 udemy-node-js-express-mongodb-more-the-complete-bootcamp-2020.torrent
-    12-12-2022  11:44 AM            25,203 Untitled document (1).pdf
-    15-12-2022  12:31 AM            33,788 Untitled document (2).pdf
-    15-12-2022  09:30 AM            34,852 Untitled document (3).pdf
-    06-05-2023  06:59 PM             9,255 Untitled document.docx
-    12-12-2022  11:09 AM            25,203 Untitled document.pdf
-    17-05-2021  09:04 AM         2,699,482 UPSTOX3235c29bc7354674ae03f6f84e3da353_FPUPST170521UPFA5E293N7Y4G48.pdf
-    17-05-2021  09:00 AM         2,699,482 UPSTOX92d84d4f543e4b378fc4353cbd2bc051_FPUPST170521UP2WQN7WYRRPV278.pdf
-    07-01-2023  07:14 PM        14,155,680 Users u0026 Authentication- #nodejs Build Complete E-Commerce Web #api -.mp4
-    18-03-2023  06:05 PM        25,490,328 VC_redist.x64.exe
-    24-10-2022  10:46 PM         5,871,791 VID-20221023-WA0000.mp4
-    26-03-2022  05:24 PM         9,725,143 vidma_20220326_172417.mp4
-    31-10-2022  05:44 PM        86,038,200 VSCodeUserSetup-x64-1.72.2.exe
-    16-06-2021  02:06 PM           387,584 webex.exe
-    21-09-2022  02:45 PM           267,629 Week 0.1_ Assignments  (1).docx
-    08-11-2022  04:48 PM             8,813 Week 2_ Web Designing Basics.docx
-    25-12-2022  05:46 PM             8,374 week 7 seminar.jfif
-    08-11-2022  12:29 AM           122,388 week1.jpg
-    20-05-2021  09:19 AM            94,821 WELCOME_LETTER_2TA644_Sign.pdf
-    21-11-2022  12:30 AM         2,324,484 WhatsApp Audio 2022-11-21 at 12.24.24 AM.mp4
-    29-11-2022  12:08 AM         2,655,624 WhatsApp Audio 2022-11-29 at 12.08.24 AM.mp4
-    08-12-2022  12:48 AM         1,972,709 WhatsApp Audio 2022-12-08 at 12.47.07 AM.mp4
-    09-12-2022  01:29 AM         1,972,709 WhatsApp Audio 2022-12-09 at 1.28.46 AM.mp4
-    09-12-2022  01:29 AM         1,994,906 WhatsApp Audio 2022-12-09 at 1.29.03 AM.mp4
-    09-12-2022  11:24 PM            16,396 WhatsApp Audio 2022-12-09 at 11.19.38 PM.ogg
-    18-12-2022  06:41 PM         3,354,651 WhatsApp Audio 2022-12-18 at 6.40.53 PM.mp4
-    18-12-2022  08:16 PM         1,984,778 WhatsApp Audio 2022-12-18 at 8.16.04 PM.mp4
-    18-12-2022  08:16 PM           278,515 WhatsApp Audio 2022-12-18 at 8.16.22 PM.mp4
-    25-12-2022  01:29 PM         2,467,387 WhatsApp Audio 2022-12-25 at 1.29.43 PM.mp4
-    13-09-2021  06:59 PM            81,544 WhatsApp Image 2021-09-13 at 6.59.27 PM.jpeg
-    01-01-2022  08:49 PM            81,544 WhatsApp Image 2022-01-01 at 8.48.50 PM.jpeg
-    15-04-2022  12:32 AM           125,435 WhatsApp Image 2022-04-15 at 12.32.30 AM.jpeg
-    19-05-2022  11:30 AM           121,497 WhatsApp Image 2022-05-19 at 11.30.20 AM.jpeg
-    25-01-2023  11:46 AM            58,399 WhatsApp Image 2023-01-25 at 11.20.20 AM (1).jpeg
-    25-01-2023  11:46 AM            59,036 WhatsApp Image 2023-01-25 at 11.20.20 AM.jpeg
-    25-01-2023  11:47 AM            69,628 WhatsApp Image 2023-01-25 at 11.20.21 AM.jpeg
-    28-11-2022  01:03 AM         2,363,633 WhatsApp Video 2022-11-27 at 9.17.03 PM.mp4
-    08-12-2022  01:18 AM       287,250,338 win-20221208-00-59-33-pro_pcxi1jPX.mp4
-    12-12-2018  12:41 PM            82,697 wp1923022.jpg
-    12-12-2018  12:32 PM           126,805 wp1923051.jpg
-    31-01-2019  09:43 PM            45,199 xinput1_3.zip
-    06-11-2022  09:58 PM           940,059 Your paragraph text (1).mp4
-    06-11-2022  10:01 PM           312,869 Your paragraph text.jpg
-    06-11-2022  09:56 PM         1,022,434 Your paragraph text.mp4
-    25-03-2021  07:15 PM            81,062 YYGYY.JPG
-    20-11-2020  02:38 PM            83,288 Zoom_cm_fo42anktZ9vvrZo4_m0hcOQZ1m7d4ntctyc34Jv+KqAD4b29fEZah8@TNwFUVOop1L5dxUy_k714b9e7f54cef4b3_.exe
-    22-02-2023  11:49 PM             5,857 [English (auto-generated)] 7 Powerful Life Lessons From the Eagle __ MOTIVANTURE [DownSub.com].srt
-    22-02-2023  11:49 PM             3,160 [English (auto-generated)] 7 Powerful Life Lessons From the Eagle __ MOTIVANTURE [DownSub.com].txt
-    21-04-2023  10:25 AM            22,262 [English (auto-generated)] The Cube_ Saudi Arabia's Next Megaproject [DownSub.com].srt
-    21-04-2023  10:25 AM            11,932 [English (auto-generated)] The Cube_ Saudi Arabia's Next Megaproject [DownSub.com].txt
-    18-12-2022  06:24 PM            11,707 [English] After 27 Years in Prison, He Became President and Changed The Whole Country [DownSub.com].txt
-    12-11-2022  06:08 PM           173,850 [English] Bootstrap CSS Framework - Full Course for Beginners [DownSub.com].srt
-    12-11-2022  06:08 PM           128,967 [English] Bootstrap CSS Framework - Full Course for Beginners [DownSub.com].txt
-                 343 File(s) 26,877,807,735 bytes
-                   7 Dir(s)  167,998,353,408 bytes free
-    
+                </div>
+
+            </div>
+          </div> <!-- card end// -->
+        </div>
+        <div class="col-lg-6">
+          <div class="card mb-4">
+            <div class="card-header">
+              <h4>Media</h4>
+            </div>
+            <div class="input-upload">
+              <img src="/imgs/theme/upload.svg" id="imgView1" alt="">
+              <input class="form-control" id="input1" name="file" onchange="if (validateImage(this)) viewImage1(event),viewImage(event, 1)" type="file">
+            </div>
+            <div class="image-cropper" style="display:none;">
+              <img src="" id="croppedImg1" alt="">
+              <button type="button" id="saveButton1" class="btn-sm btn-primary">Save</button>
+            </div>
+
+          </div> <!-- card end// -->
+        </div>
+        <div class="col-lg-6">
+          <div class="card mb-4">
+            <div class="card-header">
+              <h4>Media</h4>
+            </div>
+            <div class="input-upload">
+              <img src="/imgs/theme/upload.svg" id="imgView2" alt="">
+              <input class="form-control" id="input2" name="file" onchange="if (validateImage(this)) viewImage2(event),viewImage(event, 2)" type="file">
+            </div>
+            <div class="image-cropper" style="display:none;">
+              <img src="" id="croppedImg2" alt="">
+              <button type="button" id="saveButton2" class="btn-sm btn-primary">Save</button>
+            </div>
+
+          </div> <!-- card end// -->
+        </div>
+        <div class="col-lg-6">
+          <div class="card mb-4">
+            <div class="card-header">
+              <h4>Media</h4>
+            </div>
+            <div class="input-upload">
+              <img src="/imgs/theme/upload.svg" id="imgView3" alt="">
+              <input class="form-control" id="input3" name="file" onchange="if (validateImage(this)) viewImage3(event),viewImage(event, 3)" type="file">
+            </div>
+            <div class="image-cropper" style="display:none;">
+              <img src="" id="croppedImg3" alt="">
+              <button type="button" id="saveButton3" class="btn-sm btn-primary">Save</button>
+            </div>
+
+          </div> <!-- card end// -->
+        </div>
+        <div class="col-lg-6">
+          <div class="card mb-4">
+            <div class="card-header">
+              <h4>Media</h4>
+            </div>
+            <div class="input-upload">
+              <img src="/imgs/theme/upload.svg" id="imgView4" alt="">
+              <input class="form-control" id="input4" name="file" onchange="if (validateImage(this)) viewImage4(event),viewImage(event, 4)" type="file">
+            </div>
+            <div class="image-cropper" style="display:none;">
+              <img src="" id="croppedImg4" alt="">
+              <button type="button" id="saveButton4" class="btn-sm btn-primary">Save</button>
+            </div>
+
+          </div> <!-- card end// -->
+        </div>
+        <div>
+          <button type="button" onclick="validate()" class="btn  btn-primary rounded font-sm mr-5 hover-up">Save</button>
+          <a href="/admin/dashboard"> <button class="btn  btn-danger rounded font-sm hover-up">Cancel</button></a>
+        </div>
+      </div>
+      </form>
+    </section> <!-- content-main end// -->
+</div>
+
+<script>
+  function viewImage1(event) {
+    document.getElementById('imgView1').src = URL.createObjectURL(event.target.files[0])
+  }
+
+  function viewImage2(event) {
+    document.getElementById('imgView2').src = URL.createObjectURL(event.target.files[0])
+  }
+
+  function viewImage3(event) {
+    document.getElementById('imgView3').src = URL.createObjectURL(event.target.files[0])
+  }
+
+  function viewImage4(event) {
+    document.getElementById('imgView4').src = URL.createObjectURL(event.target.files[0])
+  }
+</script>
+
+
+<script>
+  function validate() {
+
+    const name = document.getElementById('name')
+    const brand = document.getElementById('brand')
+    const description = document.getElementById('description')
+    const price = document.getElementById('price')
+    const quantity = document.getElementById('quantity')
+    const category = document.getElementById('category')
+    const subCategory = document.getElementById('sub_category')
+
+    const nameValue = name.value.trim()
+    const brandValue = brand.value.trim()
+    const descriptionValue = description.value.trim()
+    const priceValue = price.value.trim()
+    const quantityValue = quantity.value.trim()
+    const categoryValue = category.value.trim()
+    const subCategoryValue = subCategory.value.trim()
+
+    const error1 = name.parentElement.querySelector('p')
+    const error2 = brand.parentElement.querySelector('p')
+    const error3 = description.parentElement.querySelector('p')
+    const error4 = price.parentElement.querySelector('p')
+    const error5 = quantity.parentElement.querySelector('p')
+    const error6 = category.parentElement.querySelector('p')
+    const error7 = subCategory.parentElement.querySelector('p')
+
+    error1.innerText = ''
+    error2.innerText = ''
+    error3.innerText = ''
+    error4.innerText = ''
+    error5.innerText = ''
+    error6.innerText = ''
+    error7.innerText = ''
+
+    let flag = 1
+
+    if (nameValue == '') {
+      error1.innerText = "Product Name is required"
+      flag = 2
+    }
+    if (brandValue == '') {
+      error2.innerText = "Brand Name is required"
+      flag = 2
+    }
+    if (descriptionValue == '') {
+      error3.innerText = "Description is required"
+      flag = 2
+    }
+    if (priceValue == '') {
+      error4.innerText = "Price is required"
+      flag = 2
+    }
+    if (quantityValue == '') {
+      error5.innerText = "Quantity is required"
+      flag = 2
+    }
+    if (categoryValue == '') {
+      error6.innerText = "Category is required"
+      flag = 2
+    }
+    if(subCategoryValue == ''){
+      error7.innerText = 'Sub Category is required'
+      flag = 2
+    }
+
+    if (flag == 1) {
+      document.getElementById('myForm').submit()
+    }
+  }
+
+  function validateImage(fileInput) {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.avif|\.webp)$/i;
+    const maxSize = 5242880; // 5MB
+    const fileSize = fileInput.files[0].size;
+
+    if (!allowedExtensions.exec(fileInput.value)) {
+      swal({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please select an image file to upload!',
+      })
+      fileInput.value = "";
+      return false;
+    }
+
+    if (fileSize > maxSize) {
+      swal({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'File is too large. Please upload an image that is smaller than 5MB.',
+      })
+      fileInput.value = "";
+      return false;
+    }
+
+    return true;
+  }
+
+
+
+
+  function viewImage(event, index) {
+    let input = event.target;
+    let reader = new FileReader();
+
+    reader.onload = function() {
+      let dataURL = reader.result;
+      let image = document.getElementById('imgView' + index);
+      image.src = dataURL;
+
+      // Initialize Cropper.js on the image
+      let cropper = new Cropper(image, {
+        aspectRatio: 1 / 1, // Set the aspect ratio to 1:1 for square images
+        viewMode: 1, // Set the view mode to crop box
+        guides: true, // Show the crop guides
+        background: false, // Do not show the background behind the image
+        autoCropArea: 1, // Set the initial crop area to cover the whole image
+        zoomable: false // Disable zooming to keep the image size fixed
+      });
+
+      // Show the image cropper container
+      let cropperContainer = document.querySelector('#croppedImg' + index).parentNode;
+      cropperContainer.style.display = 'block';
+
+      // Update the cropped image when the "Save" button is clicked
+      let saveButton = document.querySelector('#saveButton' + index);
+      saveButton.addEventListener('click', async function() {
+        let croppedCanvas = cropper.getCroppedCanvas({
+          width: 1100, // Set the width of the cropped image to 400 pixels
+          height: 1100 // Set the height of the cropped image to 400 pixels
+        });
+        let croppedImage = document.getElementById("croppedImg" + index);
+        croppedImage.src = croppedCanvas.toDataURL('image/jpeg', 1.0);
+
+        // Generate a unique name for the cropped image file based on the current timestamp
+        let timestamp = new Date().getTime();
+        let fileName = `cropped-img-${timestamp}-${index}.png`;
+
+        await croppedCanvas.toBlob(blob => {
+          let input = document.getElementById('input' + index)
+          let imgFile = new File([blob], fileName, blob)
+          const fileList = new DataTransfer();
+          fileList.items.add(imgFile);
+          input.files = fileList.files
+        });
+        // cropperContainer.style.display = 'none';
+      });
+
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+
+  //to find the subcategories
+  $(document).ready(function() {
+    // When the user selects a category, update the subcategory options
+    $('#category').on('change', function() {
+      var category = $(this).val();
+      $.ajax({
+        url: '/admin/getSubcategories',
+        type: 'POST',
+        data: {
+          category: category
+        },
+        success: function(data) {
+          // Clear existing options
+          $('#sub_category').empty();
+          // Extract subcategory names from data array
+          // var subcategories = data.map(function(subcategory) {
+          //   return subcategory.name;
+          // });
+          // Add the new options
+          
+          if (data.length > 0) {
+            for (var i = 0; i < data.length; i++) {
+              var subcategory = data[i];
+              $('#sub_category').append(`<option>${subcategory}</option>`);
+            }
+          } else {
+            $('#sub_category').append('<option value="">-- No subcategories found --</option>');
+          }
+        },
+
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log('AJAX error: ' + textStatus + ' - ' + errorThrown);
+        }
+      });
+    });
+  });
+ 
+</script>
+
+<style>
+  p {
+    font-size: 12px;
+  }
+</style>

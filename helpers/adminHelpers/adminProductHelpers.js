@@ -136,7 +136,7 @@ const ObjectId = require("mongodb").ObjectId;
     return new Promise(async(resolve,reject)=>{
     
      let a= await user.product.updateOne({_id:ObjectId(offer.id)},{$set:{oldPrice:offer.Price,Price:offer.offerPrice,offerpercentage:offer.offerpercentage}})
-console.log("Aaaaaaaaaaaa",a)
+
       resolve()
     })
 

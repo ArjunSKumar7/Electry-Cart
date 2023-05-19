@@ -23,7 +23,22 @@ module.exports={
         adminProductHelpers.productofferajax(req.body).then((response)=>{
 res.json({status:true})
         })
+    },
+
+
+
+removeofferajax: async (req, res) => {
+    try {
+    
+  
+      adminOfferHelper.removeofferajax(req.body).then((response) => {
+        res.json(response);
+      });
+    } catch (err) {
+      console.log("Error occurred while removing the offer:", err);
     }
+  }
+  
     
 
 }
