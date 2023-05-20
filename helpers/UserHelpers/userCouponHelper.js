@@ -9,10 +9,12 @@ module.exports = {
       try {
         let discountAmount;
         let couponTotal;
+        let userId=req.session.user._id
         let coupon = await coupondb.coupon.findOne({ couponName: code });
 
         if (coupon) {
           if (coupon.expiry >= new Date()) {
+             //     let userCouponExists = await user.user.findOne({ _id: userId, 'coupons.couponName': code })
             if (total >= coupon?.minPurchase) {
               discountAmount = (total * coupon.discountPercentage) / 100;
               if (discountAmount > coupon?.maxDiscountValue) {

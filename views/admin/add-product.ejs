@@ -3,19 +3,16 @@
     <div class="row w-75 mt-5">
       <div class="col-md-12">
         <h2 class="text-center">Add Product</h2>
-        <form
-          action="/admin/add_product"
-          method="post"
-          enctype="multipart/form-data"
-        >
-          <label for="">Prodcut Name</label>
-          <input type="text" name="name" class="form-control" required="" />
+        <form action="/admin/add_product" method="post" enctype="multipart/form-data">
+          <label for="">Product Name</label>
+          <input type="text" name="name" class="form-control" oninput="validateNames()"  required="" />
 
-          <label for="">ProductDescription</label>
-          <input type="text" name="description" class="form-control" required="" />
+          <label for="">Product Description</label>
+          <input type="text" name="description" class="form-control" oninput="validateNames()"  required=""  />
+
 
           <label for="">Quantity</label>
-          <input type="text" name="quantity" class="form-control" required=""  onsubmit="return validateForm()" />
+          <input type="text" name="quantity" class="form-control" oninput="validateForm()"  required="" />
 
           <label for="">Price</label>
           <input type="text" name="price" class="form-control" required="" />
@@ -25,11 +22,13 @@
 
           <select class="form-select" name="category" id="cars">
             <% response.forEach(function(procategory) { %>
-            <option value="<%=procategory.CategoryName%>"><%=procategory.CategoryName %></option>
-            <% } )%>
+              <option value="<%=procategory.CategoryName%>">
+                <%=procategory.CategoryName %>
+              </option>
+              <% } )%>
           </select>
- 
-          
+
+
 
           <!-- <label for="">Category</label>
           <select class="form-select" name="category" id="cars"> 
@@ -44,28 +43,28 @@
           <div>
             <img src="" alt="image1" width="90px" height="90px" id="displayImg1">
           </div>
-          <input type="file"  name="Image" required="" class="form-control" onchange="display1(event)"/>
+          <input type="file" name="Image" required="" class="form-control" onchange="display1(event)" />
 
 
           <label for="">Image 2</label>
           <div>
             <img src="" alt="image2" width="90px" height="90px" id="displayImg2">
           </div>
-          <input type="file"  name="Image" required=""  class="form-control" onchange="display2(event)"/>
+          <input type="file" name="Image" required="" class="form-control" onchange="display2(event)" />
 
 
           <label for="">Image 3</label>
           <div>
             <img src="" alt="image3" width="90px" height="90px" id="displayImg3">
           </div>
-          <input type="file"  name="Image" required="" class="form-control" onchange="display3(event)"/>
+          <input type="file" name="Image" required="" class="form-control" onchange="display3(event)" />
 
 
           <label for="">Image 4</label>
           <div>
             <img src="" alt="image4" width="90px" height="90px" id="displayImg4">
           </div>
-          <input type="file"  name="Image" required="" class="form-control" onchange="display4(event)"/>
+          <input type="file" name="Image" required="" class="form-control" onchange="display4(event)" />
 
 
           <button type="submit" class="btn btn-success mt-4">Submit</button>
@@ -75,26 +74,55 @@
   </div>
 </section>
 <script>
-  function display1(event){
-    document.getElementById('displayImg1').src= URL.createObjectURL(event.target.files[0])
-    
+  function display1(event) {
+    document.getElementById('displayImg1').src = URL.createObjectURL(event.target.files[0])
+
   }
-  function display2(event){
-    document.getElementById('displayImg2').src= URL.createObjectURL(event.target.files[0])
-    
+  function display2(event) {
+    document.getElementById('displayImg2').src = URL.createObjectURL(event.target.files[0])
+
   }
-  function display3(event){
-    document.getElementById('displayImg3').src= URL.createObjectURL(event.target.files[0])
-    
+  function display3(event) {
+    document.getElementById('displayImg3').src = URL.createObjectURL(event.target.files[0])
+
   }
-  function display4(event){
-    document.getElementById('displayImg4').src= URL.createObjectURL(event.target.files[0])
-    
+  function display4(event) {
+    document.getElementById('displayImg4').src = URL.createObjectURL(event.target.files[0])
+
   }
 
+  function validateNames() {
+    var name = document.getElementsByName("name")[0].value;
+    const description = document.getElementsByName("description")[0].value;
+
+    // Validate Product Name
+    var nameWords = name.trim().split(" ");
+    if (nameWords.length > 4) {
+      alert("Product Name should not exceed 4 words.");
+      return false;
+    }
+    if (name.length > 25) {
+      alert("Product Name should not exceed 25 characters.");
+      return false;
+    }
+
+    // Validate Product Description
+    var descriptionWords = description.trim().split(" ");;
+    if (descriptionWords.length > 10) {
+      alert("Product Description should not exceed 10 words.");
+      return false;
+    }
+    if (description.length > 50) {
+      alert("Product Description should not exceed 50 characters.");
+      return false;
+    }
+   
+
+   
+  }
 
   function validateForm() {
-    var quantity = document.getElementById("quantity").value;
+    var quantity = document.getElementsByName("quantity")[0].value;
     if (quantity < 0) {
       alert("Quantity cannot be negative.");
       return false;
@@ -103,5 +131,5 @@
   }
 
 
-  
+
 </script>
